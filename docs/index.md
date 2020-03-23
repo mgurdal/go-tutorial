@@ -1,5 +1,8 @@
 # Go Tutorial
-[English](/) | [Türkçe](tr/)
+[English](/go-tutorial/) | [Türkçe](/go-tutorial/tr/)
+
+This page contains educational material that includes the use of data structures 
+in Go and principles about concurrent programming.
 
 ## Topics
 <div class="cards">

@@ -2,6 +2,8 @@
 
 [English](/go-tutorial/) | [Türkçe](/go-tutorial/tr/)
 
+Bu sayfa Go veri yapılarının kullanımı ve eşzamanlı programlama ile ilgili bilgi sunar.
+
 ## Konular
 <div class="cards">
     <a href="data-structures/">
