@@ -226,8 +226,10 @@ for {
 ### Adding Timeout
 
 A program like above will be locked if no data is sent to both channels. To prevent this, we can add timeouts.
+
 We can break the loop by waiting from another finite channel and then end the function when the case is matched.
-Go has predefined channels for this kind of purposes. Time module has an `time.After` method which yields a result
+
+Go has predefined channels for this kind of purposes. Time module has the `time.After` method which yields a result
 **after** a certain delay.   
 
 ```go
