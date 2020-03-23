@@ -1,0 +1,28 @@
+site_name: Go Tutorial
+site_description: Go Tutorial
+site_author: Mehmet Gürdal
+site_url: https://mgurdal.github.io/go
+
+
+nav:
+    - Home: index.md
+    - Data Structures : data-structures.md
+    - Concurrency: concurrency.md
+
+extra:
+  social:
+    - type: github-alt
+      link: https://github.com/mgurdal
+    - type: twitter
+      link: https://twitter.com/mgurdal_
+    - type: linkedin
+      link: https://linkedin.com/in/mgurdal
+
+theme:
+  name: 'material'
+
+markdown_extensions:
+  - codehilite
+
+extra_css:
+    - assets/css/extra.css

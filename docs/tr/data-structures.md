@@ -1,10 +1,17 @@
 # Veri Yapıları
 
-## Array
+[English](/data-structures) | [Türkçe](/tr/data-structures)
+
+Bu sayfa go diline ait veri yapıları ve bu yapıların genel programlamada uygulanan yöntemlerle kullanımı anlatılmaktadır.
+
+
+Array
+--------
 
 Arrayler aynı tipteki verileri bir arada muhafaza etmemizi sağlayan yapılardır. Örneğin; 4, 5, 19 ve 25'ten oluşan veri bütünü arrayi tanımlar. 
 
 Go farklı tipteki verilerden array oluşturmamıza izin vermez.
+
 
 ### Tanımlama
 
@@ -12,30 +19,30 @@ Arrayler temel olarak `[Boyut]Tip` biçiminde tanımlanır. Arrayleri oluşturma
 
 `int` tipinde 3 birim tutabilen array.
 
-{% code title="" %}
+
 ```go
 var fruits [3]string
 ```
-{% endcode %}
+
 
 Böyle tanımlandığında arraydeki her bir alan, veri tipinin **ön tanımlı** değeri ile doldurulur. Bu örneği baz alırsak `[0, 0, 0]` olarak tanımlanacaktır. Bu değerleri bulundukları indexler üzerinden erişerek değiştirebiliriz.
 
-{% code title="" %}
+
 ```go
 fruits[0] = "🍌"
 fruits[1] = "🍏"
 
 fruits // [🍌 🍏  ]
 ```
-{% endcode %}
+
 
 Array için tanımlananın dışındaki bir veri tipini kullanırsak hata ile karşılaşırız.
 
-{% code title="" %}
+
 ```go
 arr[2] = 1
 ```
-{% endcode %}
+
 
 ```bash
 cannot use 1 (type int) as type string in assignment
@@ -43,35 +50,33 @@ cannot use 1 (type int) as type string in assignment
 
 Aynı arrayi daha kısa bir yol ile de tanımlayabiliriz.
 
-{% code title="" %}
+
 ```go
 fruits := [3]int{"🍌", "🍏"}
 
 fruits // [🍌 🍏  ]
 ```
-{% endcode %}
+
 
 Bu tanımlamada ilk 2 elemanını doğrudan tanımladığımız 3 birim uzunluğundaki bir arrayi `arr`değişkenine atadık.  
   
 Eğer arrayi değerleri ile birlikte oluşturulacaksak `...` ifadesini kullanılarak, boyut hesaplama kısmı compilera bırakılabiliriz.
 
-{% code title="" %}
+
 ```go
 fruits := [3]int{"🍌", "🍏", "🍉"}
 
 fruits // [🍌 🍏 🍉]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/AlUl2XBUQaH](https://play.golang.org/p/AlUl2XBUQaH)
 
-### Döngü ile kullanma
+Döngü ile kullanma
 
 Arrayler for döngüsü ile temel olarak 2 şekilde kullanılabilir. 
 
 1. İndex ile erişerek.
 
-{% code title="" %}
+
 ```go
 fruits := [3]string{"🍌", "🍏", "🍉"}
 
@@ -80,11 +85,11 @@ for index := range fruits {
 	fmt.Println(fruit)
 }
 ```
-{% endcode %}
+
 
 2. Doğrudan değere erişerek.
 
-{% code title="" %}
+
 ```go
 fruits := [3]string{"🍌", "🍏", "🍉"}
 
@@ -92,17 +97,16 @@ for _, fruit := range fruits {
 	fmt.Println(fruit)
 }
 ```
-{% endcode %}
 
-[https://play.golang.org/p/egu-tgfgl1M](https://play.golang.org/p/egu-tgfgl1M)
 
-##  Slice
+Slice
+---------
 
 Slicelar kullanım bakımından arraylere çok benzer. Sliceların farkı, boyutlarının dinamik olması.
 
 Slice tanımlarken yine arraydeki gibi `[]Tip` yapısını kullanıyoruz fakat köşeli parantezlerin içini boş bırakıyoruz.
 
-{% code title="" %}
+
 ```go
 // nil slice tanımlama
 var slc []int
@@ -112,13 +116,13 @@ slc = []int{12, 24, 39}
 // doğrudan tanımlama
 slc := []int{12, 24, 39} 
 ```
-{% endcode %}
+
 
 #### make
 
 Sliceları tanımlamak için \`make\` fonksiyonunu da kullanabiliriz. `make` fonksiyonunun ilk parametresi oluşturulacak sliceın boyutunu belirler.
 
-{% code title="" %}
+
 ```go
 // boyut ile tanımlama
 n_items = 20
@@ -128,11 +132,9 @@ slc := make([]int, n_items)
 capacity := 40
 slc := make([]int, n_items, capacity)
 ```
-{% endcode %}
 
-[https://play.golang.org/p/7IibqMN6eqr](https://play.golang.org/p/7IibqMN6eqr)
 
-## Slice İşlemleri
+### Slice İşlemleri
 
 Slice oluşturulurken kapasitesi kadar, tutacağı veri tipinin ön tanımlı değeri ile doldurulur. Fakat, yalnızca uzunluğu kadar kısmına erişilebilir.
 
@@ -142,7 +144,7 @@ Bir sliceın boyutunu artırmak istiyorsak bunun için `append` ve `copy` fonksi
 
 `copy` bir sliceı aynı veya daha büyük kapasiteye sahip bir diğer slicea kopyalamamızı sağlar ve  kaç adet elemanın kopyalandığını döndürür.
 
-{% code title="" %}
+
 ```go
 bucket := make([]string, 5)
 
@@ -154,13 +156,10 @@ n_copied // 5
 bucket // [🍎 🍇 🍈 🍉]
 
 ```
-{% endcode %}
 
-[https://play.golang.org/p/x-UJyc\_db4e](https://play.golang.org/p/x-UJyc_db4e)
+Bir slice kopyalanırken, elemanlar hedef slicedaki aynı indexdeki elemanların yerini alır.
 
- Bir slice kopyalanırken, elemanlar hedef slicedaki aynı indexdeki elemanların yerini alır.
 
-{% code title="" %}
 ```go
 fruits := []string{"🍇", "🍒", "🍉"}
 apples := []string{"🍎", "",  "🍏"}
@@ -170,15 +169,13 @@ copy(fruits, apples)
 fruits // [🍎  🍏]
 
 ```
-{% endcode %}
 
-[https://play.golang.org/p/jwOcc\_Eg6q4](https://play.golang.org/p/jwOcc_Eg6q4)
 
 ### append
 
 `append` fonksiyonu, ilk parametre olarak boyutunu artıracağımız sliceı ve devamında ekleyeceğimiz elemanları alır ve bize tüm elemanları içeren **yeni** bir slice döndürür. Bu nedenle, dönüş değerini bir değişkende\(genellikle eski slice değişkeninde\) tutmak gerekir.
 
-{% code title="" %}
+
 ```go
 bucket := []string{"🍎", "🍇", "🍈", "🍉"}
 
@@ -187,15 +184,11 @@ bucket = append(bucket, green_apple)
 
 bucket // [🍎 🍇 🍈 🍉 🍏]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/iEP9-dXWLFc](https://play.golang.org/p/iEP9-dXWLFc)
 
-{% hint style="danger" %}
-Bir sliceı yeniden boyutlandırıp başka bir değişkene atadığımızda, yeni slicedaki değişiklikler orjinal sliceı da etkileyecektir.
-{% endhint %}
+> Bir sliceı yeniden boyutlandırıp başka bir değişkene atadığımızda, yeni slicedaki değişiklikler orjinal sliceı da etkileyecektir.
 
-{% code title="" %}
+
 ```go
 fruits := []string{"🍎", "🍎", "🍇", "🍒", "🍉"}
 apples := fruits[:2]
@@ -208,15 +201,13 @@ fruits // [🍏 🍏 🍇 🍒 🍉]
 
 
 ```
-{% endcode %}
 
-[https://play.golang.org/p/9Fnj6qt9DPh](https://play.golang.org/p/9Fnj6qt9DPh)
 
 ### cut
 
 Slicedaki belli bir aralığı çıkarmak istiyorsak aşağıdaki yöntemi kullanabiliriz. Bu yöntem Sliceda belirlediğimiz başlangıç indexine kadar olan elemanlar ile bitiş indexinden sonraki elemanları ekleyecek. Böylece aradaki elemanları boşa çıkartmış olacağız.
 
-{% code title="" %}
+
 ```go
 edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
 
@@ -226,15 +217,13 @@ edibles = append(edibles[:cut_start_index], edibles[cut_end_index:]...)
 
 edibles // [🍎 🍇 🍒 🍉 🌽 🥔]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/a-y-pHDVPVt](https://play.golang.org/p/a-y-pHDVPVt)
 
 ### delete
 
 Slicedaki bir elemanı indexini kullanarak silmek istiyorsak, aşağıdaki yöntemi kullanabiliriz.
 
-{% code title="" %}
+
 ```go
 edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
 
@@ -243,9 +232,7 @@ edibles = append(edibles[:index_of_cherry], edibles[index_of_cherry+1:]...)
 
 edibles // [🍎 🍇 🍉 🌶 🍆 🌽 🥔]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/nT9nCG\_E8\_K](https://play.golang.org/p/nT9nCG_E8_K)
 
 Benzer işlemi `copy` fonksiyonu ile de yapabiliriz. Aşağıdaki örnekte, yukarıdakinden farklı olarak 4. satırda:
 
@@ -254,7 +241,7 @@ Benzer işlemi `copy` fonksiyonu ile de yapabiliriz. Aşağıdaki örnekte, yuka
 
 5. satırda da sliceı yeni eleman sayısına göre dilimledik.
 
-{% code title="" %}
+
 ```go
 edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
 index_of_cherry := 2
@@ -266,15 +253,13 @@ edibles = edibles[:new_length]
 
 edibles // [🍎 🍇 🍉 🌶 🍆 🌽 🥔]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/IT51dQhIoG3](https://play.golang.org/p/IT51dQhIoG3)
 
 #### Sıralamayı Dikkate Almadan Silme
 
 Silme işlemini array sıralamasını göz ardı ederek de yapabiliriz. Aşağıdaki örnekte, silmek istediğimiz eleman ile slicedaki en son elemanın yerini değiştirdik. Ardından sliceın boyutunu 1 azalttık.
 
-{% code title="" %}
+
 ```go
 edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
 index_of_cherry := 2
@@ -284,21 +269,15 @@ edibles = edibles[:len(edibles)-1]
 
 edibles // [🍎 🍇 🥔 🍉 🌶 🍆 🌽]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/gqjB2c66O6S](https://play.golang.org/p/gqjB2c66O6S)
-
-{% hint style="danger" %}
-**Garbage Collection**
-
-Eğer sliceda kullandığımız elemanlar `pointer` veya `pointer` alanlara sahip `struct` ise yukarıda gösterilen **cut**  ve **delete** işlemleri memory leak oluşturabilir. Bunun sebebi, sliceın silindikten sonra da silinen elemanın referansını tutabilmesindendir. 
-{% endhint %}
+> **Garbage Collection**
+> Eğer sliceda kullandığımız elemanlar `pointer` veya `pointer` alanlara sahip `struct` ise yukarıda gösterilen **cut**  ve **delete** işlemleri memory leak oluşturabilir. Bunun sebebi, sliceın silindikten sonra da silinen elemanın referansını tutabilmesindendir. 
 
 Aşağıdaki örneklerde daha öncesinde yaptığımız işlemlere ek olarak, işlemdem sonra boşta kalan alanları `nil` değerler ile doldurduk. Böylece garbage collector bu alanların artık kullanılmayacağını anlayıp, sisteme geri kazandırabilir.
 
 ### cut \(memory safe\)
 
-{% code title="" %}
+
 ```go
 apple := "🍎"
 banana := "🍌"
@@ -318,13 +297,11 @@ fruits = fruits[:cleanup_index]
 
 fruits // [🍎 🍌]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/NuHHVJe3OUx](https://play.golang.org/p/NuHHVJe3OUx)
 
 ### delete \(memory safe\)
 
-{% code title="" %}
+
 ```go
 apple := "🍎"
 banana := "🍌"
@@ -337,13 +314,11 @@ fruits = fruits[:len(fruits)-1]
 
 fruits // [🍎 🍎 🍌 🍌 🍌]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/4EclBmk-4Iz](https://play.golang.org/p/4EclBmk-4Iz)
 
 #### Sıralamayı Dikkate Almadan Silme \(memory safe\)
 
-{% code title="" %}
+
 ```go
 apple := "🍎"
 banana := "🍌"
@@ -357,15 +332,13 @@ fruits = fruits[:len(fruits)-1]
 
 fruits // [🍎 🍎 🍌 🍌 🍌]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/tnaHZL1IGWB](https://play.golang.org/p/tnaHZL1IGWB)
 
 ### expand
 
 Bir sliceı, diğeri birleştirmek istersek aşağıdaki yöntemleri kullanabiliriz.
 
-{% code title="" %}
+
 ```go
 bucket := []string{"🍌", "🍇", "🍉"}
 apples := []string{"🍏", "🍎"}
@@ -374,13 +347,10 @@ bucket = append(bucket, apples...)
 
 bucket // [🍌 🍇 🍉 🍏 🍎]
 ```
-{% endcode %}
-
-[https://play.golang.org/p/PRfDcarZBbj](https://play.golang.org/p/PRfDcarZBbj)
 
 Aşağıdaki örnekte `7.` satırda `apples` ile belirlediğimiz indexten sonraki elemanları birleştirdik. Sonrasında belirlediğimiz indexe kadar olan `bucket` elemanlarına, bu slice elemanlarını ekledik.
 
-{% code title="" %}
+
 ```go
 bucket := []string{"🍌", "🍇", "🍉"}
 apples := []string{"🍏", "🍎"}
@@ -393,15 +363,13 @@ bucket = append(
 
 bucket // [🍌 🍇 🍏 🍎 🍉]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/u4oLZcGgZOi](https://play.golang.org/p/u4oLZcGgZOi)
 
 ### filter
 
 Slice elemanlarını belirli bir kritere göre filtreleyebiliriz.
 
-{% code title="" %}
+
 ```go
 fruits := []string{"🍏", "🍎", "🍉", "🍏", "🍎"}
 apple_criteria := "🍎"
@@ -415,15 +383,12 @@ for _, fruit := range fruits {
 
 apples // [🍎 🍎]
 ```
-{% endcode %}
-
-[https://play.golang.org/p/IXswvVnq75h](https://play.golang.org/p/IXswvVnq75h)
 
 ### insert
 
 Sliceın herhangi bir kısmına yeni bir eleman eklemek istiyorsak; bu yöntemleri kullanabiliriz.
 
-{% code title="" %}
+
 ```go
 fruits := []string{"🍏", "🍎", "🍉"}
 banana := "🍌"
@@ -436,9 +401,7 @@ fruits = append(
 
 fruits  // [🍏 🍎 🍌 🍉]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/zaYkSLSN982](https://play.golang.org/p/zaYkSLSN982)
 
 {% hint style="warning" %}
 **Memory Concern**
@@ -448,7 +411,7 @@ fruits  // [🍏 🍎 🍌 🍉]
 Yeni bir slice oluşturulmasının ve 2. kez kopyalama işleminin önüne geçilebilir.
 {% endhint %}
 
-{% code title="" %}
+
 ```go
 fruits := []string{"🍏", "🍎", "🍉"}
 banana := "🍌"
@@ -460,15 +423,13 @@ fruits[insert_index] = banana
 
 fruits // [🍏 🍎 🍌 🍉]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/P3jN12u9BVR](https://play.golang.org/p/P3jN12u9BVR)
 
 ### pop
 
 Aşağıdaki örnekte sliceın son elemanını çıkarıp bir değişkene atadık.
 
-{% code title="" %}
+
 ```go
 fruits := []string{"🍏", "🍎", "🍉"}
 
@@ -477,15 +438,13 @@ item, fruits := fruits[len(fruits)-1], fruits[:len(fruits)-1]
 item // 🍉
 fruits // [🍏 🍎]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/rPcKLeJS9Ci](https://play.golang.org/p/rPcKLeJS9Ci)
 
 ### push front \(unshift\)
 
 Bu örnekte yeni bir elemanı sliceın başına koyduk.
 
-{% code title="" %}
+
 ```go
 fruits := []string{"🍏", "🍎", "🍉"}
 banana := "🍌"
@@ -494,15 +453,13 @@ fruits = append([]string{banana}, fruits...)
 
 fruits // [🍌 🍏 🍎 🍉]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/i5YdcdSBUaa](https://play.golang.org/p/i5YdcdSBUaa)
 
 ### pop front \(shift\)
 
 Bu örnekte de sliceın ilk elemanını çıkarıp bir değişkene atadık.
 
-{% code title="" %}
+
 ```go
 fruits := []string{"🍌", "🍏", "🍎", "🍉"}
 
@@ -511,11 +468,11 @@ banana, fruits := fruits[0], fruits[1:]
 banana // 🍌
 fruits // [🍏 🍎 🍉]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/-jUyuax1gF5](https://play.golang.org/p/-jUyuax1gF5)
 
-## Map
+Map
+--------
+
 
 En sık kullanılan veri tiplerinden birisi de maplerdir. `map` unique anahtarları, değerlerle eşleştirebilen sonrasında bu anahtarla eşleştirilen değere erişilmesini sağlayan yapılardır. 
 
@@ -533,7 +490,7 @@ mymap = make(map[string]string)
 
 ### Değer Atama
 
-{% code title="" %}
+
 ```go
 monty_python_films_by_year := map[string]string{
 	"1971": "Monty Python and the Holy Grail",
@@ -542,25 +499,22 @@ monty_python_films_by_year := map[string]string{
 
 monty_python_films_by_year["1983"] = "The Meaning of Life"
 ```
-{% endcode %}
+
 
 Atadığımız değerlere, yine aynı keyi kullanarak erişebiliriz.
 
-{% code title="" %}
+
 ```go
 film_name := monty_python_films_by_year["1983"]
 
 film_name // The Meaning of Life
 ```
-{% endcode %}
 
-[https://play.golang.org/p/a4M0DX9-3-6](https://play.golang.org/p/a4M0DX9-3-6)
 
-{% hint style="success" %}
-Mapin bir elemanına erişirken, elemanın mapde kayıtlı olup olmadığını gösteren ek bir değere daha erişebiliriz.
-{% endhint %}
+> Mapin bir elemanına erişirken, elemanın mapde kayıtlı olup olmadığını gösteren ek bir değere daha erişebiliriz.
 
-{% code title="" %}
+
+
 ```go
 film_name, registered := monty_python_films_by_year["2019"]
 
@@ -570,9 +524,6 @@ if !registered {
 	fmt.Println(film_name)
 }
 ```
-{% endcode %}
-
-[https://play.golang.org/p/A5SE4cYCE-q](https://play.golang.org/p/A5SE4cYCE-q)
 
 ### Döngü ile kullanma
 
@@ -580,7 +531,7 @@ Map elemanlarına temelde 2 yolla erişilebilir.
 
 1. For döngüsünde tek değişken kullanıp, keyler üzerinden erişerek.
 
-{% code title="" %}
+
 ```go
 monty_python_films_by_year := map[string]string{
 	"1971": "Monty Python and the Holy Grail",
@@ -593,13 +544,11 @@ for year := range monty_python_films_by_year {
 	fmt.Println(film_name, "was released at", year)
 }
 ```
-{% endcode %}
 
-[https://play.golang.org/p/q0Zfw7dM5Qt](https://play.golang.org/p/q0Zfw7dM5Qt)
 
 2. Döngüde 2 değişken kullanıp, hem anahtar hem de değere erişerek.
 
-{% code title="" %}
+
 ```go
 for year, film_name := range monty_python_films_by_year {
 	fmt.Println(film_name, "was released at", year)
@@ -611,15 +560,13 @@ Life of Brian was released at 1979
 The Meaning of Life was released at 1983
 */
 ```
-{% endcode %}
 
-[https://play.golang.org/p/q0Zfw7dM5Qt](https://play.golang.org/p/q0Zfw7dM5Qt)
 
 ### delete
 
 Mapdeki bir elemanı silmek için delete fonksiyonunu kullanabiliriz.
 
-{% code title="" %}
+
 ```go
 monty_python_films_by_year := map[string]string{
 	"1971": "Monty Python and the Holy Grail",
@@ -633,11 +580,10 @@ registered // false
 
 len(monty_python_films_by_year) // 1
 ```
-{% endcode %}
 
-[https://play.golang.org/p/Ir0oqibITHN](https://play.golang.org/p/Ir0oqibITHN)
 
-## struct
+struct
+-------------
 
 Structlar kullanıcı tarafından tanımlanan ve farklı türdeki verileri isimleri ile tutabilen veri yapılarıdır.
 
@@ -653,7 +599,7 @@ type StructName struct{
 
 Structın aynı tipteki alanlarını tek satırda tanımlayabiliriz.
 
-{% code title="" %}
+
 ```go
 type Film struct {
 	name, director string
@@ -661,21 +607,20 @@ type Film struct {
 	release_year   int
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 var new_film = Film{}
 
 new_film // {"" "" 0 0}
 ```
-{% endcode %}
 
-[https://play.golang.org/p/SQJejRKGu0c](https://play.golang.org/p/SQJejRKGu0c)
+
 
 Struct alanlarına ek olarak etiket de verebiliriz.
 
-{% code title="" %}
+
 ```go
 type Film struct {
 	Name        string  `json:"film_name"`
@@ -684,11 +629,11 @@ type Film struct {
 	ReleaseYear int     `json:"year_of_release"`
 }
 ```
-{% endcode %}
+
 
 Etiketler tip dönüşümü ile çokça uğraşan ORMler ve serialization kütüphaneleri arasında popülerdir. Bu etiketlere `reflect` modülü ile erişilebilir.
 
-{% code title="" %}
+
 ```go
 f := Film{}
 t := reflect.TypeOf(f)
@@ -707,25 +652,23 @@ imdb_score
 year_of_release
 */
 ```
-{% endcode %}
 
-[https://play.golang.org/p/rgeIJX0Bu4Q](https://play.golang.org/p/rgeIJX0Bu4Q)
 
 ### Değer Atama
 
 Bir struct, parametreleri sırasıyla verilerek oluşturulabilir.
 
-{% code title="" %}
+
 ```go
 new_film := Film{"Mad Max: Fury Road", "George Miller", 8.1, 2015}
 
 new_film // {Mad Max: Fury Road George Miller 8.1 2015}
 ```
-{% endcode %}
+
 
 Benzer biçimde,  parametreleri ve alacakları değerleri `:` ayracı ile belirterek de oluşturulabilir.
 
-{% code title="" %}
+
 ```go
 new_film := Film{
 		Name:        "Ran",
@@ -736,11 +679,11 @@ new_film := Film{
 
 new_film // {Ran Akira Kurosawa 8.2 1985}
 ```
-{% endcode %}
+
 
 Struct oluştururken bazı alanlar boş bırakılırsa; bu alanlar o veri tipinin boş değerleri ile tanımlanır.
 
-{% code title="" %}
+
 ```go
 new_film := Film{
 	name:         "Batman v Superman",
@@ -750,15 +693,13 @@ new_film := Film{
 
 new_film // {Batman v Superman Zack Snyder 0 2016}
 ```
-{% endcode %}
 
-[https://play.golang.org/p/QqiY\_bguN7R](https://play.golang.org/p/QqiY_bguN7R)
 
 #### Anonymous struct
 
 Bazı özel durumlarda structları fonksiyon gövdesi içerisinde tanımlamamız gerekebilir. Bunu aşağıdaki yöntemle yapabiliriz.
 
-{% code title="" %}
+
 ```go
 provider_config := struct {
 	name    string
@@ -772,15 +713,13 @@ provider_config := struct {
 
 provider_config // {mapbox https://api.mapbox.com/geocoding/v5/ 123asds123}
 ```
-{% endcode %}
 
-[https://play.golang.org/p/6eBRXTgWRMO](https://play.golang.org/p/6eBRXTgWRMO)
 
 #### Anonymous fields
 
 Alan isimlerini belirtilmeden de struct tanımlanabilir. Bu tarz bir tanımlamada belirtilen veri tiplerinin birbirinden farklı olması gerekir.
 
-{% code title="" %}
+
 ```go
 type Item struct {
 	string  // code
@@ -796,15 +735,12 @@ item := Item{
 
 item // {child-seat 5 20.1}
 ```
-{% endcode %}
-
-[https://play.golang.org/p/G6uUy5jvAkx](https://play.golang.org/p/G6uUy5jvAkx)
 
 #### Promoted fields
 
 Bir struct başka bir struct içerisinde alan ismi verilmeden kullanılabilir. Bu durumda içerideki structa kendi ismiyle erişilir. Aşağıdaki örneği baz alırsak `Page` içerisindeki `Content`e `page.Content` şeklinde erişilebilir.
 
-{% code title="" %}
+
 ```go
 type Content struct {
 	body string
@@ -817,9 +753,9 @@ type Page struct {
 	Content
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 content := Content{
 	body: "<h1>Hi</h1>",
@@ -836,9 +772,7 @@ page // {http://.../3 http://.../1 {<h1>Hi</h1> 11}}
 
 page.Content // {<h1>Hi</h1> 11}
 ```
-{% endcode %}
 
-[https://play.golang.org/p/Co-j-ybYBcA](https://play.golang.org/p/Co-j-ybYBcA)
 
 ## Pointer
 
@@ -870,7 +804,7 @@ Pointera `&` işaretini kullanarak, bir başka değişlenin adresini, değer ola
 
 `*` işareti ile pointeri kullanarak, işaret ettiği değişkene\(dolayısıyla tutulan veriye\) erişebiliriz.
 
-{% code title="" %}
+
 ```go
 var carbon string = "Carbon"
 var ptrCarbon *string
@@ -884,9 +818,7 @@ ptrCarbon // 0xc000092030
 
 carbon // "Altered Carbon"
 ```
-{% endcode %}
 
-[https://play.golang.org/p/jbLsd4zyryB](https://play.golang.org/p/jbLsd4zyryB)
 
 ## Fonksiyonlar
 
@@ -899,7 +831,7 @@ func fonksiyon_adı( [parametre listesi] ) [dönüş değerlerinin tipleri]
 }
 ```
 
-{% code title="" %}
+
 ```go
 func sigmoid(value float64) float64 {
 	return 1.0 / (1.0 + math.Exp(-value))
@@ -907,9 +839,6 @@ func sigmoid(value float64) float64 {
 
 sigmoid(0.5) // 0.62246
 ```
-{% endcode %}
-
-[https://play.golang.org/p/HHYqXH8BqIx](https://play.golang.org/p/HHYqXH8BqIx)
 
 ### Parametreler
 
@@ -929,7 +858,7 @@ func withdraw(wallet Wallet, amount float64) {
 
 Yukarıdaki kodda basitçe bir cüzdan yapısı ve bu cüzdandan para çekebilen `withdraw` fonksiyonu tanımladık. Aşağıdaki satırlarda da bir adet cüzdan oluşturup bu fonksiyon ile kullandık.
 
-{% code title="" %}
+
 ```go
 wallet := Wallet{
 	userID:  1,
@@ -942,13 +871,13 @@ withdraw(wallet, item_price)
 
 wallet.balance // 3000.12
 ```
-{% endcode %}
+
 
 Görüldüğü üzere cüzdandaki para değişmedi. Bu tarz kazaları 2 yolla önleyebiliriz.
 
 1. Yöntem, cüzdandaki son para durumunu döndürüp, cüzdanı sonradan güncelleyebiliriz.
 
-{% code title="" %}
+
 ```go
 func withdraw(wallet Wallet, amount float64) float64 {
 	new_balance := wallet.balance - amount
@@ -958,13 +887,13 @@ func withdraw(wallet Wallet, amount float64) float64 {
 wallet.balance = withdraw(wallet, item_price)
 wallet.balance // 19977.12
 ```
-{% endcode %}
+
 
 Bu değişim, işi _cüzdandan para çekmek_ olan withdraw fonksiyonunun kullanım amacını değiştirmiş oluyor.
 
 2. Yöntem, cüzdan değişkeni yerine, cüzdanın adresini parametre olarak verebiliriz.
 
-{% code title="" %}
+
 ```go
 func withdraw(wallet *Wallet, amount float64) {
 	wallet.balance -= amount
@@ -974,9 +903,7 @@ withdraw(&wallet, item_price)
 
 wallet.balance // 19977.12
 ```
-{% endcode %}
 
-[https://play.golang.org/p/lSuk\_GI88gW](https://play.golang.org/p/lSuk_GI88gW)
 
 Bu yöntemin dezavantajı da farklı concurrency safe olmamasıdır. Farklı threadler ile cüzdandan para çekmek istediğimizde, bakiye durumunu takip etmek zor olacaktır.
 
@@ -984,7 +911,7 @@ Bu yöntemin dezavantajı da farklı concurrency safe olmamasıdır. Farklı thr
 
 GO fonksiyonlarında dinamik parametreler tanımlanabilir. Bu türdeki parametreleri tanımlamak için parametre tipinin önüne `...` işareti yazılır.
 
-{% code title="" %}
+
 ```go
 func ReLU(nums ...float64) []float64 {
 	new_nums := make([]float64, len(nums))
@@ -998,9 +925,9 @@ func ReLU(nums ...float64) []float64 {
 	return new_nums
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 nums := []float64{1., 0.2, 0., 0., -0.1, 0.1}
 
@@ -1008,9 +935,7 @@ nums = ReLU(nums...)
 
 nums // [1 0.2 0 0 0 0.1]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/Zf0RJXUcnXx](https://play.golang.org/p/Zf0RJXUcnXx)
 
 ### Dönüş Değerleri
 
@@ -1018,15 +943,15 @@ nums // [1 0.2 0 0 0 0.1]
 
 GO fonksiyonlarında birden fazla değer döndürülebilir. Dönülecek değerleri `()` arasında sırasıyla tanımlamak gerekmektedir.
 
-{% code title="" %}
+
 ```go
 func swap(first_arg, second_arg string) (string, string) {
    return second_arg, first_arg
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 var language1, language2 string = "Python", "GO"
 
@@ -1034,15 +959,13 @@ language1, language2 = swap(language1, language2)
 
 language1, language2 // GO Python
 ```
-{% endcode %}
 
-[https://play.golang.org/p/6YdcqTIhJch](https://play.golang.org/p/6YdcqTIhJch)
 
 #### Dönüş değerlerini isimlendirme
 
 Fonksiyonların dönüş değerlerine isim verip, değerleri bu değişkenler ile belirleyebiliriz. İsimlendirilmiş dönüş değerleri veri tipinin boş değerini alacağı için, fonksiyonun ön tanımlı dönüş değerleri olarak da kullanılabilirler.
 
-{% code title="" %}
+
 ```go
 type Record struct {
 	id   int
@@ -1064,9 +987,9 @@ func BulkCreate(records []Record, db *DB) (n_created int, err error) {
 	return n_created, err
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 db := &DB{
 	records: []Record{},
@@ -1087,9 +1010,6 @@ if err != nil {
 	fmt.Println(err)
 }
 ```
-{% endcode %}
-
-[https://play.golang.org/p/GftXylldL1T](https://play.golang.org/p/GftXylldL1T)
 
 ### Anonim Fonksiyon
 
@@ -1097,7 +1017,7 @@ GO'da fonksiyonlar da veri yapılarıdır ve diğer fonksiyonların içerisinde 
 
 Aşağıdaki kod örneğinde, projenin başka yerinde bu işleme ihtiyaç duymayacağımızı varsayarak, bir sliceı belirlenen boyutta parçalayan bir anonim fonksiyon kullandık.
 
-{% code title="" %}
+
 ```go
 records := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 batchSize := 3
@@ -1114,15 +1034,12 @@ batchedRecords := func(data []int, batchSize int) [][]int {
 
 batchedRecords // [[0 1 2] [3 4 5] [6 7 8] [9]]
 ```
-{% endcode %}
-
-[https://play.golang.org/p/nKR8t8P\_dpA](https://play.golang.org/p/nKR8t8P_dpA)
 
 Bu türdeki fonksiyonları bir değişkene atayıp bir kaç kez de kullanabiliriz.
 
 Aşağıdaki örnekte spesifik bir APIden ayrı ayrı gönderilen ülke kodu ve telefon numaralarını değişken olarak tanımladığımız fonksiyonla birleştirdik.
 
-{% code title="" %}
+
 ```go
 type Vendor struct {
 	name        string
@@ -1142,15 +1059,13 @@ formatPhoneNumbers := func(contact Vendor) string {
 
 formatPhoneNumbers(vendor) // +1403120120
 ```
-{% endcode %}
 
-[https://play.golang.org/p/AZiShOLjY7s](https://play.golang.org/p/AZiShOLjY7s)
 
 ## Metodlar
 
 GO dilinde diğer nesne yönelimli programlama dilleri gibi classlar ve kalıtım yoktur. Fakat fonksiyonlara `receiver` denilen ek bir argüman ekleyerek ile kendi oluşturduğumuz tiplere fonksiyonları bağlayabiliriz. Böylece GO dilinde de nesne yönelimli programlamaya benzer bir deneyim yakalanabilir.
 
-{% code title="" %}
+
 ```go
 type Connection struct {
 	host     string
@@ -1164,11 +1079,11 @@ func (conn *Connection) Close() {
 	fmt.Println("Connection", conn.host+":"+strconv.Itoa(conn.port), "closed.")
 }
 ```
-{% endcode %}
+
 
 Yukarıdaki yapıda `Close` fonksiyonuna normal bir fonksiyona ek olarak `(conn *Connection)` kısmını ekledik. Böylece aşağıdaki örnekte görüldüğü gibi `c.Close()`  şeklinde`Connection` tipi üzerinden fonksiyona erişebildik.
 
-{% code title="" %}
+
 ```go
 c := Connection{
     host:     "0.0.0.0",
@@ -1178,21 +1093,15 @@ c := Connection{
 }
 c.Close() // Connection 0.0.0.0:8080 closed.
 ```
-{% endcode %}
 
-[https://play.golang.org/p/Vqx-Sr48-BO](https://play.golang.org/p/Vqx-Sr48-BO)
 
-{% hint style="warning" %}
-#### Pointer receiver \| Value receiver
+> #### Pointer receiver \| Value receiver
+>
+> Fonksiyon parametrelerinde olduğu gibi receiverlerde de yapının değeri ile mi yoksa memory adresi ile mi kullanılacağına karar verilmelidir.
+>
+> Receiverları struct dışındaki tipler için de kullanabiliriz.
 
-Fonksiyon parametrelerinde olduğu gibi receiverlerde de yapının değeri ile mi yoksa memory adresi ile mi kullanılacağına karar verilmelidir.
-{% endhint %}
 
-{% hint style="success" %}
-Receiverları struct dışındaki tipler için de kullanabiliriz.
-{% endhint %}
-
-{% code title="" %}
 ```go
 type Iterable []int
 
@@ -1205,9 +1114,7 @@ arr.Append(4, 5, 6)
 
 arr // [1 2 4 5 6]
 ```
-{% endcode %}
 
-[https://play.golang.org/p/oXVXqs2ue7m](https://play.golang.org/p/oXVXqs2ue7m)
 
 ## Error
 
@@ -1217,7 +1124,7 @@ GOda kendi hata tiplerimizi oluşturabiliriz. Bunun için oluşturduğumuz tipin
 
 Aşağıdaki örnekte HTTP kodunu ve hata nedenini belirten `HTTPError` adında yeni bir hata tanımladık.
 
-{% code title="" %}
+
 ```go
 type HTTPError struct {
 	Status int
@@ -1235,22 +1142,20 @@ func MakeRequest() error {
 	}
 }
 ```
-{% endcode %}
+
 
 ### Kullanım
 
 Fonksiyon çalıştırıldığında dönülen hata değerinin `nil` olup olmadığı kontrol edilerek buna göre önlemler alınabilir.
 
-{% code title="" %}
+
 ```go
 err := MakeRequest()
 if err != nil {
 	fmt.Println(err)
 }
 ```
-{% endcode %}
 
-[https://play.golang.org/p/Ko0tuhYSiMT](https://play.golang.org/p/Ko0tuhYSiMT)
 
 ## Interface
 
@@ -1262,7 +1167,7 @@ Interfacelerin asıl amacı methodları, aldıkları parametreleri ve dönüş d
 
 GO dilinde interfaceler objelerle _kapalı_ halde uygulanır. Başka bir deyişle; bir tipin bir interfacei kullandığını belirtmek için, diğer çoğu nesne yönelimli dillerde olduğu gibi,`class File implements IO` gibi deyimler kullanmamız gerekmez. GO aynı metodları paylaşan interface ve tipler arasındaki ilişkiyi kendisi kurar.
 
-{% code title="" %}
+
 ```go
 type IOInterface interface {
 	Read() []byte
@@ -1298,9 +1203,9 @@ func (sock *Socket) Write(stream []byte) int {
 	return len(stream)
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 file := File{
 	name: "test",
@@ -1317,9 +1222,7 @@ sock.Write(file.Read())
 
 string(sock.Read() // "data"
 ```
-{% endcode %}
 
-[https://play.golang.org/p/LAfYuRpt83d](https://play.golang.org/p/LAfYuRpt83d)
 
 Yukarıdaki uygulamada `Read` ve `Write` metodlarını tanımlayan `IOInterface` interfaceini ve bu methodlara sahip`File` ve `Socket` tiplerini tanımladık.
 
@@ -1327,7 +1230,7 @@ Yukarıdaki uygulamada `Read` ve `Write` metodlarını tanımlayan `IOInterface`
 
 Aşağıdaki örnekte `Log` methodu `IOInterface` interfaceini parametre olarak aldığı için hangi veri tipinden geldiğini önemsemeden veriyi okuyup, işini yapabilir.
 
-{% code title="" %}
+
 ```go
 type Logger struct {
 }
@@ -1339,9 +1242,9 @@ func (log *Logger) Log(io IOInterface) {
 	fmt.Println()
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 file := &File{
 	name: "test",
@@ -1360,15 +1263,13 @@ sock.Write(file.Read())
 logger.Log(file) // "data"
 logger.Log(sock) // "data"
 ```
-{% endcode %}
 
-[https://play.golang.org/p/vJOUw8SA9TP](https://play.golang.org/p/vJOUw8SA9TP)
 
 ### Birden Fazla interface kullanma
 
 GO tipleri birden fazla interfacei implement edebilir. Bunun için interfacein belirttiği metodlara sahip olmaları yeterlidir.  
 
-{% code title="" %}
+
 ```go
 type Reader interface {
 	Read() []byte
@@ -1393,9 +1294,9 @@ func (file *File) Write(content []byte) int {
 }
 
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 var file Reader = &File{
 	name:    "test",
@@ -1410,26 +1311,20 @@ sock.Write(file.Read())
 
 sock.buffer // sock.buffer undefined (type Writer has no field or method buffer
 ```
-{% endcode %}
-
-[https://play.golang.org/p/8VrzKhJWS\_7](https://play.golang.org/p/8VrzKhJWS_7)
 
 ### Tip dönüşümü
 
-{% code title="" %}
+
 ```go
 s := sock.(*Socket)
 string(s.buffer) // "data"
 ```
-{% endcode %}
 
-[https://play.golang.org/p/IWQsEI8\_F7W](https://play.golang.org/p/IWQsEI8_F7W)
 
-{% hint style="info" %}
-Dönüştürdüğümüz tipin o interfacei doğru bir şekilde implement edip etmediğini dönüşüm sırasında alacağımız ek bir parametre ile kontrol edebiliriz.
-{% endhint %}
+> Dönüştürdüğümüz tipin o interfacei doğru bir şekilde implement edip etmediğini dönüşüm sırasında alacağımız ek bir parametre ile kontrol edebiliriz.
 
-{% code title="" %}
+
+
 ```go
 type Serializer interface {
 	Serialize()
@@ -1438,9 +1333,7 @@ type Serializer interface {
 s, ok := sock.(Serializer)
 s, ok // nil, false
 ```
-{% endcode %}
 
-[https://play.golang.org/p/ELy4NtwL7vm](https://play.golang.org/p/ELy4NtwL7vm)
 
 ### Boş interface
 
@@ -1448,7 +1341,7 @@ Interfaceler de diğer veri yapıları gibi tiplerdir ve aynı şekilde kullanı
 
 Hiçbir metodu olmadığı için boş interfacein gereksinimleri bütün tipler tarafından karşılanır. boş interfacein bu özelliği, dinamik parametreler ve değerler tanımlamamıza olanak tanır.
 
-{% code title="" %}
+
 ```go
 type Booking struct {
 	Provider            string
@@ -1456,9 +1349,9 @@ type Booking struct {
 	ExtraProviderParams interface{}
 }
 ```
-{% endcode %}
 
-{% code title="" %}
+
+
 ```go
 booking1 := Booking{
 	Provider:   "ACL",
@@ -1480,9 +1373,7 @@ booking2 := Booking{
 booking1 // {ACL customer-01a map[Passengers:4 PaymentTime:after-booking]}
 booking2 // {DCM customer-01a [4 after-booking]}
 ```
-{% endcode %}
 
-[https://play.golang.org/p/aGClLRNzlHA](https://play.golang.org/p/aGClLRNzlHA)
 
 ### Tip Kontrolü
 
@@ -1490,7 +1381,7 @@ Interface tipleri `switch` yapısı ile kontrol edilebilir. Aşağıdaki örnekt
 
 Bu fonksiyonda int string ve float gelen değerleri tiplerine göre kontrol edip belirlediğimiz şekilde stringe çevireceğiz.
 
-{% code title="" %}
+
 ```go
 func Stringify(value interface{}) (string, error) {
 	switch value.(type) {
@@ -1509,11 +1400,10 @@ Stringify(12) // "12"
 Stringify(12.52312313) // "12.52"
 Stringify("test")  // "test"
 ```
-{% endcode %}
 
-[https://play.golang.org/p/6f008J1S\_wM](https://play.golang.org/p/6f008J1S_wM)
 
-## Containers
+Containers
+---------------
 
 Hemen hemen her dilde standart hale gelmiş ve programlarda çokça kullanılan bazı kompozit veri yapıları vardır. Go bu yapılardan 3ünü bize **container** paketi içinde hazır halde sunuyor.
 
@@ -1589,8 +1479,8 @@ func main() {
 
 
 
-## Ek Kaynaklar
-
+Ek Kaynaklar
+----------------
 [https://medium.com/rungo/structures-in-go-76377cc106a2](https://medium.com/rungo/structures-in-go-76377cc106a2)  
 [https://golangbot.com/arrays-and-slices/](https://golangbot.com/arrays-and-slices/)  
 [https://blog.golang.org/go-slices-usage-and-internals](https://blog.golang.org/go-slices-usage-and-internals)  

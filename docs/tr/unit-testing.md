@@ -23,9 +23,8 @@ Unit testleri yazılan bir projede:
 * Yazılımcı, projeye eklenecek karmaşık özellikleri küçük, anlaşılır parçalara bölmesine dolayısıyla işe yarar minimum fonksiyonelliğe hızlıca erişip gereksiz optimizasyondan kaçınmasına yardımcı olur.
 * Ekibe yeni katılan yazılımcılar, testleri döküman olarak kullanabilir.
 
-{% hint style="info" %}
-Testlerin bir projedeki bütün hataları çözmesi beklenmemelidir. Projelerde her zaman hata vardır. Bu hatalar, test edilmeyen bir durumdan, yanlış test etmekten veya testlerin kontrol edemeyeceği 3. parti kütüphanelerden, APIlerden, konfigürasyon sorunlarınlarında kaynaklı olabilir.
-{% endhint %}
+
+> Testlerin bir projedeki bütün hataları çözmesi beklenmemelidir. Projelerde her zaman hata vardır. Bu hatalar, test edilmeyen bir durumdan, yanlış test etmekten veya testlerin kontrol edemeyeceği 3. parti kütüphanelerden, APIlerden, konfigürasyon sorunlarınlarında kaynaklı olabilir.
 
 ## Test etmek
 
@@ -108,9 +107,9 @@ func Hello(name string) string {
 }
 ```
 
-{% hint style="info" %}
-Yukarıdaki örnekte amacımızın dışında bir kod yazarak testin geçmesini sağladık. Bu örnek her ne kadar abes dursada, bu tür durumlar daha büyük ölçekli işlerde başımıza gelebilir ve fark edilmediğinde anlaşılması zor buglar ortaya çıkartabilir.
-{% endhint %}
+
+> Yukarıdaki örnekte amacımızın dışında bir kod yazarak testin geçmesini sağladık. Bu örnek her ne kadar abes dursada, bu tür durumlar daha büyük ölçekli işlerde başımıza gelebilir ve fark edilmediğinde anlaşılması zor buglar ortaya çıkartabilir.
+
 
 Eklediğimiz özelliğin düzgün çalıştığından emin olmak için bir test daha ekleyelim.
 
@@ -144,9 +143,9 @@ func Hello(name string) string {
 }
 ```
 
-{% hint style="success" %}
-Bu aşamada elimizde testleri ile birlikte çalışan yeni özelliği commit edebiliriz.
-{% endhint %}
+
+> Bu aşamada elimizde testleri ile birlikte çalışan yeni özelliği commit edebiliriz.
+
 
 Bu aşamada, TDD yaşam döngüsü gereği kod refactor edilmeye çalışılır. "Hello, " her durumda sabit olduğu için globalde tanımlayabiliriz.
 
@@ -158,9 +157,9 @@ func Hello(name string) string {
 }
 ```
 
-{% hint style="warning" %}
-Refactor yapıldıktan sonra mutlaka testler yeniden çalıştırılmalı ve kod davranışının değişmediğinden emin olunmalıdır.
-{% endhint %}
+
+> Refactor yapıldıktan sonra mutlaka testler yeniden çalıştırılmalı ve kod davranışının değişmediğinden emin olunmalıdır.
+
 
 Şimdi uygulamamıza bir özellik daha ekleyelim. Bu kez `Hello` fonksiyonuna boş isim verilince ön tanımlı mesajla selamlasın.
 
@@ -191,9 +190,9 @@ func TestHello(t *testing.T) {
 }
 ```
 
-{% hint style="warning" %}
-Refactoring sadece _business logic_ içeren kodlar için değildir. Test kodlarına da projede tıpkı diğer kodlar gibi yaklaşılmalıdır.
-{% endhint %}
+
+> Refactoring sadece _business logic_ içeren kodlar için değildir. Test kodlarına da projede tıpkı diğer kodlar gibi yaklaşılmalıdır.
+
 
 Bu aşamada testlerimizde tekrar eden kısımlar için bir fonksiyon yazabiliriz.
 
@@ -236,9 +235,9 @@ func Hello(name string) string {
 
 Böylece uygulamamıza önceki özellikleri etkilemeden yeni bir özellik eklemiş olduk.
 
-{% hint style="success" %}
-Bu aşamada eski commiti amend edip, fonksiyonumuzu yeni versiyonu ile değiştirebiliriz.
-{% endhint %}
+
+> Bu aşamada eski commiti amend edip, fonksiyonumuzu yeni versiyonu ile değiştirebiliriz.
+
 
 ### Geliştirme Disiplini
 
@@ -272,9 +271,9 @@ t.Run("in French", func(t *testing.T) {
 })
 ```
 
-{% hint style="warning" %}
-Bu haliyle `Hello` tek parametre aldığı için compiler hata verecektir. Bu adımda, hile yapıp doğrudan kodu yazmaktan kaçınmalıyız.
-{% endhint %}
+
+> Bu haliyle `Hello` tek parametre aldığı için compiler hata verecektir. Bu adımda, hile yapıp doğrudan kodu yazmaktan kaçınmalıyız.
+
 
 Fonksiyona gerekli olan 2. parametreyi ekleyelim.
 
@@ -670,16 +669,213 @@ Testlerin isimleri ve mesajları açıklayıcı ve ayırt edici olmalıdır.
 **Yeni Test Yerine Assertion Ekleme**  
 Birime yeni özellik eklendiğinde, veya bir kısmı değiştirildiğinde var olan bir teste ekstra bir kontrol eklenmemelidir. Sadece bu durumu yeni bir test yazılmalıdır.
 
-## **Test Piramidi**
 
-![](https://lh4.googleusercontent.com/84DsNI4D78kTblaDz8MBqPDypUBZxRft10VB3TCrYTwnij9PVVq0wQx021y6sN4yHRkjZPgVA6h94hauqeiIVlN75gllOQ7SnVZTwq9nlhQhWgYjgohYa2BTqoSTOztYUxnnuSoyWPM)
+```go
+package main
 
-  
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
+)
 
+type Requester interface {
+	Get(url string) (resp *http.Response, err error)
+}
 
-{% embed url="https://play.golang.org/p/cwnjpbuVGsr" caption="cli.go" %}
+type UserClient struct {
+	BaseUrl                  string
+	TaskCount, ResultPerPage int
 
-{% embed url="https://play.golang.org/p/L1PyrR6GJey" caption="cli\_test.go" %}
+	requester Requester
+}
+
+func (d *UserClient) Get() (response map[string]interface{}, err error) {
+	url := fmt.Sprintf("%s?results=%d", d.BaseUrl, d.ResultPerPage)
+
+	res, err := d.requester.Get(url)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Body.Close()
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(res.Body)
+	newStr := buf.String()
+	var data map[string]interface{}
+	err = json.Unmarshal([]byte(newStr), &data)
+	response = data
+	return
+}
+
+func (d *UserClient) FetchAll() (result []map[string]interface{}, err error) {
+	ch1 := make(chan map[string]interface{}, 1)
+
+	expectedCount := d.TaskCount * d.ResultPerPage
+	result = []map[string]interface{}{}
+
+	if d.TaskCount == 0 || d.ResultPerPage == 0 {
+		return
+	}
+	for i := 0; i < d.TaskCount; i++ {
+		go func(ch chan map[string]interface{}) {
+			response, err := d.Get()
+			if err != nil {
+				for j := 0; j < d.ResultPerPage; j++ {
+					ch <- map[string]interface{}{}
+				}
+			} else {
+				data := response["results"].([]interface{})
+				for _, datum := range data {
+					ch <- datum.(map[string]interface{})
+				}
+			}
+
+		}(ch1)
+	}
+
+	for data := range ch1 {
+		result = append(result, data)
+		if len(result) == expectedCount {
+			close(ch1)
+		}
+	}
+
+	return result, nil
+}
+
+func main() {
+	uc := &UserClient{
+		BaseUrl:       "https://randomuser.me/api/",
+		TaskCount:     20,
+		ResultPerPage: 100,
+		requester:     &http.Client{},
+	}
+	res, _ := uc.FetchAll()
+	fmt.Println(len(res))
+}
+
+```
+
+````go
+package main
+
+import (
+	"bytes"
+	"errors"
+	"io/ioutil"
+	"net/http"
+	"reflect"
+	"testing"
+)
+
+type FakeClient struct {
+	Body  []byte
+	Error error
+}
+
+func (c *FakeClient) Get(url string) (resp *http.Response, err error) {
+	resp = &http.Response{
+		Body: ioutil.NopCloser(bytes.NewBuffer(c.Body)),
+	}
+	return resp, c.Error
+}
+
+func TestGetUser(t *testing.T) {
+	userclient := &UserClient{}
+
+	t.Run("get userclient returns err on bad response", func(t *testing.T) {
+
+		userclient.requester = &FakeClient{
+			Error: errors.New("Bad Request"),
+		}
+
+		_, err := userclient.Get()
+		if err == nil {
+			t.Error("Expected to get an error")
+		}
+	})
+
+	t.Run("get userclient returns err if response body invalid", func(t *testing.T) {
+		userclient.requester = &FakeClient{}
+
+		_, err := userclient.Get()
+		if err == nil {
+			t.Error("Expected to get an error")
+		}
+	})
+	t.Run("get userclient returns unmarshalled response body on success", func(t *testing.T) {
+
+		userclient.requester = &FakeClient{
+			Body: []byte(`{"status": "ok"}`),
+		}
+		got, _ := userclient.Get()
+		want := map[string]interface{}{
+			"status": "ok",
+		}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %q want %q", got, want)
+		}
+
+	})
+}
+
+func TestFetchAll(t *testing.T) {
+
+	t.Run("fetchall returns empty list if task count is 0", func(t *testing.T) {
+
+		userclient := &UserClient{
+			ResultPerPage: 1,
+			TaskCount:     0,
+		}
+		userclient.requester = &FakeClient{
+			Body: []byte(`{"results": [{"test": "ok"}]`),
+		}
+		got, _ := userclient.FetchAll()
+		want := []map[string]interface{}{}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %q want %q", got, want)
+		}
+
+	})
+	t.Run("fetchall returns empty list if per page is 0", func(t *testing.T) {
+
+		userclient := &UserClient{
+			ResultPerPage: 0,
+			TaskCount:     1,
+		}
+		userclient.requester = &FakeClient{
+			Body: []byte(`{"results": [{"test": "ok"}]`),
+		}
+		got, _ := userclient.FetchAll()
+		want := []map[string]interface{}{}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %q want %q", got, want)
+		}
+
+	})
+
+	t.Run("fetchall returns the same amount of records with item count", func(t *testing.T) {
+
+		userclient := &UserClient{
+			TaskCount:     5,
+			ResultPerPage: 2,
+		}
+		userclient.requester = &FakeClient{
+			Body: []byte(`{"results": [{"test": "ok"}]`),
+		}
+		res, _ := userclient.FetchAll()
+		got := len(res)
+		want := 10
+		if got != want {
+			t.Errorf("got %d want %d", got, want)
+		}
+
+	})
+
+}
+
+````
 
 
 
