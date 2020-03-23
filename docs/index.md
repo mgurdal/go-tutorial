@@ -1,5 +1,5 @@
 # Go Tutorial
-[English](go-tutorial/) | [Türkçe](go-tutorial/tr/)
+[English](/) | [Türkçe](tr/)
 
 ## Topics
 <div class="cards">

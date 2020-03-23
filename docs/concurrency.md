@@ -1,5 +1,5 @@
 # Concurrency
-[English](go-tutorial/concurrency) | [Türkçe](go-tutorial/tr/concurrency)
+[English](/concurrency) | [Turkish](/tr/concurrency)
 
 In computer science, concurrency is the ability to run sequentially in a 
 program in a way that does not affect the result or algorithms.
