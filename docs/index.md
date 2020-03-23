@@ -1,5 +1,5 @@
 # Go Tutorial
-[English](index.md) | [Türkçe](/tr/)
+[English](/) | [Türkçe](tr/)
 
 ## Topics
 <div class="cards">
