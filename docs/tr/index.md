@@ -1,6 +1,6 @@
 # Go Dersi
 
-[English](/go-tutorial/) | [Turkish](/go-tutorial/tr/)
+[English](/go-tutorial/) | [Türkçe](/go-tutorial/tr/)
 
 ## Konular
 <div class="cards">

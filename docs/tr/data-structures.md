@@ -1,6 +1,6 @@
 # Veri Yapıları
 
-[English](/go-tutorial/data-structures) | [Turkish](/go-tutorial/tr/data-structures)
+[English](/go-tutorial/data-structures) | [Türkçe](/go-tutorial/tr/data-structures)
 
 Bu sayfa go diline ait veri yapıları ve bu yapıların genel programlamada uygulanan yöntemlerle kullanımı anlatılmaktadır.
 

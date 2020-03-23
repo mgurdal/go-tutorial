@@ -1,5 +1,5 @@
 # Concurrency
-[English](/go-tutorial/concurrency) | [Turkish](/go-tutorial/tr/concurrency)
+[English](/go-tutorial/concurrency) | [Türkçe](/go-tutorial/tr/concurrency)
 
 Bilgisayar biliminde concurrency\(eşzamanlılık\), bir programdaki iş birimlerinin veya algoritmaların sonucu etkilemeyecek şekilde **sırasız** bir biçimde çalıştırılabilmesidir.
 

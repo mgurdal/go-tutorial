@@ -1,4 +1,4 @@
-[English](/go-tutorial/data-structures) | [Turkish](/go-tutorial/tr/data-structures)
+[English](/go-tutorial/data-structures) | [Türkçe](/go-tutorial/tr/data-structures)
 
 This page describes the data structures of go language and their usages in general programming.
 
