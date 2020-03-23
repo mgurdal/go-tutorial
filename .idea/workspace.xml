@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bda49e6-7fd4-49e6-ac24-94d05014f020" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/concurrency.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/concurrency.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/data-structures.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/data-structures.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tr/data-structures.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tr/data-structures.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/tr/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tr/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
