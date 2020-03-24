@@ -1,8 +1,8 @@
 # Concurrency
 [English](/go-tutorial/concurrency) | [Türkçe](/go-tutorial/tr/concurrency)
 
-In computer science, concurrency is the ability to run sequentially in a 
-program in a way that does not affect the result or algorithms.
+In computer science, concurrency is the ability to run workpieces sequentially 
+in a way that does not affect the final result.
 
 The ability to run the workpieces independently allows us to use the processor at maximum efficiency 
 by executing the instructions in different cores.
