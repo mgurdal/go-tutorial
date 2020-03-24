@@ -20,7 +20,8 @@ var fruits[3]string
 ```
 
 
-When defined as such, each field in the array is filled with the **default** value of the data type. Based on this example, it will be defined as `[0, 0, 0]`. We can change these values ​​by accessing them on their indexes.
+When defined as such, each field in the array is filled with the **default** value of the data type. 
+Based on this example, it will be defined as `["", "", ""]`. We can change these values ​​by accessing them on their indexes.
 
 
 ```go
@@ -47,7 +48,7 @@ We can define the same array in a shorter way.
 
 
 ```go
-fruits := [3]int{"🍌", "🍏"}
+fruits := [3]string{"🍌", "🍏"}
 
 fruits // [🍌 🍏]
 ```
@@ -59,7 +60,7 @@ If we are going to create the arrayi with the values, we can leave the dimension
 
 
 ```go
-fruits := []int{"🍌", "🍏", "🍉"}
+fruits := []string{"🍌", "🍏", "🍉"}
 
 fruits // [🍌 🍏 🍉]
 ```

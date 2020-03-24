@@ -17,7 +17,7 @@ Go farklı tipteki verilerden array oluşturmamıza izin vermez.
 
 Arrayler temel olarak `[Boyut]Tip` biçiminde tanımlanır. Arrayleri oluşturmanın çeşitli yollarını aşağıda görebiliriz.
 
-`int` tipinde 3 birim tutabilen array.
+`string` tipinde 3 birim tutabilen array.
 
 
 ```go
@@ -25,7 +25,9 @@ var fruits [3]string
 ```
 
 
-Böyle tanımlandığında arraydeki her bir alan, veri tipinin **ön tanımlı** değeri ile doldurulur. Bu örneği baz alırsak `[0, 0, 0]` olarak tanımlanacaktır. Bu değerleri bulundukları indexler üzerinden erişerek değiştirebiliriz.
+Böyle tanımlandığında arraydeki her bir alan, veri tipinin **ön tanımlı** değeri ile doldurulur. 
+Bu örneği baz alırsak `["", "", ""]` olarak tanımlanacaktır. 
+Bu değerleri bulundukları indexler üzerinden erişerek değiştirebiliriz.
 
 
 ```go
@@ -52,7 +54,7 @@ Aynı arrayi daha kısa bir yol ile de tanımlayabiliriz.
 
 
 ```go
-fruits := [3]int{"🍌", "🍏"}
+fruits := [3]string{"🍌", "🍏"}
 
 fruits // [🍌 🍏  ]
 ```
@@ -64,7 +66,7 @@ Eğer arrayi değerleri ile birlikte oluşturulacaksak `...` ifadesini kullanıl
 
 
 ```go
-fruits := [3]int{"🍌", "🍏", "🍉"}
+fruits := [3]string{"🍌", "🍏", "🍉"}
 
 fruits // [🍌 🍏 🍉]
 ```
