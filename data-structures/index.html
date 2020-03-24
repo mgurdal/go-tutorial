@@ -1192,7 +1192,8 @@ Go does not allow us to create arrays from different data types.</p>
 </pre></div>
 
 
-<p>When defined as such, each field in the array is filled with the <strong>default</strong> value of the data type. Based on this example, it will be defined as <code>[0, 0, 0]</code>. We can change these values ​​by accessing them on their indexes.</p>
+<p>When defined as such, each field in the array is filled with the <strong>default</strong> value of the data type. 
+Based on this example, it will be defined as <code>["", "", ""]</code>. We can change these values ​​by accessing them on their indexes.</p>
 <div class="codehilite"><pre><span></span><span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍌&quot;</span>
 <span class="nx">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍏&quot;</span>
 
@@ -1210,7 +1211,7 @@ Go does not allow us to create arrays from different data types.</p>
 
 
 <p>We can define the same array in a shorter way.</p>
-<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍌 🍏]</span>
 </pre></div>
@@ -1219,7 +1220,7 @@ Go does not allow us to create arrays from different data types.</p>
 <p>In this definition, we assign a 3 unit long array whose first 2 elements we directly define to the variable 'arr'.
   
 If we are going to create the arrayi with the values, we can leave the dimension calculation part to compiler using the expression <code>...</code></p>
-<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍌 🍏 🍉]</span>
 </pre></div>

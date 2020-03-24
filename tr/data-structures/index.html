@@ -740,12 +740,14 @@
 <p>Go farklı tipteki verilerden array oluşturmamıza izin vermez.</p>
 <h3 id="tanmlama">Tanımlama</h3>
 <p>Arrayler temel olarak <code>[Boyut]Tip</code> biçiminde tanımlanır. Arrayleri oluşturmanın çeşitli yollarını aşağıda görebiliriz.</p>
-<p><code>int</code> tipinde 3 birim tutabilen array.</p>
+<p><code>string</code> tipinde 3 birim tutabilen array.</p>
 <div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">fruits</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span>
 </pre></div>
 
 
-<p>Böyle tanımlandığında arraydeki her bir alan, veri tipinin <strong>ön tanımlı</strong> değeri ile doldurulur. Bu örneği baz alırsak <code>[0, 0, 0]</code> olarak tanımlanacaktır. Bu değerleri bulundukları indexler üzerinden erişerek değiştirebiliriz.</p>
+<p>Böyle tanımlandığında arraydeki her bir alan, veri tipinin <strong>ön tanımlı</strong> değeri ile doldurulur. 
+Bu örneği baz alırsak <code>["", "", ""]</code> olarak tanımlanacaktır. 
+Bu değerleri bulundukları indexler üzerinden erişerek değiştirebiliriz.</p>
 <div class="codehilite"><pre><span></span><span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍌&quot;</span>
 <span class="nx">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍏&quot;</span>
 
@@ -763,7 +765,7 @@
 
 
 <p>Aynı arrayi daha kısa bir yol ile de tanımlayabiliriz.</p>
-<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍌 🍏  ]</span>
 </pre></div>
@@ -771,7 +773,7 @@
 
 <p>Bu tanımlamada ilk 2 elemanını doğrudan tanımladığımız 3 birim uzunluğundaki bir arrayi <code>arr</code>değişkenine atadık.  </p>
 <p>Eğer arrayi değerleri ile birlikte oluşturulacaksak <code>...</code> ifadesini kullanılarak, boyut hesaplama kısmı compilera bırakılabiliriz.</p>
-<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍌 🍏 🍉]</span>
 </pre></div>
