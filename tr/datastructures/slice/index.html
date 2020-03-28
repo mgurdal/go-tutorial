@@ -1,0 +1,715 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Go Tutorial">
+      
+      
+        <link rel="canonical" href="https://mgurdal.github.io/go-tutorial/tr/datastructures/slice/">
+      
+      
+        <meta name="author" content="Mehmet Gürdal">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Slice - Go Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.750b69bd.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#slice" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Tutorial
+            </span>
+            <span class="md-header-nav__topic">
+              Slice
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../data-structures/" title="Data Structures" class="md-nav__link">
+      Data Structures
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../concurrency/" title="Concurrency" class="md-nav__link">
+      Concurrency
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#make" title="make" class="md-nav__link">
+    make
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slice-islemleri" title="Slice İşlemleri" class="md-nav__link">
+    Slice İşlemleri
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy" title="copy" class="md-nav__link">
+    copy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#append" title="append" class="md-nav__link">
+    append
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cut" title="cut" class="md-nav__link">
+    cut
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete" title="delete" class="md-nav__link">
+    delete
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sralamay-dikkate-almadan-silme" title="Sıralamayı Dikkate Almadan Silme" class="md-nav__link">
+    Sıralamayı Dikkate Almadan Silme
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cut-40memory-safe41" title="cut (memory safe)" class="md-nav__link">
+    cut (memory safe)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-40memory-safe41" title="delete (memory safe)" class="md-nav__link">
+    delete (memory safe)
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sralamay-dikkate-almadan-silme-40memory-safe41" title="Sıralamayı Dikkate Almadan Silme (memory safe)" class="md-nav__link">
+    Sıralamayı Dikkate Almadan Silme (memory safe)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expand" title="expand" class="md-nav__link">
+    expand
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter" title="filter" class="md-nav__link">
+    filter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert" title="insert" class="md-nav__link">
+    insert
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pop" title="pop" class="md-nav__link">
+    pop
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-front-40unshift41" title="push front (unshift)" class="md-nav__link">
+    push front (unshift)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pop-front-40shift41" title="pop front (shift)" class="md-nav__link">
+    pop front (shift)
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="slice">Slice</h1>
+<p>Slicelar kullanım bakımından arraylere çok benzer. Sliceların farkı, boyutlarının dinamik olması.</p>
+<p>Slice tanımlarken yine arraydeki gibi <code>[]Tip</code> yapısını kullanıyoruz fakat köşeli parantezlerin içini boş bırakıyoruz.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// nil slice tanımlama</span>
+<span class="kd">var</span> <span class="nx">slc</span> <span class="p">[]</span><span class="kt">int</span>
+<span class="c1">// nill slice&#39;a değer atama</span>
+<span class="nx">slc</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">39</span><span class="p">}</span>  
+
+<span class="c1">// doğrudan tanımlama</span>
+<span class="nx">slc</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">39</span><span class="p">}</span> 
+</pre></div>
+
+
+<h4 id="make">make</h4>
+<p>Sliceları tanımlamak için `make` fonksiyonunu da kullanabiliriz. <code>make</code> fonksiyonunun ilk parametresi oluşturulacak sliceın boyutunu belirler.</p>
+<div class="codehilite"><pre><span></span><span class="c1">// boyut ile tanımlama</span>
+<span class="nx">n_items</span> <span class="p">=</span> <span class="mi">20</span>
+<span class="nx">slc</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n_items</span><span class="p">)</span>
+
+<span class="c1">// boyut ve kapasite ile tanımlama</span>
+<span class="nx">capacity</span> <span class="o">:=</span> <span class="mi">40</span>
+<span class="nx">slc</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n_items</span><span class="p">,</span> <span class="nx">capacity</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="slice-islemleri">Slice İşlemleri</h3>
+<p>Slice oluşturulurken kapasitesi kadar, tutacağı veri tipinin ön tanımlı değeri ile doldurulur. Fakat, yalnızca uzunluğu kadar kısmına erişilebilir.</p>
+<p>Bir sliceın boyutunu artırmak istiyorsak bunun için <code>append</code> ve <code>copy</code> fonksiyonlarını kullanabiliriz.</p>
+<h3 id="copy">copy</h3>
+<p><code>copy</code> bir sliceı aynı veya daha büyük kapasiteye sahip bir diğer slicea kopyalamamızı sağlar ve  kaç adet elemanın kopyalandığını döndürür.</p>
+<div class="codehilite"><pre><span></span><span class="nx">bucket</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+
+<span class="nx">n_copied</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">bucket</span><span class="p">,</span> <span class="nx">fruits</span><span class="p">)</span>
+
+<span class="nx">n_copied</span> <span class="c1">// 5</span>
+<span class="nx">bucket</span> <span class="c1">// [🍎 🍇 🍈 🍉]</span>
+</pre></div>
+
+
+<p>Bir slice kopyalanırken, elemanlar hedef slicedaki aynı indexdeki elemanların yerini alır.</p>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span>  <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
+
+<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="nx">apples</span><span class="p">)</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍎  🍏]</span>
+</pre></div>
+
+
+<h3 id="append">append</h3>
+<p><code>append</code> fonksiyonu, ilk parametre olarak boyutunu artıracağımız sliceı ve devamında ekleyeceğimiz elemanları alır ve bize tüm elemanları içeren <strong>yeni</strong> bir slice döndürür. Bu nedenle, dönüş değerini bir değişkende(genellikle eski slice değişkeninde) tutmak gerekir.</p>
+<div class="codehilite"><pre><span></span><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍈&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+
+<span class="nx">green_apple</span> <span class="o">:=</span> <span class="s">&quot;🍏&quot;</span>
+<span class="nx">bucket</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">bucket</span><span class="p">,</span> <span class="nx">green_apple</span><span class="p">)</span>
+
+<span class="nx">bucket</span> <span class="c1">// [🍎 🍇 🍈 🍉 🍏]</span>
+</pre></div>
+
+
+<blockquote>
+<p>Bir sliceı yeniden boyutlandırıp başka bir değişkene atadığımızda, yeni slicedaki değişiklikler orjinal sliceı da etkileyecektir.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">apples</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="nx">apples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍏&quot;</span>
+<span class="nx">apples</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍏&quot;</span>
+
+<span class="nx">apples</span> <span class="c1">// [🍏 🍏]</span>
+<span class="nx">fruits</span> <span class="c1">// [🍏 🍏 🍇 🍒 🍉]</span>
+</pre></div>
+
+
+<h3 id="cut">cut</h3>
+<p>Slicedaki belli bir aralığı çıkarmak istiyorsak aşağıdaki yöntemi kullanabiliriz. Bu yöntem Sliceda belirlediğimiz başlangıç indexine kadar olan elemanlar ile bitiş indexinden sonraki elemanları ekleyecek. Böylece aradaki elemanları boşa çıkartmış olacağız.</p>
+<div class="codehilite"><pre><span></span><span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span><span class="p">}</span>
+
+<span class="nx">cut_start_index</span><span class="p">,</span> <span class="nx">cut_end_index</span> <span class="o">:=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span>
+
+<span class="nx">edibles</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">edibles</span><span class="p">[:</span><span class="nx">cut_start_index</span><span class="p">],</span> <span class="nx">edibles</span><span class="p">[</span><span class="nx">cut_end_index</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span>
+
+<span class="nx">edibles</span> <span class="c1">// [🍎 🍇 🍒 🍉 🌽 🥔]</span>
+</pre></div>
+
+
+<h3 id="delete">delete</h3>
+<p>Slicedaki bir elemanı indexini kullanarak silmek istiyorsak, aşağıdaki yöntemi kullanabiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span><span class="p">}</span>
+
+<span class="nx">index_of_cherry</span> <span class="o">:=</span> <span class="mi">2</span>
+<span class="nx">edibles</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">edibles</span><span class="p">[:</span><span class="nx">index_of_cherry</span><span class="p">],</span> <span class="nx">edibles</span><span class="p">[</span><span class="nx">index_of_cherry</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span>
+
+<span class="nx">edibles</span> <span class="c1">// [🍎 🍇 🍉 🌶 🍆 🌽 🥔]</span>
+</pre></div>
+
+
+<p>Benzer işlemi <code>copy</code> fonksiyonu ile de yapabiliriz. Aşağıdaki örnekte, yukarıdakinden farklı olarak 4. satırda:</p>
+<ul>
+<li>Önce<code>edible</code> sliceında 🍒elemanından sonraki kısmı seçtik.  Bu bize, tüm kapasiteyi de gösterirsek, [🍒 🍉 🌶 🍆 🌽 🥔] biçiminde bir slice verdi.</li>
+<li>
+<p>Sonrasında 🍒elemanından <code>1</code> index sonraki kısmı, seçilen slice ile <em>değiştirdik</em>. Böylece [🍎 🍇 🍉 🌶 🍆 🌽 🥔 🥔] listesini elde etmiş olduk.</p>
+</li>
+<li>
+<p>satırda da sliceı yeni eleman sayısına göre dilimledik.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span><span class="p">}</span>
+<span class="nx">index_of_cherry</span> <span class="o">:=</span> <span class="mi">2</span>
+
+<span class="nx">n_copied</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">edibles</span><span class="p">[</span><span class="nx">index_of_cherry</span><span class="p">:],</span> <span class="nx">edibles</span><span class="p">[</span><span class="nx">index_of_cherry</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>
+<span class="nx">new_length</span> <span class="o">:=</span> <span class="nx">index_of_cherry</span> <span class="o">+</span> <span class="nx">n_copied</span>
+
+<span class="nx">edibles</span> <span class="p">=</span> <span class="nx">edibles</span><span class="p">[:</span><span class="nx">new_length</span><span class="p">]</span>
+
+<span class="nx">edibles</span> <span class="c1">// [🍎 🍇 🍉 🌶 🍆 🌽 🥔]</span>
+</pre></div>
+
+
+<h4 id="sralamay-dikkate-almadan-silme">Sıralamayı Dikkate Almadan Silme</h4>
+<p>Silme işlemini array sıralamasını göz ardı ederek de yapabiliriz. Aşağıdaki örnekte, silmek istediğimiz eleman ile slicedaki en son elemanın yerini değiştirdik. Ardından sliceın boyutunu 1 azalttık.</p>
+<div class="codehilite"><pre><span></span><span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span><span class="p">}</span>
+<span class="nx">index_of_cherry</span> <span class="o">:=</span> <span class="mi">2</span>
+
+<span class="nx">edibles</span><span class="p">[</span><span class="nx">index_of_cherry</span><span class="p">]</span> <span class="p">=</span> <span class="nx">edibles</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">edibles</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nx">edibles</span> <span class="p">=</span> <span class="nx">edibles</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">edibles</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nx">edibles</span> <span class="c1">// [🍎 🍇 🥔 🍉 🌶 🍆 🌽]</span>
+</pre></div>
+
+
+<blockquote>
+<p><strong>Garbage Collection</strong>
+Eğer sliceda kullandığımız elemanlar <code>pointer</code> veya <code>pointer</code> alanlara sahip <code>struct</code> ise yukarıda gösterilen <strong>cut</strong>  ve <strong>delete</strong> işlemleri memory leak oluşturabilir. Bunun sebebi, sliceın silindikten sonra da silinen elemanın referansını tutabilmesindendir. </p>
+</blockquote>
+<p>Aşağıdaki örneklerde daha öncesinde yaptığımız işlemlere ek olarak, işlemdem sonra boşta kalan alanları <code>nil</code> değerler ile doldurduk. Böylece garbage collector bu alanların artık kullanılmayacağını anlayıp, sisteme geri kazandırabilir.</p>
+<h3 id="cut-40memory-safe41">cut (memory safe)</h3>
+<div class="codehilite"><pre><span></span><span class="nx">apple</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span>
+<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
+<span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="kt">string</span><span class="p">{</span><span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">}</span>
+
+<span class="nx">cut_start_index</span><span class="p">,</span> <span class="nx">cut_end_index</span> <span class="o">:=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span>
+
+<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">cut_start_index</span><span class="p">:],</span> <span class="nx">fruits</span><span class="p">[</span><span class="nx">cut_end_index</span><span class="p">:])</span>
+
+<span class="nx">cleanup_index</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span> <span class="o">-</span> <span class="nx">cut_end_index</span> <span class="o">+</span> <span class="nx">cut_start_index</span>
+
+<span class="k">for</span> <span class="nx">free_index</span><span class="p">,</span> <span class="nx">free_end</span> <span class="o">:=</span> <span class="nx">cleanup_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">);</span> <span class="nx">free_index</span> <span class="p">&lt;</span> <span class="nx">free_end</span><span class="p">;</span> <span class="nx">free_index</span><span class="o">++</span> <span class="p">{</span>
+    <span class="nx">fruits</span><span class="p">[</span><span class="nx">free_index</span><span class="p">]</span> <span class="p">=</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nx">cleanup_index</span><span class="p">]</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍎 🍌]</span>
+</pre></div>
+
+
+<h3 id="delete-40memory-safe41">delete (memory safe)</h3>
+<div class="codehilite"><pre><span></span><span class="nx">apple</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span>
+<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
+<span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="kt">string</span><span class="p">{</span><span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">}</span>
+<span class="nx">delete_index</span> <span class="o">:=</span> <span class="mi">2</span>
+
+<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">delete_index</span><span class="p">:],</span> <span class="nx">fruits</span><span class="p">[</span><span class="nx">delete_index</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>
+<span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="kc">nil</span>
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍎 🍎 🍌 🍌 🍌]</span>
+</pre></div>
+
+
+<h4 id="sralamay-dikkate-almadan-silme-40memory-safe41">Sıralamayı Dikkate Almadan Silme (memory safe)</h4>
+<div class="codehilite"><pre><span></span><span class="nx">apple</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span>
+<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
+<span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="kt">string</span><span class="p">{</span><span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">banana</span><span class="p">}</span>
+
+<span class="nx">delete_index</span> <span class="o">:=</span> <span class="mi">2</span>
+
+<span class="nx">fruits</span><span class="p">[</span><span class="nx">delete_index</span><span class="p">]</span> <span class="p">=</span> <span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="kc">nil</span>
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍎 🍎 🍌 🍌 🍌]</span>
+</pre></div>
+
+
+<h3 id="expand">expand</h3>
+<p>Bir sliceı, diğeri birleştirmek istersek aşağıdaki yöntemleri kullanabiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
+
+<span class="nx">bucket</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">bucket</span><span class="p">,</span> <span class="nx">apples</span><span class="o">...</span><span class="p">)</span>
+
+<span class="nx">bucket</span> <span class="c1">// [🍌 🍇 🍉 🍏 🍎]</span>
+</pre></div>
+
+
+<p>Aşağıdaki örnekte <code>7.</code> satırda <code>apples</code> ile belirlediğimiz indexten sonraki elemanları birleştirdik. Sonrasında belirlediğimiz indexe kadar olan <code>bucket</code> elemanlarına, bu slice elemanlarını ekledik.</p>
+<div class="codehilite"><pre><span></span><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
+<span class="nx">expand_index</span> <span class="o">:=</span> <span class="mi">2</span>
+
+<span class="nx">bucket</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span>
+    <span class="nx">bucket</span><span class="p">[:</span><span class="nx">expand_index</span><span class="p">],</span>
+    <span class="nb">append</span><span class="p">(</span><span class="nx">apples</span><span class="p">,</span> <span class="nx">bucket</span><span class="p">[</span><span class="nx">expand_index</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span><span class="o">...</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nx">bucket</span> <span class="c1">// [🍌 🍇 🍏 🍎 🍉]</span>
+</pre></div>
+
+
+<h3 id="filter">filter</h3>
+<p>Slice elemanlarını belirli bir kritere göre filtreleyebiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
+<span class="nx">apple_criteria</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span>
+
+<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">fruit</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">fruits</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">fruit</span> <span class="o">==</span> <span class="nx">apple_criteria</span> <span class="p">{</span>
+        <span class="nx">apples</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">apples</span><span class="p">,</span> <span class="nx">fruit</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">apples</span> <span class="c1">// [🍎 🍎]</span>
+</pre></div>
+
+
+<h3 id="insert">insert</h3>
+<p>Sliceın herhangi bir kısmına yeni bir eleman eklemek istiyorsak; bu yöntemleri kullanabiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
+<span class="nx">insert_index</span> <span class="o">:=</span> <span class="mi">2</span>
+
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span>
+    <span class="nx">fruits</span><span class="p">[:</span><span class="nx">insert_index</span><span class="p">],</span>
+    <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">banana</span><span class="p">},</span> <span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span><span class="o">...</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nx">fruits</span>  <span class="c1">// [🍏 🍎 🍌 🍉]</span>
+</pre></div>
+
+
+<p>{% hint style="warning" %}
+<strong>Memory Concern</strong></p>
+<ol>
+<li>satırdaki<code>append([]string{banana}, fruits[insert_index:]...)</code> ****bölümü başlı başına bir slice oluşturup,<code>fruits[insert_index:]</code>sliceının elemanlarını bu slicea kopyalıyor. Bu elemanlar daha sonra <code>fruits</code> sliceına tekrar kopyalanıyor.</li>
+</ol>
+<p>Yeni bir slice oluşturulmasının ve 2. kez kopyalama işleminin önüne geçilebilir.
+{% endhint %}</p>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
+<span class="nx">insert_index</span> <span class="o">:=</span> <span class="mi">2</span>
+
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span> <span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">:])</span>
+<span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">]</span> <span class="p">=</span> <span class="nx">banana</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍏 🍎 🍌 🍉]</span>
+</pre></div>
+
+
+<h3 id="pop">pop</h3>
+<p>Aşağıdaki örnekte sliceın son elemanını çıkarıp bir değişkene atadık.</p>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+
+<span class="nx">item</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nx">item</span> <span class="c1">// 🍉</span>
+<span class="nx">fruits</span> <span class="c1">// [🍏 🍎]</span>
+</pre></div>
+
+
+<h3 id="push-front-40unshift41">push front (unshift)</h3>
+<p>Bu örnekte yeni bir elemanı sliceın başına koyduk.</p>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
+
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">banana</span><span class="p">},</span> <span class="nx">fruits</span><span class="o">...</span><span class="p">)</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍌 🍏 🍎 🍉]</span>
+</pre></div>
+
+
+<h3 id="pop-front-40shift41">pop front (shift)</h3>
+<p>Bu örnekte de sliceın ilk elemanını çıkarıp bir değişkene atadık.</p>
+<div class="codehilite"><pre><span></span><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+
+<span class="nx">banana</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="nx">banana</span> <span class="c1">// 🍌</span>
+<span class="nx">fruits</span> <span class="c1">// [🍏 🍎 🍉]</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/mgurdal" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/mgurdal_" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/mgurdal" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

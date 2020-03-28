@@ -1,0 +1,883 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Go Tutorial">
+      
+      
+        <link rel="canonical" href="https://mgurdal.github.io/go-tutorial/tr/datastructures/struct/">
+      
+      
+        <meta name="author" content="Mehmet Gürdal">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Struct - Go Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.750b69bd.css">
+      
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#struct" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Go Tutorial
+            </span>
+            <span class="md-header-nav__topic">
+              Struct
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Go Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../data-structures/" title="Data Structures" class="md-nav__link">
+      Data Structures
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../concurrency/" title="Concurrency" class="md-nav__link">
+      Concurrency
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tanmlama" title="Tanımlama" class="md-nav__link">
+    Tanımlama
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deger-atama" title="Değer Atama" class="md-nav__link">
+    Değer Atama
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anonymous-struct" title="Anonymous struct" class="md-nav__link">
+    Anonymous struct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anonymous-fields" title="Anonymous fields" class="md-nav__link">
+    Anonymous fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#promoted-fields" title="Promoted fields" class="md-nav__link">
+    Promoted fields
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pointer" title="Pointer" class="md-nav__link">
+    Pointer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tanmlama_1" title="Tanımlama" class="md-nav__link">
+    Tanımlama
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deger-atama_1" title="Değer Atama" class="md-nav__link">
+    Değer Atama
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fonksiyonlar" title="Fonksiyonlar" class="md-nav__link">
+    Fonksiyonlar
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametreler" title="Parametreler" class="md-nav__link">
+    Parametreler
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dinamik-parametreler" title="Dinamik parametreler" class="md-nav__link">
+    Dinamik parametreler
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donus-degerleri" title="Dönüş Değerleri" class="md-nav__link">
+    Dönüş Değerleri
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#birden-fazla-deger-dondurme" title="Birden fazla değer döndürme" class="md-nav__link">
+    Birden fazla değer döndürme
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#donus-degerlerini-isimlendirme" title="Dönüş değerlerini isimlendirme" class="md-nav__link">
+    Dönüş değerlerini isimlendirme
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anonim-fonksiyon" title="Anonim Fonksiyon" class="md-nav__link">
+    Anonim Fonksiyon
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metodlar" title="Metodlar" class="md-nav__link">
+    Metodlar
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pointer-receiver-124-value-receiver" title="Pointer receiver | Value receiver" class="md-nav__link">
+    Pointer receiver | Value receiver
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="struct">Struct</h1>
+<p>Structlar kullanıcı tarafından tanımlanan ve farklı türdeki verileri isimleri ile tutabilen veri yapılarıdır.</p>
+<h3 id="tanmlama">Tanımlama</h3>
+<p>Structlar aşağıdaki yapıda tanımlanabilir.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">StructName</span> <span class="kd">struct</span><span class="p">{</span>
+    <span class="nx">field</span> <span class="nx">fieldType</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Structın aynı tipteki alanlarını tek satırda tanımlayabiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Film</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="p">,</span> <span class="nx">director</span> <span class="kt">string</span>
+    <span class="nx">imdb</span>           <span class="kt">float32</span>
+    <span class="nx">release_year</span>   <span class="kt">int</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">new_film</span> <span class="p">=</span> <span class="nx">Film</span><span class="p">{}</span>
+
+<span class="nx">new_film</span> <span class="c1">// {&quot;&quot; &quot;&quot; 0 0}</span>
+</pre></div>
+
+
+<p>Struct alanlarına ek olarak etiket de verebiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Film</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Name</span>        <span class="kt">string</span>  <span class="s">`json:&quot;film_name&quot;`</span>
+    <span class="nx">Director</span>    <span class="kt">string</span>  <span class="s">`json:&quot;director_name&quot;`</span>
+    <span class="nx">Imdb</span>        <span class="kt">float32</span> <span class="s">`json:&quot;imdb_score&quot;`</span>
+    <span class="nx">ReleaseYear</span> <span class="kt">int</span>     <span class="s">`json:&quot;year_of_release&quot;`</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Etiketler tip dönüşümü ile çokça uğraşan ORMler ve serialization kütüphaneleri arasında popülerdir. Bu etiketlere <code>reflect</code> modülü ile erişilebilir.</p>
+<div class="codehilite"><pre><span></span><span class="nx">f</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{}</span>
+<span class="nx">t</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">TypeOf</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="s">&quot;Director&quot;</span><span class="p">,</span> <span class="s">&quot;Imdb&quot;</span><span class="p">,</span> <span class="s">&quot;ReleaseYear&quot;</span><span class="p">}</span> <span class="p">{</span>
+    <span class="nx">field</span><span class="p">,</span> <span class="nx">found</span> <span class="o">:=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">FieldByName</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">!</span><span class="nx">found</span> <span class="p">{</span>
+        <span class="k">continue</span>
+    <span class="p">}</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">Tag</span><span class="p">.</span><span class="nx">Get</span><span class="p">(</span><span class="s">&quot;json&quot;</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">film_name</span>
+<span class="cm">director_name</span>
+<span class="cm">imdb_score</span>
+<span class="cm">year_of_release</span>
+<span class="cm">*/</span>
+</pre></div>
+
+
+<h3 id="deger-atama">Değer Atama</h3>
+<p>Bir struct, parametreleri sırasıyla verilerek oluşturulabilir.</p>
+<div class="codehilite"><pre><span></span><span class="nx">new_film</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{</span><span class="s">&quot;Mad Max: Fury Road&quot;</span><span class="p">,</span> <span class="s">&quot;George Miller&quot;</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="mi">2015</span><span class="p">}</span>
+
+<span class="nx">new_film</span> <span class="c1">// {Mad Max: Fury Road George Miller 8.1 2015}</span>
+</pre></div>
+
+
+<p>Benzer biçimde,  parametreleri ve alacakları değerleri <code>:</code> ayracı ile belirterek de oluşturulabilir.</p>
+<div class="codehilite"><pre><span></span><span class="nx">new_film</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{</span>
+        <span class="nx">Name</span><span class="p">:</span>        <span class="s">&quot;Ran&quot;</span><span class="p">,</span>
+        <span class="nx">Director</span><span class="p">:</span>    <span class="s">&quot;Akira Kurosawa&quot;</span><span class="p">,</span>
+        <span class="nx">Imdb</span><span class="p">:</span>        <span class="mf">8.2</span><span class="p">,</span>
+        <span class="nx">ReleaseYear</span><span class="p">:</span> <span class="mi">1985</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">new_film</span> <span class="c1">// {Ran Akira Kurosawa 8.2 1985}</span>
+</pre></div>
+
+
+<p>Struct oluştururken bazı alanlar boş bırakılırsa; bu alanlar o veri tipinin boş değerleri ile tanımlanır.</p>
+<div class="codehilite"><pre><span></span><span class="nx">new_film</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{</span>
+    <span class="nx">name</span><span class="p">:</span>         <span class="s">&quot;Batman v Superman&quot;</span><span class="p">,</span>
+    <span class="nx">director</span><span class="p">:</span>     <span class="s">&quot;Zack Snyder&quot;</span><span class="p">,</span>
+    <span class="nx">release_year</span><span class="p">:</span> <span class="mi">2016</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">new_film</span> <span class="c1">// {Batman v Superman Zack Snyder 0 2016}</span>
+</pre></div>
+
+
+<h4 id="anonymous-struct">Anonymous struct</h4>
+<p>Bazı özel durumlarda structları fonksiyon gövdesi içerisinde tanımlamamız gerekebilir. Bunu aşağıdaki yöntemle yapabiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="nx">provider_config</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span>    <span class="kt">string</span>
+    <span class="nx">baseUrl</span> <span class="kt">string</span>
+    <span class="nx">apiKey</span>  <span class="kt">string</span>
+<span class="p">}{</span>
+    <span class="nx">name</span><span class="p">:</span>    <span class="s">&quot;mapbox&quot;</span><span class="p">,</span>
+    <span class="nx">baseUrl</span><span class="p">:</span> <span class="s">&quot;https://api.mapbox.com/geocoding/v5/&quot;</span><span class="p">,</span>
+    <span class="nx">apiKey</span><span class="p">:</span>  <span class="s">&quot;123asds123&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">provider_config</span> <span class="c1">// {mapbox https://api.mapbox.com/geocoding/v5/ 123asds123}</span>
+</pre></div>
+
+
+<h4 id="anonymous-fields">Anonymous fields</h4>
+<p>Alan isimlerini belirtilmeden de struct tanımlanabilir. Bu tarz bir tanımlamada belirtilen veri tiplerinin birbirinden farklı olması gerekir.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="kt">string</span>  <span class="c1">// code</span>
+    <span class="kt">int</span>     <span class="c1">// quantity</span>
+    <span class="kt">float32</span> <span class="c1">// price</span>
+<span class="p">}</span>
+
+<span class="nx">item</span> <span class="o">:=</span> <span class="nx">Item</span><span class="p">{</span>
+    <span class="s">&quot;child-seat-1&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="mf">20.1</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">item</span> <span class="c1">// {child-seat 5 20.1}</span>
+</pre></div>
+
+
+<h4 id="promoted-fields">Promoted fields</h4>
+<p>Bir struct başka bir struct içerisinde alan ismi verilmeden kullanılabilir. Bu durumda içerideki structa kendi ismiyle erişilir. Aşağıdaki örneği baz alırsak <code>Page</code> içerisindeki <code>Content</code>e <code>page.Content</code> şeklinde erişilebilir.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Content</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">body</span> <span class="kt">string</span>
+    <span class="nx">size</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">Page</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">nextUrl</span>     <span class="kt">string</span>
+    <span class="nx">previousURL</span> <span class="kt">string</span>
+    <span class="nx">Content</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="nx">content</span> <span class="o">:=</span> <span class="nx">Content</span><span class="p">{</span>
+    <span class="nx">body</span><span class="p">:</span> <span class="s">&quot;&lt;h1&gt;Hi&lt;/h1&gt;&quot;</span><span class="p">,</span>
+    <span class="nx">size</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">page</span> <span class="o">:=</span> <span class="nx">Page</span><span class="p">{</span>
+    <span class="nx">nextUrl</span><span class="p">:</span>     <span class="s">&quot;http://.../3&quot;</span><span class="p">,</span>
+    <span class="nx">previousURL</span><span class="p">:</span> <span class="s">&quot;http://.../1&quot;</span><span class="p">,</span>
+    <span class="nx">Content</span><span class="p">:</span>     <span class="nx">content</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">page</span> <span class="c1">// {http://.../3 http://.../1 {&lt;h1&gt;Hi&lt;/h1&gt; 11}}</span>
+
+<span class="nx">page</span><span class="p">.</span><span class="nx">Content</span> <span class="c1">// {&lt;h1&gt;Hi&lt;/h1&gt; 11}</span>
+</pre></div>
+
+
+<h2 id="pointer">Pointer</h2>
+<p>Pointer bir başka değişkenin memory adresini tutan bir değişkendir.  </p>
+<p>Çalışma esnasında yeni bir nesne oluşturulduğunda, bu nesneyi hafızada tutmamız gerekir. Nesne için hafızada ayrılan alanın yerini değişkenler ile tutarız.</p>
+<h3 id="tanmlama_1">Tanımlama</h3>
+<p>Pointer da değişkenlerdir. Diğer değişkenlerden farkı herhangi bir veriyi değil, o verinin yerini belirten değişkenin adresini tutmasıdır.</p>
+<p>Pointerlar <code>var pointer *Type</code> yapısı kullanılarak tanımlanır. Değer atanmadığı takdirde pointerin değeri <code>nil</code> olarak belirlenir.</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">ptr</span> <span class="o">*</span><span class="kt">int</span>
+<span class="nx">ptr</span> <span class="c1">// nil</span>
+</pre></div>
+
+
+<p>Pointerları <code>new</code> fonksiyonunu kullanarak da tanımlayabiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="nx">ptr</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+<span class="nx">ptr</span> <span class="c1">// nil</span>
+</pre></div>
+
+
+<h3 id="deger-atama_1">Değer Atama</h3>
+<p>Pointera <code>&amp;</code> işaretini kullanarak, bir başka değişlenin adresini, değer olarak atayabiliriz. </p>
+<p><code>*</code> işareti ile pointeri kullanarak, işaret ettiği değişkene(dolayısıyla tutulan veriye) erişebiliriz.</p>
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">carbon</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Carbon&quot;</span>
+<span class="kd">var</span> <span class="nx">ptrCarbon</span> <span class="o">*</span><span class="kt">string</span>
+
+<span class="nx">ptrCarbon</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">carbon</span>
+
+<span class="nx">ptrCarbon</span> <span class="c1">// 0xc000092030</span>
+<span class="o">*</span><span class="nx">ptrCarbon</span> <span class="c1">// &quot;Carbon&quot;</span>
+
+<span class="o">*</span><span class="nx">ptrCarbon</span> <span class="p">=</span> <span class="s">&quot;Altered &quot;</span> <span class="o">+</span> <span class="o">*</span><span class="nx">ptrCarbon</span>
+
+<span class="nx">carbon</span> <span class="c1">// &quot;Altered Carbon&quot;</span>
+</pre></div>
+
+
+<h2 id="fonksiyonlar">Fonksiyonlar</h2>
+<p>Genel olarak GO'da fonksiyonlar aşağıdaki yapıda tanımlanır.</p>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">fonksiyon_adı</span><span class="p">(</span> <span class="p">[</span><span class="nx">parametre</span> <span class="nx">listesi</span><span class="p">]</span> <span class="p">)</span> <span class="p">[</span><span class="nx">dönüş</span> <span class="nx">değerlerinin</span> <span class="nx">tipleri</span><span class="p">]</span>
+<span class="p">{</span>
+   <span class="nx">fonksiyon</span> <span class="nx">gövdesi</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">sigmoid</span><span class="p">(</span><span class="nx">value</span> <span class="kt">float64</span><span class="p">)</span> <span class="kt">float64</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="nx">math</span><span class="p">.</span><span class="nx">Exp</span><span class="p">(</span><span class="o">-</span><span class="nx">value</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="nx">sigmoid</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span> <span class="c1">// 0.62246</span>
+</pre></div>
+
+
+<h3 id="parametreler">Parametreler</h3>
+<p>GO fonksiyonlarına parametre olarak girilen değişkenler kopyalanır. Bu nedenle parametreler üzerinde yapılan değişiklikler değişkenlerin fonksiyon dışındaki durumlarını etkilemez.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Wallet</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">userID</span>  <span class="kt">int</span>
+    <span class="nx">balance</span> <span class="kt">float64</span>
+    <span class="nx">deposit</span> <span class="kt">float64</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">withdraw</span><span class="p">(</span><span class="nx">wallet</span> <span class="nx">Wallet</span><span class="p">,</span> <span class="nx">amount</span> <span class="kt">float64</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="o">-=</span> <span class="nx">amount</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Yukarıdaki kodda basitçe bir cüzdan yapısı ve bu cüzdandan para çekebilen <code>withdraw</code> fonksiyonu tanımladık. Aşağıdaki satırlarda da bir adet cüzdan oluşturup bu fonksiyon ile kullandık.</p>
+<div class="codehilite"><pre><span></span><span class="nx">wallet</span> <span class="o">:=</span> <span class="nx">Wallet</span><span class="p">{</span>
+    <span class="nx">userID</span><span class="p">:</span>  <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">balance</span><span class="p">:</span> <span class="mf">30000.12</span><span class="p">,</span>
+    <span class="nx">deposit</span><span class="p">:</span> <span class="mf">40000.01</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">item_price</span> <span class="o">:=</span> <span class="mf">10023.0</span>
+<span class="nx">withdraw</span><span class="p">(</span><span class="nx">wallet</span><span class="p">,</span> <span class="nx">item_price</span><span class="p">)</span>
+
+<span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="c1">// 3000.12</span>
+</pre></div>
+
+
+<p>Görüldüğü üzere cüzdandaki para değişmedi. Bu tarz kazaları 2 yolla önleyebiliriz.</p>
+<ol>
+<li>Yöntem, cüzdandaki son para durumunu döndürüp, cüzdanı sonradan güncelleyebiliriz.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">withdraw</span><span class="p">(</span><span class="nx">wallet</span> <span class="nx">Wallet</span><span class="p">,</span> <span class="nx">amount</span> <span class="kt">float64</span><span class="p">)</span> <span class="kt">float64</span> <span class="p">{</span>
+    <span class="nx">new_balance</span> <span class="o">:=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="o">-</span> <span class="nx">amount</span>
+    <span class="k">return</span> <span class="nx">new_balance</span>
+<span class="p">}</span>
+
+<span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="p">=</span> <span class="nx">withdraw</span><span class="p">(</span><span class="nx">wallet</span><span class="p">,</span> <span class="nx">item_price</span><span class="p">)</span>
+<span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="c1">// 19977.12</span>
+</pre></div>
+
+
+<p>Bu değişim, işi <em>cüzdandan para çekmek</em> olan withdraw fonksiyonunun kullanım amacını değiştirmiş oluyor.</p>
+<ol>
+<li>Yöntem, cüzdan değişkeni yerine, cüzdanın adresini parametre olarak verebiliriz.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">withdraw</span><span class="p">(</span><span class="nx">wallet</span> <span class="o">*</span><span class="nx">Wallet</span><span class="p">,</span> <span class="nx">amount</span> <span class="kt">float64</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="o">-=</span> <span class="nx">amount</span>
+<span class="p">}</span>
+
+<span class="nx">withdraw</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">wallet</span><span class="p">,</span> <span class="nx">item_price</span><span class="p">)</span>
+
+<span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="c1">// 19977.12</span>
+</pre></div>
+
+
+<p>Bu yöntemin dezavantajı da farklı concurrency safe olmamasıdır. Farklı threadler ile cüzdandan para çekmek istediğimizde, bakiye durumunu takip etmek zor olacaktır.</p>
+<h4 id="dinamik-parametreler">Dinamik parametreler</h4>
+<p>GO fonksiyonlarında dinamik parametreler tanımlanabilir. Bu türdeki parametreleri tanımlamak için parametre tipinin önüne <code>...</code> işareti yazılır.</p>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">ReLU</span><span class="p">(</span><span class="nx">nums</span> <span class="o">...</span><span class="kt">float64</span><span class="p">)</span> <span class="p">[]</span><span class="kt">float64</span> <span class="p">{</span>
+    <span class="nx">new_nums</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">float64</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">))</span>
+    <span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">value</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="nx">value</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="nx">new_nums</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">value</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">new_nums</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="mf">0.</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">new_nums</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="nx">nums</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">float64</span><span class="p">{</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">}</span>
+
+<span class="nx">nums</span> <span class="p">=</span> <span class="nx">ReLU</span><span class="p">(</span><span class="nx">nums</span><span class="o">...</span><span class="p">)</span>
+
+<span class="nx">nums</span> <span class="c1">// [1 0.2 0 0 0 0.1]</span>
+</pre></div>
+
+
+<h3 id="donus-degerleri">Dönüş Değerleri</h3>
+<h4 id="birden-fazla-deger-dondurme">Birden fazla değer döndürme</h4>
+<p>GO fonksiyonlarında birden fazla değer döndürülebilir. Dönülecek değerleri <code>()</code> arasında sırasıyla tanımlamak gerekmektedir.</p>
+<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">first_arg</span><span class="p">,</span> <span class="nx">second_arg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nx">second_arg</span><span class="p">,</span> <span class="nx">first_arg</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="kd">var</span> <span class="nx">language1</span><span class="p">,</span> <span class="nx">language2</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Python&quot;</span><span class="p">,</span> <span class="s">&quot;GO&quot;</span>
+
+<span class="nx">language1</span><span class="p">,</span> <span class="nx">language2</span> <span class="p">=</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">language1</span><span class="p">,</span> <span class="nx">language2</span><span class="p">)</span>
+
+<span class="nx">language1</span><span class="p">,</span> <span class="nx">language2</span> <span class="c1">// GO Python</span>
+</pre></div>
+
+
+<h4 id="donus-degerlerini-isimlendirme">Dönüş değerlerini isimlendirme</h4>
+<p>Fonksiyonların dönüş değerlerine isim verip, değerleri bu değişkenler ile belirleyebiliriz. İsimlendirilmiş dönüş değerleri veri tipinin boş değerini alacağı için, fonksiyonun ön tanımlı dönüş değerleri olarak da kullanılabilirler.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Record</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">id</span>   <span class="kt">int</span>
+    <span class="nx">data</span> <span class="kt">string</span>
+<span class="p">}</span>
+<span class="kd">type</span> <span class="nx">DB</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">records</span> <span class="p">[]</span><span class="nx">Record</span>
+    <span class="nx">locked</span>  <span class="kt">bool</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">BulkCreate</span><span class="p">(</span><span class="nx">records</span> <span class="p">[]</span><span class="nx">Record</span><span class="p">,</span> <span class="nx">db</span> <span class="o">*</span><span class="nx">DB</span><span class="p">)</span> <span class="p">(</span><span class="nx">n_created</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">db</span><span class="p">.</span><span class="nx">locked</span> <span class="p">{</span>
+        <span class="nx">err</span> <span class="p">=</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;DB is locked&quot;</span><span class="p">)</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">db</span><span class="p">.</span><span class="nx">records</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">records</span><span class="p">,</span> <span class="nx">records</span><span class="o">...</span><span class="p">)</span>
+        <span class="nx">n_created</span> <span class="p">=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">records</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">n_created</span><span class="p">,</span> <span class="nx">err</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="nx">db</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">DB</span><span class="p">{</span>
+    <span class="nx">records</span><span class="p">:</span> <span class="p">[]</span><span class="nx">Record</span><span class="p">{},</span>
+    <span class="nx">locked</span><span class="p">:</span>  <span class="kc">true</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="nx">Record</span><span class="p">{}</span>
+
+<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+    <span class="nx">rec</span> <span class="o">:=</span> <span class="nx">Record</span><span class="p">{</span>
+        <span class="nx">id</span><span class="p">:</span>   <span class="nx">i</span><span class="p">,</span>
+        <span class="nx">data</span><span class="p">:</span> <span class="s">&quot;test&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="nx">data</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">rec</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">n_created</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">BulkCreate</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">db</span><span class="p">)</span>
+<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3 id="anonim-fonksiyon">Anonim Fonksiyon</h3>
+<p>GO'da fonksiyonlar da veri yapılarıdır ve diğer fonksiyonların içerisinde tanımlanabilirler. Anonim fonksiyonları, projenin kısıtlı bir bölümünde, spesifik bir işi halletmek için kullanabiliriz.</p>
+<p>Aşağıdaki kod örneğinde, projenin başka yerinde bu işleme ihtiyaç duymayacağımızı varsayarak, bir sliceı belirlenen boyutta parçalayan bir anonim fonksiyon kullandık.</p>
+<div class="codehilite"><pre><span></span><span class="nx">records</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
+<span class="nx">batchSize</span> <span class="o">:=</span> <span class="mi">3</span>
+
+<span class="nx">batchedRecords</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">data</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">batchSize</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[][]</span><span class="kt">int</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">batches</span> <span class="p">[][]</span><span class="kt">int</span>
+
+    <span class="k">for</span> <span class="nx">batchSize</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="p">,</span> <span class="nx">batches</span> <span class="p">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">batchSize</span><span class="p">:],</span> <span class="nb">append</span><span class="p">(</span><span class="nx">batches</span><span class="p">,</span> <span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">batchSize</span><span class="p">:</span><span class="nx">batchSize</span><span class="p">])</span>
+    <span class="p">}</span>
+    <span class="nx">batches</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">batches</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">batches</span>
+<span class="p">}(</span><span class="nx">records</span><span class="p">,</span> <span class="nx">batchSize</span><span class="p">)</span>
+
+<span class="nx">batchedRecords</span> <span class="c1">// [[0 1 2] [3 4 5] [6 7 8] [9]]</span>
+</pre></div>
+
+
+<p>Bu türdeki fonksiyonları bir değişkene atayıp bir kaç kez de kullanabiliriz.</p>
+<p>Aşağıdaki örnekte spesifik bir APIden ayrı ayrı gönderilen ülke kodu ve telefon numaralarını değişken olarak tanımladığımız fonksiyonla birleştirdik.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Vendor</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">name</span>        <span class="kt">string</span>
+    <span class="nx">countryCode</span> <span class="kt">string</span>
+    <span class="nx">phone</span>       <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="nx">vendor</span> <span class="o">:=</span> <span class="nx">Vendor</span><span class="p">{</span>
+    <span class="nx">name</span><span class="p">:</span>        <span class="s">&quot;Volswagen Group&quot;</span><span class="p">,</span>
+    <span class="nx">countryCode</span><span class="p">:</span> <span class="s">&quot;1&quot;</span><span class="p">,</span>
+    <span class="nx">phone</span><span class="p">:</span>       <span class="s">&quot;403120120&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">formatPhoneNumbers</span> <span class="o">:=</span> <span class="kd">func</span><span class="p">(</span><span class="nx">contact</span> <span class="nx">Vendor</span><span class="p">)</span> <span class="kt">string</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s">&quot;+&quot;</span> <span class="o">+</span> <span class="nx">contact</span><span class="p">.</span><span class="nx">countryCode</span> <span class="o">+</span> <span class="nx">contact</span><span class="p">.</span><span class="nx">phone</span>
+<span class="p">}</span>
+
+<span class="nx">formatPhoneNumbers</span><span class="p">(</span><span class="nx">vendor</span><span class="p">)</span> <span class="c1">// +1403120120</span>
+</pre></div>
+
+
+<h2 id="metodlar">Metodlar</h2>
+<p>GO dilinde diğer nesne yönelimli programlama dilleri gibi classlar ve kalıtım yoktur. Fakat fonksiyonlara <code>receiver</code> denilen ek bir argüman ekleyerek ile kendi oluşturduğumuz tiplere fonksiyonları bağlayabiliriz. Böylece GO dilinde de nesne yönelimli programlamaya benzer bir deneyim yakalanabilir.</p>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Connection</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">host</span>     <span class="kt">string</span>
+    <span class="nx">port</span>     <span class="kt">int</span>
+    <span class="nx">timeOut</span>  <span class="kt">int</span>
+    <span class="nx">isClosed</span> <span class="kt">bool</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">conn</span> <span class="o">*</span><span class="nx">Connection</span><span class="p">)</span> <span class="nx">Close</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">conn</span><span class="p">.</span><span class="nx">isClosed</span> <span class="p">=</span> <span class="kc">true</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Connection&quot;</span><span class="p">,</span> <span class="nx">conn</span><span class="p">.</span><span class="nx">host</span><span class="o">+</span><span class="s">&quot;:&quot;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nx">Itoa</span><span class="p">(</span><span class="nx">conn</span><span class="p">.</span><span class="nx">port</span><span class="p">),</span> <span class="s">&quot;closed.&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Yukarıdaki yapıda <code>Close</code> fonksiyonuna normal bir fonksiyona ek olarak <code>(conn *Connection)</code> kısmını ekledik. Böylece aşağıdaki örnekte görüldüğü gibi <code>c.Close()</code>  şeklinde<code>Connection</code> tipi üzerinden fonksiyona erişebildik.</p>
+<div class="codehilite"><pre><span></span><span class="nx">c</span> <span class="o">:=</span> <span class="nx">Connection</span><span class="p">{</span>
+    <span class="nx">host</span><span class="p">:</span>     <span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="nx">port</span><span class="p">:</span>     <span class="mi">8080</span><span class="p">,</span>
+    <span class="nx">timeOut</span><span class="p">:</span>  <span class="mi">1</span><span class="p">,</span>
+    <span class="nx">isClosed</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">c</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span> <span class="c1">// Connection 0.0.0.0:8080 closed.</span>
+</pre></div>
+
+
+<blockquote>
+<h4 id="pointer-receiver-124-value-receiver">Pointer receiver | Value receiver</h4>
+<p>Fonksiyon parametrelerinde olduğu gibi receiverlerde de yapının değeri ile mi yoksa memory adresi ile mi kullanılacağına karar verilmelidir.</p>
+<p>Receiverları struct dışındaki tipler için de kullanabiliriz.</p>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="kd">type</span> <span class="nx">Iterable</span> <span class="p">[]</span><span class="kt">int</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">iterable</span> <span class="o">*</span><span class="nx">Iterable</span><span class="p">)</span> <span class="nx">Append</span><span class="p">(</span><span class="nx">items</span> <span class="o">...</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">*</span><span class="nx">iterable</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="o">*</span><span class="nx">iterable</span><span class="p">,</span> <span class="nx">items</span><span class="o">...</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">arr</span> <span class="o">:=</span> <span class="nx">Iterable</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">Append</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="nx">arr</span> <span class="c1">// [1 2 4 5 6]</span>
+</pre></div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/mgurdal" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/mgurdal_" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://linkedin.com/in/mgurdal" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>
