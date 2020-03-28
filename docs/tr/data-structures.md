@@ -66,7 +66,7 @@ Eğer arrayi değerleri ile birlikte oluşturulacaksak `...` ifadesini kullanıl
 
 
 ```go
-fruits := [3]string{"🍌", "🍏", "🍉"}
+fruits := [...]string{"🍌", "🍏", "🍉"}
 
 fruits // [🍌 🍏 🍉]
 ```

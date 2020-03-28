@@ -60,7 +60,7 @@ If we are going to create the arrayi with the values, we can leave the dimension
 
 
 ```go
-fruits := []string{"🍌", "🍏", "🍉"}
+fruits := [...]string{"🍌", "🍏", "🍉"}
 
 fruits // [🍌 🍏 🍉]
 ```
