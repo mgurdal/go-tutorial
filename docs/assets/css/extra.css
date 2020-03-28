@@ -1,21 +1,24 @@
 .cards {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-around;
+    justify-content: left;
 }
 
 .card {
+    margin: 1em;
     border-radius: 2px;
     border: 1px solid dimgray;
     height: 250px;
     width: 250px;
     text-align: center;
 }
+
 .card:hover {
-    -webkit-box-shadow: 10px 10px 5px -10px rgba(133,133,133,1);
-    -moz-box-shadow: 10px 10px 5px -10px rgba(133,133,133,1);
-    box-shadow: 10px 10px 5px -10px rgba(133,133,133,1);
+    -webkit-box-shadow: 10px 10px 5px -10px rgba(133, 133, 133, 1);
+    -moz-box-shadow: 10px 10px 5px -10px rgba(133, 133, 133, 1);
+    box-shadow: 10px 10px 5px -10px rgba(133, 133, 133, 1);
 }
 
 .card-content {
