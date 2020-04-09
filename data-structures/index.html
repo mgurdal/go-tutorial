@@ -243,8 +243,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#index" class="md-nav__link">
-    index
+  <a href="#mutate" class="md-nav__link">
+    mutate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    filter
   </a>
   
 </li>
@@ -252,6 +259,27 @@
           <li class="md-nav__item">
   <a href="#append" class="md-nav__link">
     append
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pop" class="md-nav__link">
+    pop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-front-unshift" class="md-nav__link">
+    push front (unshift)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pop-front-shift" class="md-nav__link">
+    pop front (shift)
   </a>
   
 </li>
@@ -273,13 +301,6 @@
           <li class="md-nav__item">
   <a href="#expand" class="md-nav__link">
     expand
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter" class="md-nav__link">
-    filter
   </a>
   
 </li>
@@ -315,27 +336,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pop" class="md-nav__link">
-    pop
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#push-front-unshift" class="md-nav__link">
-    push front (unshift)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pop-front-shift" class="md-nav__link">
-    pop front (shift)
-  </a>
   
 </li>
         
@@ -632,13 +632,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional Resources
-  </a>
   
 </li>
       
@@ -727,8 +720,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#index" class="md-nav__link">
-    index
+  <a href="#mutate" class="md-nav__link">
+    mutate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    filter
   </a>
   
 </li>
@@ -736,6 +736,27 @@
           <li class="md-nav__item">
   <a href="#append" class="md-nav__link">
     append
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pop" class="md-nav__link">
+    pop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-front-unshift" class="md-nav__link">
+    push front (unshift)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pop-front-shift" class="md-nav__link">
+    pop front (shift)
   </a>
   
 </li>
@@ -757,13 +778,6 @@
           <li class="md-nav__item">
   <a href="#expand" class="md-nav__link">
     expand
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter" class="md-nav__link">
-    filter
   </a>
   
 </li>
@@ -799,27 +813,6 @@
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pop" class="md-nav__link">
-    pop
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#push-front-unshift" class="md-nav__link">
-    push front (unshift)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pop-front-shift" class="md-nav__link">
-    pop front (shift)
-  </a>
   
 </li>
         
@@ -1116,13 +1109,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-resources" class="md-nav__link">
-    Additional Resources
-  </a>
   
 </li>
       
@@ -1239,8 +1225,9 @@ If we are going to create the arrayi with the values, we can leave the dimension
 <h3 id="slice-operations">Slice Operations<a class="headerlink" href="#slice-operations" title="Permanent link">&para;</a></h3>
 <p>While creating the slice, it is filled with the default value of the data type that it will hold, as much as its capacity. However, only part of its length can be accessed.</p>
 <p>If we want to increase the size of a slice, we can use the <code>append</code> and<code>copy</code> functions for this.</p>
-<h3 id="index">index<a class="headerlink" href="#index" title="Permanent link">&para;</a></h3>
+<h3 id="mutate">mutate<a class="headerlink" href="#mutate" title="Permanent link">&para;</a></h3>
 <p>When we resize a slice and assign it to another variable, changes in the new slice will also affect the original slice.</p>
+<p><img alt="mutate" src="../assets/img/mutate.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">apples</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
 
@@ -1249,6 +1236,23 @@ If we are going to create the arrayi with the values, we can leave the dimension
  
 <span class="nx">apples</span> <span class="c1">// [🍏 🍏]</span>
 <span class="nx">fruits</span> <span class="c1">// [🍏 🍏 🍇 🍒 🍉]</span>
+</code></pre></div>
+
+
+<h3 id="filter">filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
+<p>We can filter the slice elements according to a certain criterion.</p>
+<p><img alt="filter" src="../assets/img/filter.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
+<span class="nx">apple_criteria</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span>
+
+<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
+<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">fruit</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">fruits</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">fruit</span> <span class="o">==</span> <span class="nx">apple_criteria</span> <span class="p">{</span>
+        <span class="nx">apples</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">apples</span><span class="p">,</span> <span class="nx">fruit</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">apples</span> <span class="c1">// [🍎 🍎]</span>
 </code></pre></div>
 
 
@@ -1264,6 +1268,42 @@ in a variable (usually the old slice variable).</p>
 <span class="nx">bucket</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">bucket</span><span class="p">,</span> <span class="nx">green_apple</span><span class="p">)</span>
 
 <span class="nx">bucket</span> <span class="c1">// [🍎 🍇 🍒 🍉 🍏]</span>
+</code></pre></div>
+
+
+<h3 id="pop">pop<a class="headerlink" href="#pop" title="Permanent link">&para;</a></h3>
+<p>In the example below, we have removed the last element of the slice and assigned it to a variable.</p>
+<p><img alt="pop" src="../assets/img/pop.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+
+<span class="nx">item</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nx">item</span> <span class="c1">// 🍉</span>
+<span class="nx">fruits</span> <span class="c1">// [🍏 🍎]</span>
+</code></pre></div>
+
+
+<h3 id="push-front-unshift">push front (unshift)<a class="headerlink" href="#push-front-unshift" title="Permanent link">&para;</a></h3>
+<p>In this example, we put a new element at the beginning of the slice.</p>
+<p><img alt="pushfront" src="../assets/img/pushfront.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
+
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">banana</span><span class="p">},</span> <span class="nx">fruits</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍌 🍏 🍎 🍉]</span>
+</code></pre></div>
+
+
+<h3 id="pop-front-shift">pop front (shift)<a class="headerlink" href="#pop-front-shift" title="Permanent link">&para;</a></h3>
+<p>In this example, we removed the first element of the slice and assigned it to a variable.</p>
+<p><img alt="popfront" src="../assets/img/popfront.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+
+<span class="nx">banana</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+<span class="nx">banana</span> <span class="c1">// 🍌</span>
+<span class="nx">fruits</span> <span class="c1">// [🍏 🍎 🍉]</span>
 </code></pre></div>
 
 
@@ -1327,6 +1367,7 @@ in a variable (usually the old slice variable).</p>
 
 <h3 id="expand">expand<a class="headerlink" href="#expand" title="Permanent link">&para;</a></h3>
 <p>If we want to combine one slice and the other, we can use the following methods.</p>
+<p><img alt="expand_1" src="../assets/img/expand_1.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
 
@@ -1336,33 +1377,18 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p>In the example below, we have combined the elements after the index determined by <code>apples</code> in line<code>7</code>. Afterwards, we added these slice elements to the bucket items up to the index we determined.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<p>In the example below, we have combined the elements after the index determined by <code>apples</code> in line <code>7</code>. Afterwards, we added these slice elements to the bucket items up to the index we determined.</p>
+<p><img alt="expand_2" src="../assets/img/expand_2.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
 <span class="nx">expand_index</span> <span class="o">:=</span> <span class="mi">2</span>
 
 <span class="nx">bucket</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span>
     <span class="nx">bucket</span> <span class="p">[:</span><span class="nx">expand_index</span><span class="p">]</span>
-    <span class="nb">append</span><span class="p">(</span><span class="nx">apples</span><span class="p">,</span> <span class="nx">bucket</span> <span class="p">[</span><span class="nx">expand_index</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span><span class="o">...</span><span class="p">,</span>
+    <span class="nb">append</span><span class="p">(</span><span class="nx">apples</span><span class="p">,</span> <span class="nx">bucket</span><span class="p">[</span><span class="nx">expand_index</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span><span class="o">...</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nx">bucket</span> <span class="c1">// [🍌 🍇 🍏 🍎 🍉]</span>
-</code></pre></div>
-
-
-<h3 id="filter">filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
-<p>We can filter the slice elements according to a certain criterion.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
-<span class="nx">apple_criteria</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span>
-
-<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{}</span>
-<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">fruit</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">fruits</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="nx">fruit</span> <span class="o">==</span> <span class="nx">apple_criteria</span> <span class="p">{</span>
-        <span class="nx">apples</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">apples</span><span class="p">,</span> <span class="nx">fruit</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">apples</span> <span class="c1">// [🍎 🍎]</span>
+<span class="nx">bucket</span> <span class="c1">// [🍇 🍒 🍏 🍎 🍉]</span>
 </code></pre></div>
 
 
@@ -1428,39 +1454,6 @@ in a variable (usually the old slice variable).</p>
 
 
 <p><img alt="slice-cut" src="../assets/img/delete_unordered.gif" /></p>
-<h3 id="pop">pop<a class="headerlink" href="#pop" title="Permanent link">&para;</a></h3>
-<p>In the example below, we have removed the last element of the slice and assigned it to a variable.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
-
-<span class="nx">item</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="nx">item</span> <span class="c1">// 🍉</span>
-<span class="nx">fruits</span> <span class="c1">// [🍏 🍎]</span>
-</code></pre></div>
-
-
-<h3 id="push-front-unshift">push front (unshift)<a class="headerlink" href="#push-front-unshift" title="Permanent link">&para;</a></h3>
-<p>In this example, we put a new element at the beginning of the slice.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
-<span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
-
-<span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">banana</span><span class="p">},</span> <span class="nx">fruits</span> <span class="o">...</span><span class="p">)</span>
-
-<span class="nx">fruits</span> <span class="c1">// [🍌 🍏 🍎 🍉]</span>
-</code></pre></div>
-
-
-<h3 id="pop-front-shift">pop front (shift)<a class="headerlink" href="#pop-front-shift" title="Permanent link">&para;</a></h3>
-<p>In this example, we removed the first element of the slice and assigned it to a variable.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
-
-<span class="nx">banana</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-
-<span class="nx">banana</span> <span class="c1">// 🍌</span>
-<span class="nx">fruits</span> <span class="c1">// [🍏 🍎 🍉]</span>
-</code></pre></div>
-
-
 <h2 id="map">Map<a class="headerlink" href="#map" title="Permanent link">&para;</a></h2>
 <p>One of the most frequently used data types is maps. <code>map</code> holds values with a unique keys.</p>
 <h3 id="identification">Identification<a class="headerlink" href="#identification" title="Permanent link">&para;</a></h3>
@@ -2234,37 +2227,6 @@ In this function, we will check the int string and float incoming values accordi
 <span class="nx">Stringify</span><span class="p">(</span><span class="mf">12.52312313</span><span class="p">)</span> <span class="c1">// &quot;12.52&quot;</span>
 <span class="nx">Stringify</span><span class="p">(</span><span class="s">&quot;test&quot;</span><span class="p">)</span>  <span class="c1">// &quot;test&quot;</span>
 </code></pre></div>
-
-
-<h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Permanent link">&para;</a></h2>
-<p><a href="https://medium.com/rungo/structures-in-go-76377cc106a2">https://medium.com/rungo/structures-in-go-76377cc106a2</a><br />
-<a href="https://golangbot.com/arrays-and-slices/">https://golangbot.com/arrays-and-slices/</a><br />
-<a href="https://blog.golang.org/go-slices-usage-and-internals">https://blog.golang.org/go-slices-usage-and-internals</a><br />
-<a href="https://gobyexample.com/slices">https://gobyexample.com/slices</a><br />
-<a href="https://medium.com/rungo/the-anatomy-of-slices-in-go-6450e3bb2b94">https://medium.com/rungo/the-anatomy-of-slices-in-go-6450e3bb2b94</a><br />
-<a href="https://opensource.com/article/18/7/introduction-go-arrays-and-slices">https://opensource.com/article/18/7/introduction-go-arrays-and-slices</a><br />
-<a href="https://appliedgo.net/slices/">https://appliedgo.net/slices/</a><br />
-<a href="https://gobyexample.com/maps">https://gobyexample.com/maps</a><br />
-<a href="https://blog.golang.org/go-maps-in-action">https://blog.golang.org/go-maps-in-action</a><br />
-<a href="https://medium.com/rungo/the-anatomy-of-maps-in-go-79b82836838b">https://medium.com/rungo/the-anatomy-of-maps-in-go-79b82836838b</a><br />
-<a href="https://github.com/Pungyeon/clean-go-article">https://github.com/Pungyeon/clean-go-article</a><br />
-<a href="https://medium.com/rungo/error-handling-in-go-f0125de052f0">https://medium.com/rungo/error-handling-in-go-f0125de052f0</a><br />
-<a href="https://github.com/golang/go/wiki/SliceTricks">https://github.com/golang/go/wiki/SliceTricks</a><br />
-<a href="https://gobyexample.com/variadic-functions">https://gobyexample.com/variadic-functions</a><br />
-<a href="https://github.com/emirpasic/gods">https://github.com/emirpasic/gods</a><br />
-<a href="https://github.com/avelino/awesome-go">https://github.com/avelino/awesome-go</a><br />
-<a href="https://golangbot.com/pointers/">https://golangbot.com/pointers/</a><br />
-<a href="http://www.golang-book.com/books/intro/8">http://www.golang-book.com/books/intro/8</a><br />
-<a href="https://medium.com/rungo/the-anatomy-of-arrays-in-go-24429e4491b7">https://medium.com/rungo/the-anatomy-of-arrays-in-go-24429e4491b7</a><br />
-<a href="https://medium.com/rungo/achieving-concurrency-in-go-3f84cbf870ca">https://medium.com/rungo/achieving-concurrency-in-go-3f84cbf870ca</a><br />
-<a href="https://medium.com/rungo/interfaces-in-go-ab1601159b3a">https://medium.com/rungo/interfaces-in-go-ab1601159b3a</a><br />
-<a href="https://medium.com/@dotronglong/interface-naming-convention-in-golang-f53d9f471593">https://medium.com/@dotronglong/interface-naming-convention-in-golang-f53d9f471593</a><br />
-<a href="https://yourbasic.org/golang/interfaces-explained/">https://yourbasic.org/golang/interfaces-explained/</a><br />
-<a href="https://medium.com/rungo/structures-in-go-76377cc106a2">https://medium.com/rungo/structures-in-go-76377cc106a2</a><br />
-<a href="https://talks.golang.org/2012/10things.slide#9">https://talks.golang.org/2012/10things.slide#9</a><br />
-<a href="https://flaviocopes.com/go-empty-interface/">https://flaviocopes.com/go-empty-interface/</a><br />
-<a href="https://research.swtch.com/interfaces">https://research.swtch.com/interfaces</a><br />
-<a href="https://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go">https://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go</a></p>
                 
               
               
