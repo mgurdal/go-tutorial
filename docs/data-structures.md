@@ -219,7 +219,7 @@ parameter and the elements we will add later and return a ** new ** slice contai
 all the elements to us. Therefore, it is necessary to keep the return value 
 in a variable (usually the old slice variable).
 
-![copy](assets/img/append.gif)
+![append](assets/img/append.gif)
 
 ```go
 bucket := []string{"🍎", "🍇", "🍒", "🍉"}
@@ -306,6 +306,7 @@ fruits // [🍎 🍇 🍌 🍒 🍉]
 
 
 ![insert_mem](assets/img/insert_mem.gif)
+
 ```go
 fruits := []string{"🍏", "🍎", "🍉"}
 banana := "🍌"
@@ -410,12 +411,13 @@ edibles = append(edibles[:index_of_cherry], edibles[index_of_cherry + 1:]...)
 edibles // [🍎 🍇 🍉 🌶 🍆 🌽 🥔]
 ```
 
-![slice-cut](assets/img/delete.gif)
+![slice-delete](assets/img/delete.gif)
 
 #### Delete Without Preserving Order
 
 We can also do the deletion by ignoring the array order. In the example below, we have replaced the last element in the slice with the element we want to delete. Then we reduced the size of the slice by 1.
 
+![slice-delete-unordered](assets/img/delete_unordered.gif)
 
 ```go
 edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
@@ -426,9 +428,6 @@ edibles = edibles[:len(edibles) -1]
 
 edibles // [🍎 🍇 🥔 🍉 🌶 🍆 🌽]
 ```
-![slice-cut](assets/img/delete_unordered.gif)
-
-
 
 
 Map
