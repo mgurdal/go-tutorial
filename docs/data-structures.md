@@ -1162,7 +1162,7 @@ sock.buffer // sock.buffer undefined (type Writer has no field or method buffer
 
 ### Type Conversion (Assertion)
 
-Type assertion allows access to the concrete value of the underlying the data type.
+Type assertion allows access to the concrete value of the underlying data type.
 
 ```go
 s := sock.(*Socket)
