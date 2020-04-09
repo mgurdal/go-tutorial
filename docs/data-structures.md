@@ -114,14 +114,24 @@ slc := []int{12, 24, 39}
 
 We can also use the `make` function to define the slice. The first parameter of the `make` function determines the size of the slice to be created.
 
+If we make a slice by defining only its size it will only allocate memory
+total of the size of its item type. And if we later append new items into the slice it will allocate some more memory in runtime.
 
+![make-1](assets/img/make-1.png)
 ```go
 // define by size
-n_items = 20
+n_items = 3
 slc := make([]int, n_items)
+```
+Allocating new memory in runtime sometimes can be costly. If we have an
+estimation over the size of the slice; we can give a third parameter to 
+the make function to pre-allocate some more memory.
 
+![make-2](assets/img/make-2.png)
+```go
 // definition by size and capacity
-capacity := 40
+n_items = 3
+capacity := 5
 slc := make([]int, n_items, capacity)
 ```
 
@@ -150,6 +160,36 @@ apples // [🍏 🍏]
 fruits // [🍏 🍏 🍇 🍒 🍉]
 ```
 
+### copy
+
+`copy` allows us to copy one slice of another slicea of ​​the same or larger capacity and returns how many elements are copied.
+
+![copy](assets/img/copy.gif)
+
+```go
+bucket := make([]string, 5)
+
+fruits := []string{"🍎", "🍇", "🍒", "🍉"}
+
+n_copied := copy(bucket, fruits)
+
+n_copied // 5
+bucket // [🍎 🍇 🍈 🍉]
+
+```
+
+When copying a slice, the elements replace the elements in the same index in the target slice.
+
+
+```go
+fruits := []string{"🍇", "🍒", "🍉"}
+apples := []string{"🍎", "", "🍏"}
+
+copy(fruits, apples)
+
+fruits // [🍎 🍏]
+
+```
 
 
 ### filter
@@ -265,7 +305,7 @@ fruits // [🍎 🍇 🍌 🍒 🍉]
 > Creating a new slice and copying for the 2nd time can be avoided.
 
 
-![copy](assets/img/insert_mem.gif)
+![insert_mem](assets/img/insert_mem.gif)
 ```go
 fruits := []string{"🍏", "🍎", "🍉"}
 banana := "🍌"
@@ -276,38 +316,6 @@ copy(fruits[insert_index + 1:], fruits[insert_index:])
 fruits[insert_index] = banana
 
 fruits // [🍏 🍎 🍌 🍉]
-```
-
-
-### copy
-
-`copy` allows us to copy one slice of another slicea of ​​the same or larger capacity and returns how many elements are copied.
-
-![copy](assets/img/copy.gif)
-
-```go
-bucket := make([]string, 5)
-
-fruits := []string{"🍎", "🍇", "🍒", "🍉"}
-
-n_copied := copy(bucket, fruits)
-
-n_copied // 5
-bucket // [🍎 🍇 🍈 🍉]
-
-```
-
-When copying a slice, the elements replace the elements in the same index in the target slice.
-
-
-```go
-fruits := []string{"🍇", "🍒", "🍉"}
-apples := []string{"🍎", "", "🍏"}
-
-copy(fruits, apples)
-
-fruits // [🍎 🍏]
-
 ```
 
 
