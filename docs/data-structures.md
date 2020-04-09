@@ -2,8 +2,8 @@
 
 This page describes the data structures of go language and their usages in general programming.
 
-Array
---------
+## Array
+
 
 Arrays are structures that enable us to keep the same types of data together. For example; A list consisting of 4, 5, 19 and 25 defines an array.
 Go does not allow us to create arrays from different data types.
@@ -91,8 +91,7 @@ for _, fruit := range fruits {
 ```
 
 
-Slice
----------
+## Slice
 
 Slices are very similar to arrays in terms of usage. The difference of slices is that their size is dynamic.
 
@@ -430,13 +429,12 @@ edibles // [🍎 🍇 🥔 🍉 🌶 🍆 🌽]
 ```
 
 
-Map
---------
+## Map
 
 
 One of the most frequently used data types is maps. `map` holds values with a unique keys.
 
-### Identification
+### Definition
 
 Maps can be defined as `map[KeyType]ValueType` or `make(map[KeyType]ValueType)`.
 
@@ -452,7 +450,7 @@ mymap = make(map[string]string)
 
 
 ```go
-monty_python_films_by_year := map [string] string {
+monty_python_films_by_year := map[string]string {
     "1971": "Monty Python and the Holy Grail",
     "1979": "Life of Brian",
 }
@@ -486,11 +484,11 @@ if !registered {
 ```
 
 
-### Accessing to values using with for
+### Accessing to values using for
 
 Map values are accessible in 2 ways.
 
-1- By using one variable in the for loop, by accessing through keys.
+1- We can iterate over keys by using one variable in the for loop.
 
 
 ```go
@@ -507,7 +505,7 @@ for year := range monty_python_films_by_year {
 ```
 
 
-2- Using 2 variables in the loop, accessing both key and value.
+2- We can iterate over both keys and values by using two variable in the for loop.
 
 
 ```go
@@ -543,8 +541,8 @@ len(monty_python_films_by_year) // 1
 ```
 
 
-struct
--------------
+## struct
+
 
 Structs are user-defined data structures that can hold different types of data with their names.
 
@@ -637,7 +635,7 @@ new_film := Film{
 new_film // {Ran Akira Kurosawa 8.2 1985}
 ```
 
-If some fields are left blank while creating Struct; these fields are defined by the null values of that data type.
+If some of the fields are left blank while creating Struct; these fields are defined by the null values of that data type.
 
 
 ```go
@@ -653,7 +651,7 @@ new_film // {Batman v Superman Zack Snyder 0 2016}
 
 #### Anonymous struct
 
-In some special cases, we may need to define structs in the function body. We can do this by the following method.
+In some special cases, we may need to define structs in the function body.
 
 ```go
 provider_config := struct {
@@ -673,7 +671,7 @@ provider_config // {mapbox https://api.mapbox.com/geocoding/v5/ 123asds123}
 #### Anonymous fields
 
 Struct can also be defined without specifying field names. 
-The data types specified in such a definition must be different from each other.
+In this case, the data types of the fields must be different from each other.
 
 ```go
 type Item struct {
@@ -688,13 +686,13 @@ item := Item{
 	20.1,
 }
 
-item // {child-seat 5 20.1}
+item // {child-seat-1 5 20.1}
 ```
 
 #### Promoted fields
 
-A struct can be used in another struct without giving the domain name. In this case, 
-the structure inside is accessed by its own name. Based on the example below, `Content` in `Page` can be accessed as `page.Content`.
+A struct can be used wintin another struct without giving the a field name. In this case, 
+inner struct is accessed by its own name. Based on the example below, `Content` in `Page` can be accessed as `page.Content`.
 
 ```go
 type Content struct {
@@ -728,53 +726,6 @@ page.Content // {<h1>Hi</h1> 11}
 ```
 
 
-## Pointer
-Pointer is a variable that holds the memory address of another variable.
-  
-When a new object is created in runtime, we need to keep it in memory. 
-We substitute the space allocated in the memory for the object with variables.
-
-### Definition
-Pointers are also variables. The difference from other variables is that it keeps the address of the variable that indicates the location of that data, not any data.
-
-A pointer can be defined using the `var pointer * Type` structure. 
-If no value is assigned, the value of the pointer is determined as `nil`.
-    
-```go
-var ptr *int
-ptr // nil
-```
-
-We can also define pointers using the `new` function.
-
-```go
-ptr := new(int)
-ptr // nil
-```
-
-### Assigning Value
-
-Assigning Value
-
-We can assign the address of another variable as a value to the Pointer by using the `&` sign.
-
-Using the pointer with the `*` sign, we can access the variable it is pointing to (hence the data).
-
-```go
-var carbon string = "Carbon"
-var ptrCarbon *string
-
-ptrCarbon = &carbon
-
-ptrCarbon // 0xc000092030
-*ptrCarbon // "Carbon"
-
-*ptrCarbon = "Altered " + *ptrCarbon
-
-carbon // "Altered Carbon"
-```
-
-
 ## Functions
 
 In general, functions in GO are defined in the following structure.
@@ -796,8 +747,7 @@ sigmoid(0.5) // 0.62246
 ```
 
 ### Parameters
-Parameters given to functions are copied. 
-For this reason, changes made on the parameters do not affect the status of variables outside the function.
+Parameters given to functions are **copied**. For this reason, modifying the parameters do not affect the status of variables outside the function.
 
 ```go
 type Wallet struct {
@@ -811,8 +761,8 @@ func withdraw(wallet Wallet, amount float64) {
 }
 ```
 
-In the above code, we have simply defined a wallet structure and the 'withdraw' function that can withdraw money from the wallet. 
-In the lines below, we created a wallet and used it with this function.
+In the code above, we have simply defined a wallet structure and the 'withdraw' function that can withdraw money from the wallet. 
+In the lines below, we created a wallet and used it with withdraw function.
 
 ```go
 wallet := Wallet{
@@ -828,9 +778,10 @@ wallet.balance // 3000.12
 ```
 
 As you can see, the money in the wallet has not changed. 
-We can prevent this type of accident in 2 ways.
+We can work around this in 2 ways.
 
 Method 1, we can return the new balance of the wallet and update the wallet later.
+
 ```go
 func withdraw(wallet Wallet, amount float64) float64 {
 	new_balance := wallet.balance - amount
@@ -841,10 +792,10 @@ wallet.balance = withdraw(wallet, item_price)
 wallet.balance // 19977.12
 ```
 
-This change changes the intended use of the withdraw function, 
+This method changes the intended use of the withdraw function, 
 whose job is to withdraw money from the wallet.
 
-Method 2, Instead of the wallet variable, we can give the wallet's address as a parameter.
+Method 2, we can give the address of the wallet variable as parameter.
 
 ```go
 func withdraw(wallet *Wallet, amount float64) {
@@ -862,8 +813,8 @@ it will be difficult to keep track of the balance status.
 
 #### Dynamic parameters
 
-Dynamic parameters can be defined in GO functions. 
-To define the parameters of this type, the sign `...` is written before the parameter type.
+We can dynamic parameters in GO functions. 
+To do that, we should put `...` sign before the parameter.
 
 ```go
 func ReLU(nums ...float64) []float64 {
@@ -894,7 +845,7 @@ nums // [1 0.2 0 0 0 0.1]
 
 #### Returning multiple values
 
-Multiple values can be returned in GO functions. 
+Go functions are able to return multiple values.
 It is necessary to define the values to be returned in order between `()`.
 
 ```go
@@ -966,10 +917,8 @@ if err != nil {
 
 ### Anonymous Function
 
-Functions in GO are also variable and can be defined within other functions. 
-We can use anonymous functions in a limited part of the project to get a specific job done.
-In the code example below, we assumed that we would not need this process elsewhere 
-in the project, we used an anonymous function to break up a slice of the specified size.
+Functions in GO are also data types and can be assigned to variables within functions.
+
 
 ```go
 records := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
@@ -988,37 +937,10 @@ batchedRecords := func(data []int, batchSize int) [][]int {
 batchedRecords // [[0 1 2] [3 4 5] [6 7 8] [9]]
 ```
 
-We can assign  this type of functions to a variable and use it several times.
-
-In the example below, we combine the country code and phone numbers that are sent 
-separately from a specific API with the function we define as variables.
-
-```go
-type Vendor struct {
-	name        string
-	countryCode string
-	phone       string
-}
-
-vendor := Vendor{
-	name:        "Volswagen Group",
-	countryCode: "1",
-	phone:       "403120120",
-}
-
-formatPhoneNumbers := func(contact Vendor) string {
-	return "+" + contact.countryCode + contact.phone
-}
-
-formatPhoneNumbers(vendor) // +1403120120
-```
 
 ## Methods
 
-There are no classes or inheritance in GO language like other object oriented programming languages. 
-
-An experience similar to object oriented programming can be achieved in GO language 
-by adding an additional argument called `receiver 'to the functions. 
+There are no classes and thus class methods in GO. However, similar experience can be achieved by adding an additional argument called `receiver' to the functions. 
 
 
 ```go
@@ -1036,9 +958,8 @@ func (conn *Connection) Close() {
 ```
 
 
-In the above structure, we have added `(conn * Connection)` to the `Close` 
-function in addition to a normal function. Thus, as we can see in the example below, 
-we were able to access the function via the `Connection` type as `c.Close ()`.
+In above, we have added `(conn * Connection)` to the `Close` 
+function in order to define the Connection as receiver. Now we are able to access the function via the `Connection` type as `c.Close ()`.
 
 ```go
 c := Connection{
@@ -1053,11 +974,9 @@ c.Close() // Connection 0.0.0.0:8080 closed.
 
 > #### Pointer receiver | Value receiver
 >
-> As with the function parameters, it should be decided whether the receivers will be used 
-> with the value of the structure or the memory address.
+> As with the function parameters, it should be decided whether the receivers will be defined as values or memory addresses.
 
-
-> We can also use receivers for types other than struct.
+We can also use receivers for other data types.
 
 
 ```go
@@ -1077,7 +996,7 @@ arr // [1 2 4 5 6]
 ## Errors
 
 In GO, we can create our own error types.
-To achieve this, the data type must implement the Error method.
+To achieve this, the data type must implement the `Error` method that takes no parameters and returns a `string`. 
 
 ### Definition
 
@@ -1103,11 +1022,6 @@ func MakeRequest() error {
 ```
 
 
-### Usa Case
-
-When the function is executed, it can be checked whether the returned error 
-value is `nil' and measures can be taken accordingly.
-
 ```go
 err := MakeRequest()
 if err != nil {
@@ -1121,22 +1035,19 @@ if err != nil {
 Interfaces are structures that specify the methods an object can have. 
 Therefore, interfaces express the behavior of objects. 
 For example; data can be read from or written to a file. 
-If an interface contains reading and writing methods and the file object has 
+If an interface contains read and write methods and the file object has 
 these methods, it can be said that the file has implemented this interface.
 
-The main purpose of Interfaces is to create a common protocol for different data structures 
-that show the same behavior but are used in different cases by defining the methods, 
-the parameters they take and the return values in a general way; 
-.
+The main purpose of Interfaces is to create a common protocol for different data types that show the same behavior but contains a different implementation.
+
 
 ### Definition
 
-To indicate that one type uses an interface, we do not need to use expressions like `class File implements IO`, 
-as in most other object oriented languages. GO establishes the relationship 
+We do not need to use expressions like `class File implements IO` to indicate that one type uses an interface. GO establishes the relationship 
 between interfaces and types by sharing the same methods.
 
 ```go
-type IOInterface interface {
+type IO interface {
 	Read() []byte
 	Write([]byte) int
 }
@@ -1172,14 +1083,9 @@ func (sock *Socket) Write(stream []byte) int {
 ```
 
 
-In the above application, we have defined the 'IO' 
-interface that defines the 'Read' and 'Write' methods, and the 'File' and 'Socket' types with these methods.
+We have defined the 'IO' interface that defines the 'Read' and 'Write' methods, and the 'File' and 'Socket' data types with these methods.
 
-### Use Case
-
-In the example below, since the `Log` method takes the `IO` interface as a parameter,
- it can read the data and do its job without worrying 
- about which data type it comes from.
+Since the `Log` method takes the `IO` interface as a parameter, it can read the data and do its job without worrying about the data type.
 
 ```go
 type Logger struct {
@@ -1211,7 +1117,7 @@ logger.Log(sock) // "data"
 ### Using Multiple Interfaces
 
 GO types can implement multiple interfaces. 
-For this, it only needs to have the methods of the interface.
+For this, data types only needs to have the methods of the interface.
 
 ```go
 type Reader interface {
@@ -1254,19 +1160,17 @@ sock.Write(file.Read())
 sock.buffer // sock.buffer undefined (type Writer has no field or method buffer
 ```
 
-### Type Conversion
+### Type Conversion (Assertion)
 
-If we need to take advantage of certain properties of data type hierarchies, 
-we need to convert assets from one data type to another.
-
-> We can check whether the type we are converting correctly implements 
-> that interface with an additional parameter that we can get from conversion.
-
+Type assertion allows access to the concrete value of the underlying the data type.
 
 ```go
 s := sock.(*Socket)
 string(s.buffer) // "data"
 ```
+
+
+We can check whether the type we are asserting correctly implements the interface.
 
 
 ```go
@@ -1281,9 +1185,9 @@ s, ok // nil, false
 
 ### Empty Interface
 
-Interfaces are types like other data structures and can be used in the same way. Empty interface in GO projects; It is defined as `interface {}`.
+Interfaces are also data types and can be used in the same way. Empty interface in GO defined as `interface{}`.
 
-Since it has no method, the requirements of the empty interface are met by all types. This feature of the empty interface allows us to define dynamic parameters and values.
+Since it has no method, the requirements of the empty interface are met by all types. This unique feature of the empty interface allows us to define dynamic parameters and values.
 
 ```go
 type Booking struct {
@@ -1292,7 +1196,6 @@ type Booking struct {
 	ExtraProviderParams interface{}
 }
 ```
-
 
 
 ```go
@@ -1322,8 +1225,7 @@ booking2 // {DCM customer-01a [4 after-booking]}
 
 Interface types can be controlled by the switch structure. 
 
-In the example below, the `Stringify` function allows us to use different data types in the function by taking the parameter as `interface {}`.
-In this function, we will check the int string and float incoming values according to their types and convert them to string as we determine.
+`Stringify` function allows us to use different data types in the function by taking `interface{}` as  parameter. We will check the int, string and float data types and convert them to string.
 
 ```go
 func Stringify(value interface{}) (string, error) {
