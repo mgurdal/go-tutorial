@@ -741,52 +741,6 @@ page.Content // {<h1>Hi</h1> 11}
 ```
 
 
-## Pointer
-
-Pointer bir başka değişkenin memory adresini tutan bir değişkendir.  
-  
-Çalışma esnasında yeni bir nesne oluşturulduğunda, bu nesneyi hafızada tutmamız gerekir. Nesne için hafızada ayrılan alanın yerini değişkenler ile tutarız.
-
-### Tanımlama
-
-Pointer da değişkenlerdir. Diğer değişkenlerden farkı herhangi bir veriyi değil, o verinin yerini belirten değişkenin adresini tutmasıdır.
-
-Pointerlar `var pointer *Type` yapısı kullanılarak tanımlanır. Değer atanmadığı takdirde pointerin değeri `nil` olarak belirlenir.
-
-```go
-var ptr *int
-ptr // nil
-```
-
-Pointerları `new` fonksiyonunu kullanarak da tanımlayabiliriz.
-
-```go
-ptr := new(int)
-ptr // nil
-```
-
-### Değer Atama
-
-Pointera `&` işaretini kullanarak, bir başka değişlenin adresini, değer olarak atayabiliriz. 
-
-`*` işareti ile pointeri kullanarak, işaret ettiği değişkene\(dolayısıyla tutulan veriye\) erişebiliriz.
-
-
-```go
-var carbon string = "Carbon"
-var ptrCarbon *string
-
-ptrCarbon = &carbon
-
-ptrCarbon // 0xc000092030
-*ptrCarbon // "Carbon"
-
-*ptrCarbon = "Altered " + *ptrCarbon
-
-carbon // "Altered Carbon"
-```
-
-
 ## Fonksiyonlar
 
 Genel olarak GO'da fonksiyonlar aşağıdaki yapıda tanımlanır.
