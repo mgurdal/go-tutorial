@@ -458,33 +458,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pointer" class="md-nav__link">
-    Pointer
-  </a>
-  
-    <nav class="md-nav" aria-label="Pointer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tanmlama_3" class="md-nav__link">
-    Tanımlama
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#deger-atama_2" class="md-nav__link">
-    Değer Atama
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fonksiyonlar" class="md-nav__link">
     Fonksiyonlar
   </a>
@@ -580,7 +553,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tanmlama_4" class="md-nav__link">
+  <a href="#tanmlama_3" class="md-nav__link">
     Tanımlama
   </a>
   
@@ -607,7 +580,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#tanmlama_5" class="md-nav__link">
+  <a href="#tanmlama_4" class="md-nav__link">
     Tanımlama
   </a>
   
@@ -1243,40 +1216,6 @@ hakkında bir tahminimiz varsa 3. bir parametre olarak slice kapasitesini verebi
 </code></pre></div>
 
 
-<h2 id="pointer">Pointer<a class="headerlink" href="#pointer" title="Permanent link">&para;</a></h2>
-<p>Pointer bir başka değişkenin memory adresini tutan bir değişkendir.  </p>
-<p>Çalışma esnasında yeni bir nesne oluşturulduğunda, bu nesneyi hafızada tutmamız gerekir. Nesne için hafızada ayrılan alanın yerini değişkenler ile tutarız.</p>
-<h3 id="tanmlama_3">Tanımlama<a class="headerlink" href="#tanmlama_3" title="Permanent link">&para;</a></h3>
-<p>Pointer da değişkenlerdir. Diğer değişkenlerden farkı herhangi bir veriyi değil, o verinin yerini belirten değişkenin adresini tutmasıdır.</p>
-<p>Pointerlar <code>var pointer *Type</code> yapısı kullanılarak tanımlanır. Değer atanmadığı takdirde pointerin değeri <code>nil</code> olarak belirlenir.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">ptr</span> <span class="o">*</span><span class="kt">int</span>
-<span class="nx">ptr</span> <span class="c1">// nil</span>
-</code></pre></div>
-
-
-<p>Pointerları <code>new</code> fonksiyonunu kullanarak da tanımlayabiliriz.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">ptr</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
-<span class="nx">ptr</span> <span class="c1">// nil</span>
-</code></pre></div>
-
-
-<h3 id="deger-atama_2">Değer Atama<a class="headerlink" href="#deger-atama_2" title="Permanent link">&para;</a></h3>
-<p>Pointera <code>&amp;</code> işaretini kullanarak, bir başka değişlenin adresini, değer olarak atayabiliriz. </p>
-<p><code>*</code> işareti ile pointeri kullanarak, işaret ettiği değişkene(dolayısıyla tutulan veriye) erişebiliriz.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">carbon</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Carbon&quot;</span>
-<span class="kd">var</span> <span class="nx">ptrCarbon</span> <span class="o">*</span><span class="kt">string</span>
-
-<span class="nx">ptrCarbon</span> <span class="p">=</span> <span class="o">&amp;</span><span class="nx">carbon</span>
-
-<span class="nx">ptrCarbon</span> <span class="c1">// 0xc000092030</span>
-<span class="o">*</span><span class="nx">ptrCarbon</span> <span class="c1">// &quot;Carbon&quot;</span>
-
-<span class="o">*</span><span class="nx">ptrCarbon</span> <span class="p">=</span> <span class="s">&quot;Altered &quot;</span> <span class="o">+</span> <span class="o">*</span><span class="nx">ptrCarbon</span>
-
-<span class="nx">carbon</span> <span class="c1">// &quot;Altered Carbon&quot;</span>
-</code></pre></div>
-
-
 <h2 id="fonksiyonlar">Fonksiyonlar<a class="headerlink" href="#fonksiyonlar" title="Permanent link">&para;</a></h2>
 <p>Genel olarak GO'da fonksiyonlar aşağıdaki yapıda tanımlanır.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">fonksiyon_adı</span><span class="p">(</span> <span class="p">[</span><span class="nx">parametre</span> <span class="nx">listesi</span><span class="p">]</span> <span class="p">)</span> <span class="p">[</span><span class="nx">dönüş</span> <span class="nx">değerlerinin</span> <span class="nx">tipleri</span><span class="p">]</span>
@@ -1526,7 +1465,7 @@ hakkında bir tahminimiz varsa 3. bir parametre olarak slice kapasitesini verebi
 
 <h2 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h2>
 <p>GOda kendi hata tiplerimizi oluşturabiliriz. Bunun için oluşturduğumuz tipin sadece Error methoduna sahip olması yeterlidir.</p>
-<h3 id="tanmlama_4">Tanımlama<a class="headerlink" href="#tanmlama_4" title="Permanent link">&para;</a></h3>
+<h3 id="tanmlama_3">Tanımlama<a class="headerlink" href="#tanmlama_3" title="Permanent link">&para;</a></h3>
 <p>Aşağıdaki örnekte HTTP kodunu ve hata nedenini belirten <code>HTTPError</code> adında yeni bir hata tanımladık.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">HTTPError</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Status</span> <span class="kt">int</span>
@@ -1558,7 +1497,7 @@ hakkında bir tahminimiz varsa 3. bir parametre olarak slice kapasitesini verebi
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
 <p>Interfaceler bir objenin sahip olabileceği methodları belirten yapılardır. Bu nedenle interfaceler objelerin davranışını ifade eder. Örneğin; bir dosyandan veri okunabilir veya dosyaya veri yazılabilir. Bir interface okuma ve yazma methodlarını barındırıyorsa ve dosya objesi bu methodlara sahipse dosyanın bu interfacei <code>implement</code> ettiği söylenebilir.</p>
 <p>Interfacelerin asıl amacı methodları, aldıkları parametreleri ve dönüş değerlerini genel bir şekilde tanımlayarak; aynı davranışı gösteren, fakat farklı işlerde kullanılan yapılar için ortak bir protokol oluşturmaktır.</p>
-<h3 id="tanmlama_5">Tanımlama<a class="headerlink" href="#tanmlama_5" title="Permanent link">&para;</a></h3>
+<h3 id="tanmlama_4">Tanımlama<a class="headerlink" href="#tanmlama_4" title="Permanent link">&para;</a></h3>
 <p>GO dilinde interfaceler objelerle <em>kapalı</em> halde uygulanır. Başka bir deyişle; bir tipin bir interfacei kullandığını belirtmek için, diğer çoğu nesne yönelimli dillerde olduğu gibi,<code>class File implements IO</code> gibi deyimler kullanmamız gerekmez. GO aynı metodları paylaşan interface ve tipler arasındaki ilişkiyi kendisi kurar.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">IOInterface</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">Read</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
