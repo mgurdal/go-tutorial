@@ -11,21 +11,21 @@
         <meta name="description" content="Go Tutorial">
       
       
-        <link rel="canonical" href="https://mgurdal.github.io/go-tutorial/data-structures/">
+        <link rel="canonical" href="https://mgurdal.github.io/go-tutorial/tr/data-structures/">
       
       
         <meta name="author" content="Mehmet Gürdal">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.1">
     
     
       
-        <title>Data Structures - Go Tutorial</title>
+        <title>Veri Yapıları - Go Tutorial</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.c3000690.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c3000690.min.css">
       
       
     
@@ -39,7 +39,7 @@
     
     
     
-      <link rel="stylesheet" href="../assets/css/extra.css">
+      <link rel="stylesheet" href="../../assets/css/extra.css">
     
     
       
@@ -61,7 +61,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#array" class="md-skip">
+        <a href="#veri-yaplar" class="md-skip">
           Skip to content
         </a>
       
@@ -89,7 +89,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Data Structures
+              Veri Yapıları
             
           </span>
         </div>
@@ -163,7 +163,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
   </li>
@@ -173,477 +173,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Data Structures
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Data Structures" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../data-structures/" title="Data Structures" class="md-nav__link">
       Data Structures
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#array" class="md-nav__link">
-    Array
-  </a>
-  
-    <nav class="md-nav" aria-label="Array">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#definition" class="md-nav__link">
-    Definition
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slice" class="md-nav__link">
-    Slice
-  </a>
-  
-    <nav class="md-nav" aria-label="Slice">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#make" class="md-nav__link">
-    make
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#slice-operations" class="md-nav__link">
-    Slice Operations
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mutate" class="md-nav__link">
-    mutate
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#copy" class="md-nav__link">
-    copy
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#filter" class="md-nav__link">
-    filter
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#append" class="md-nav__link">
-    append
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pop" class="md-nav__link">
-    pop
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#push-front-unshift" class="md-nav__link">
-    push front (unshift)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pop-front-shift" class="md-nav__link">
-    pop front (shift)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#insert" class="md-nav__link">
-    insert
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#expand" class="md-nav__link">
-    expand
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cut" class="md-nav__link">
-    cut
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cut-memory-safe" class="md-nav__link">
-    cut (memory safe)
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete" class="md-nav__link">
-    delete
-  </a>
-  
-    <nav class="md-nav" aria-label="delete">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#delete-without-preserving-order" class="md-nav__link">
-    Delete Without Preserving Order
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#map" class="md-nav__link">
-    Map
-  </a>
-  
-    <nav class="md-nav" aria-label="Map">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#identification" class="md-nav__link">
-    Identification
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#assigning-value" class="md-nav__link">
-    Assigning Value
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#accessing-to-values-using-with-for" class="md-nav__link">
-    Accessing to values using with for
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#delete_1" class="md-nav__link">
-    delete
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#struct" class="md-nav__link">
-    struct
-  </a>
-  
-    <nav class="md-nav" aria-label="struct">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#definition_1" class="md-nav__link">
-    Definition
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#assigning-value_1" class="md-nav__link">
-    Assigning Value
-  </a>
-  
-    <nav class="md-nav" aria-label="Assigning Value">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#anonymous-struct" class="md-nav__link">
-    Anonymous struct
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#anonymous-fields" class="md-nav__link">
-    Anonymous fields
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#promoted-fields" class="md-nav__link">
-    Promoted fields
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pointer" class="md-nav__link">
-    Pointer
-  </a>
-  
-    <nav class="md-nav" aria-label="Pointer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#definition_2" class="md-nav__link">
-    Definition
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#assigning-value_2" class="md-nav__link">
-    Assigning Value
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#functions" class="md-nav__link">
-    Functions
-  </a>
-  
-    <nav class="md-nav" aria-label="Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    Parameters
-  </a>
-  
-    <nav class="md-nav" aria-label="Parameters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#dynamic-parameters" class="md-nav__link">
-    Dynamic parameters
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#return-values" class="md-nav__link">
-    Return Values
-  </a>
-  
-    <nav class="md-nav" aria-label="Return Values">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#returning-multiple-values" class="md-nav__link">
-    Returning multiple values
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#naming-return-values" class="md-nav__link">
-    Naming Return Values
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#anonymous-function" class="md-nav__link">
-    Anonymous Function
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    Methods
-  </a>
-  
-    <nav class="md-nav" aria-label="Methods">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pointer-receiver-value-receiver" class="md-nav__link">
-    Pointer receiver | Value receiver
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#errors" class="md-nav__link">
-    Errors
-  </a>
-  
-    <nav class="md-nav" aria-label="Errors">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#definition_3" class="md-nav__link">
-    Definition
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usa-case" class="md-nav__link">
-    Usa Case
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interface" class="md-nav__link">
-    Interface
-  </a>
-  
-    <nav class="md-nav" aria-label="Interface">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#definition_4" class="md-nav__link">
-    Definition
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-case" class="md-nav__link">
-    Use Case
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#using-multiple-interfaces" class="md-nav__link">
-    Using Multiple Interfaces
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#type-conversion" class="md-nav__link">
-    Type Conversion
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#empty-interface" class="md-nav__link">
-    Empty Interface
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#type-checking" class="md-nav__link">
-    Type Checking
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -653,7 +187,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../concurrency/" title="Concurrency" class="md-nav__link">
+    <a href="../../concurrency/" title="Concurrency" class="md-nav__link">
       Concurrency
     </a>
   </li>
@@ -673,6 +207,8 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
@@ -691,8 +227,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#definition" class="md-nav__link">
-    Definition
+  <a href="#tanmlama" class="md-nav__link">
+    Tanımlama
   </a>
   
 </li>
@@ -718,8 +254,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#slice-operations" class="md-nav__link">
-    Slice Operations
+  <a href="#slice-islemleri" class="md-nav__link">
+    Slice İşlemleri
   </a>
   
 </li>
@@ -810,8 +346,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#delete-without-preserving-order" class="md-nav__link">
-    Delete Without Preserving Order
+  <a href="#sralamay-dikkate-almadan-silme" class="md-nav__link">
+    Sıralamayı Dikkate Almadan Silme
   </a>
   
 </li>
@@ -835,22 +371,22 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#identification" class="md-nav__link">
-    Identification
+  <a href="#tanmlama_1" class="md-nav__link">
+    Tanımlama
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#assigning-value" class="md-nav__link">
-    Assigning Value
+  <a href="#deger-atama" class="md-nav__link">
+    Değer Atama
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#accessing-to-values-using-with-for" class="md-nav__link">
-    Accessing to values using with for
+  <a href="#dongu-ile-kullanma" class="md-nav__link">
+    Döngü ile kullanma
   </a>
   
 </li>
@@ -876,18 +412,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#definition_1" class="md-nav__link">
-    Definition
+  <a href="#tanmlama_2" class="md-nav__link">
+    Tanımlama
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#assigning-value_1" class="md-nav__link">
-    Assigning Value
+  <a href="#deger-atama_1" class="md-nav__link">
+    Değer Atama
   </a>
   
-    <nav class="md-nav" aria-label="Assigning Value">
+    <nav class="md-nav" aria-label="Değer Atama">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -930,15 +466,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#definition_2" class="md-nav__link">
-    Definition
+  <a href="#tanmlama_3" class="md-nav__link">
+    Tanımlama
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#assigning-value_2" class="md-nav__link">
-    Assigning Value
+  <a href="#deger-atama_2" class="md-nav__link">
+    Değer Atama
   </a>
   
 </li>
@@ -949,24 +485,24 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#functions" class="md-nav__link">
-    Functions
+  <a href="#fonksiyonlar" class="md-nav__link">
+    Fonksiyonlar
   </a>
   
-    <nav class="md-nav" aria-label="Functions">
+    <nav class="md-nav" aria-label="Fonksiyonlar">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    Parameters
+  <a href="#parametreler" class="md-nav__link">
+    Parametreler
   </a>
   
-    <nav class="md-nav" aria-label="Parameters">
+    <nav class="md-nav" aria-label="Parametreler">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#dynamic-parameters" class="md-nav__link">
-    Dynamic parameters
+  <a href="#dinamik-parametreler" class="md-nav__link">
+    Dinamik parametreler
   </a>
   
 </li>
@@ -977,23 +513,23 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#return-values" class="md-nav__link">
-    Return Values
+  <a href="#donus-degerleri" class="md-nav__link">
+    Dönüş Değerleri
   </a>
   
-    <nav class="md-nav" aria-label="Return Values">
+    <nav class="md-nav" aria-label="Dönüş Değerleri">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#returning-multiple-values" class="md-nav__link">
-    Returning multiple values
+  <a href="#birden-fazla-deger-dondurme" class="md-nav__link">
+    Birden fazla değer döndürme
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#naming-return-values" class="md-nav__link">
-    Naming Return Values
+  <a href="#donus-degerlerini-isimlendirme" class="md-nav__link">
+    Dönüş değerlerini isimlendirme
   </a>
   
 </li>
@@ -1004,8 +540,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#anonymous-function" class="md-nav__link">
-    Anonymous Function
+  <a href="#anonim-fonksiyon" class="md-nav__link">
+    Anonim Fonksiyon
   </a>
   
 </li>
@@ -1016,11 +552,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#methods" class="md-nav__link">
-    Methods
+  <a href="#metodlar" class="md-nav__link">
+    Metodlar
   </a>
   
-    <nav class="md-nav" aria-label="Methods">
+    <nav class="md-nav" aria-label="Metodlar">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1036,23 +572,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#errors" class="md-nav__link">
-    Errors
+  <a href="#error" class="md-nav__link">
+    Error
   </a>
   
-    <nav class="md-nav" aria-label="Errors">
+    <nav class="md-nav" aria-label="Error">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#definition_3" class="md-nav__link">
-    Definition
+  <a href="#tanmlama_4" class="md-nav__link">
+    Tanımlama
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#usa-case" class="md-nav__link">
-    Usa Case
+  <a href="#kullanm" class="md-nav__link">
+    Kullanım
   </a>
   
 </li>
@@ -1071,43 +607,43 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#definition_4" class="md-nav__link">
-    Definition
+  <a href="#tanmlama_5" class="md-nav__link">
+    Tanımlama
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#use-case" class="md-nav__link">
-    Use Case
+  <a href="#kullanm_1" class="md-nav__link">
+    Kullanım
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-multiple-interfaces" class="md-nav__link">
-    Using Multiple Interfaces
+  <a href="#birden-fazla-interface-kullanma" class="md-nav__link">
+    Birden Fazla interface kullanma
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#type-conversion" class="md-nav__link">
-    Type Conversion
+  <a href="#tip-donusumu" class="md-nav__link">
+    Tip dönüşümü
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#empty-interface" class="md-nav__link">
-    Empty Interface
+  <a href="#bos-interface" class="md-nav__link">
+    Boş interface
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#type-checking" class="md-nav__link">
-    Type Checking
+  <a href="#tip-kontrolu" class="md-nav__link">
+    Tip Kontrolü
   </a>
   
 </li>
@@ -1133,31 +669,31 @@
                   
                 
                 
-                  <h1>Data Structures</h1>
-                
-                <p><a href="/go-tutorial/data-structures">English</a> | <a href="/go-tutorial/tr/">Türkçe</a></p>
-<p>This page describes the data structures of go language and their usages in general programming.</p>
+                <h1 id="veri-yaplar">Veri Yapıları<a class="headerlink" href="#veri-yaplar" title="Permanent link">&para;</a></h1>
+<p><a href="/go-tutorial/data-structures">English</a> | <a href="/go-tutorial/tr/data-structures">Türkçe</a></p>
+<p>Bu sayfa go diline ait veri yapıları ve bu yapıların genel programlamada uygulanan yöntemlerle kullanımı anlatılmaktadır.</p>
 <h2 id="array">Array<a class="headerlink" href="#array" title="Permanent link">&para;</a></h2>
-<p>Arrays are structures that enable us to keep the same types of data together. For example; A list consisting of 4, 5, 19 and 25 defines an array.
-Go does not allow us to create arrays from different data types.</p>
-<h3 id="definition">Definition<a class="headerlink" href="#definition" title="Permanent link">&para;</a></h3>
-<p>Arrays are basically defined as <code>[Size]Type</code>. We can see several ways to create arrays below.</p>
-<p>An array capable of holding 3 units of type <code>string</code>.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span>
+<p>Arrayler aynı tipteki verileri bir arada muhafaza etmemizi sağlayan yapılardır. Örneğin; 4, 5, 19 ve 25'ten oluşan veri bütünü arrayi tanımlar. </p>
+<p>Go farklı tipteki verilerden array oluşturmamıza izin vermez.</p>
+<h3 id="tanmlama">Tanımlama<a class="headerlink" href="#tanmlama" title="Permanent link">&para;</a></h3>
+<p>Arrayler temel olarak <code>[Boyut]Tip</code> biçiminde tanımlanır. Arrayleri oluşturmanın çeşitli yollarını aşağıda görebiliriz.</p>
+<p><code>string</code> tipinde 3 birim tutabilen array.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">fruits</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span>
 </code></pre></div>
 
 
-<p>When defined as such, each field in the array is filled with the <strong>default</strong> value of the data type. 
-Based on this example, it will be defined as <code>["", "", ""]</code>. We can change these values ​​by accessing them on their indexes.</p>
+<p>Böyle tanımlandığında arraydeki her bir alan, veri tipinin <strong>ön tanımlı</strong> değeri ile doldurulur. 
+Bu örneği baz alırsak <code>["", "", ""]</code> olarak tanımlanacaktır. 
+Bu değerleri bulundukları indexler üzerinden erişerek değiştirebiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍌&quot;</span>
 <span class="nx">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍏&quot;</span>
 
-<span class="nx">fruits</span> <span class="c1">// [🍌 🍏]</span>
+<span class="nx">fruits</span> <span class="c1">// [🍌 🍏  ]</span>
 </code></pre></div>
 
 
-<p>If we use a data type other than the one defined for Array, we will encounter an error.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">arr</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+<p>Array için tanımlananın dışındaki bir veri tipini kullanırsak hata ile karşılaşırız.</p>
+<div class="codehilite"><pre><span></span><code><span class="nx">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
 </code></pre></div>
 
 
@@ -1165,25 +701,26 @@ Based on this example, it will be defined as <code>["", "", ""]</code>. We can c
 </code></pre></div>
 
 
-<p>We can define the same array in a shorter way.</p>
+<p>Aynı arrayi daha kısa bir yol ile de tanımlayabiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
 
-<span class="nx">fruits</span> <span class="c1">// [🍌 🍏]</span>
+<span class="nx">fruits</span> <span class="c1">// [🍌 🍏  ]</span>
 </code></pre></div>
 
 
-<p>In this definition, we assign a 3 unit long array whose first 2 elements we directly define to the variable 'arr'.
-  
-If we are going to create the arrayi with the values, we can leave the dimension calculation part to compiler using the expression <code>...</code></p>
+<p>Bu tanımlamada ilk 2 elemanını doğrudan tanımladığımız 3 birim uzunluğundaki bir arrayi <code>arr</code>değişkenine atadık.  </p>
+<p>Eğer arrayi değerleri ile birlikte oluşturulacaksak <code>...</code> ifadesini kullanılarak, boyut hesaplama kısmı compilera bırakılabiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍌 🍏 🍉]</span>
 </code></pre></div>
 
 
-<p>Using with Loop</p>
-<p>Arrays can be used basically in 2 ways with the for loop.</p>
-<p>1- Accessing with Index.</p>
+<p>Döngü ile kullanma</p>
+<p>Arrayler for döngüsü ile temel olarak 2 şekilde kullanılabilir. </p>
+<ol>
+<li>İndex ile erişerek.</li>
+</ol>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
 <span class="k">for</span> <span class="nx">index</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">fruits</span> <span class="p">{</span>
@@ -1193,7 +730,9 @@ If we are going to create the arrayi with the values, we can leave the dimension
 </code></pre></div>
 
 
-<p>2- By directly accessing the value.</p>
+<ol>
+<li>Doğrudan değere erişerek.</li>
+</ol>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
 <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">fruit</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">fruits</span> <span class="p">{</span>
@@ -1203,33 +742,31 @@ If we are going to create the arrayi with the values, we can leave the dimension
 
 
 <h2 id="slice">Slice<a class="headerlink" href="#slice" title="Permanent link">&para;</a></h2>
-<p>Slices are very similar to arrays in terms of usage. The difference of slices is that their size is dynamic.</p>
-<p>When defining slice, we use the structure of <code>[]Type</code> as in the array, but we leave the brackets empty.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1">// define nil slice</span>
+<p>Slicelar kullanım bakımından arraylere çok benzer. Sliceların farkı, boyutlarının dinamik olması.</p>
+<p>Slice tanımlarken yine arraydeki gibi <code>[]Tip</code> yapısını kullanıyoruz fakat köşeli parantezlerin içini boş bırakıyoruz.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// nil slice tanımlama</span>
 <span class="kd">var</span> <span class="nx">slc</span> <span class="p">[]</span><span class="kt">int</span>
-<span class="c1">// assigning value to nill slice</span>
-<span class="nx">slc</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">39</span><span class="p">}</span>
+<span class="c1">// nill slice&#39;a değer atama</span>
+<span class="nx">slc</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">39</span><span class="p">}</span>  
 
-<span class="c1">// direct identification</span>
-<span class="nx">slc</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">39</span><span class="p">}</span>
+<span class="c1">// doğrudan tanımlama</span>
+<span class="nx">slc</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">12</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">39</span><span class="p">}</span> 
 </code></pre></div>
 
 
 <h4 id="make">make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h4>
-<p>We can also use the <code>make</code> function to define the slice. The first parameter of the <code>make</code> function determines the size of the slice to be created.</p>
-<p>If we make a slice by defining only its size it will only allocate memory
-total of the size of its item type. And if we later append new items into the slice it will allocate some more memory in runtime.</p>
-<p><img alt="make-1" src="../assets/img/make-1.png" /></p>
+<p>Sliceları tanımlamak için `make` fonksiyonunu da kullanabiliriz. <code>make</code> fonksiyonunun ilk parametresi oluşturulacak sliceın boyutunu belirler.</p>
+<p>make fonksiyonuna slice tipini ve tutulacak eleman sayısını vererek yeni bir slice oluşturabiliriz. Böyle tanımlandığında, bellekten çalışma zamanında sliceın tutacaği elemanların boyutu ve eleman sayısı kadar alan ayrılır.</p>
+<p><img alt="make-1" src="../../assets/img/make-1.png" /></p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// define by size</span>
 <span class="nx">n_items</span> <span class="p">=</span> <span class="mi">3</span>
 <span class="nx">slc</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n_items</span><span class="p">)</span>
 </code></pre></div>
 
 
-<p>Allocating new memory in runtime sometimes can be costly. If we have an
-estimation over the size of the slice; we can give a third parameter to 
-the make function to pre-allocate some more memory.</p>
-<p><img alt="make-2" src="../assets/img/make-2.png" /></p>
+<p>Çalışma zamanında bellekten alan almak maliyetli olabilir. Eğer sliceın boyutu
+hakkında bir tahminimiz varsa 3. bir parametre olarak slice kapasitesini verebiliriz.</p>
+<p><img alt="make-2" src="../../assets/img/make-2.png" /></p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// definition by size and capacity</span>
 <span class="nx">n_items</span> <span class="p">=</span> <span class="mi">3</span>
 <span class="nx">capacity</span> <span class="o">:=</span> <span class="mi">5</span>
@@ -1237,26 +774,26 @@ the make function to pre-allocate some more memory.</p>
 </code></pre></div>
 
 
-<h3 id="slice-operations">Slice Operations<a class="headerlink" href="#slice-operations" title="Permanent link">&para;</a></h3>
-<p>While creating the slice, it is filled with the default value of the data type that it will hold, as much as its capacity. However, only part of its length can be accessed.</p>
-<p>If we want to increase the size of a slice, we can use the <code>append</code> and<code>copy</code> functions for this.</p>
+<h3 id="slice-islemleri">Slice İşlemleri<a class="headerlink" href="#slice-islemleri" title="Permanent link">&para;</a></h3>
+<p>Slice oluşturulurken kapasitesi kadar, tutacağı veri tipinin ön tanımlı değeri ile doldurulur. Fakat, yalnızca uzunluğu kadar kısmına erişilebilir.</p>
+<p>Bir sliceın boyutunu artırmak istiyorsak bunun için <code>append</code> ve <code>copy</code> fonksiyonlarını kullanabiliriz.</p>
 <h3 id="mutate">mutate<a class="headerlink" href="#mutate" title="Permanent link">&para;</a></h3>
-<p>When we resize a slice and assign it to another variable, changes in the new slice will also affect the original slice.</p>
-<p><img alt="mutate" src="../assets/img/mutate.gif" /></p>
+<p>Bir sliceı yeniden boyutlandırıp başka bir değişkene atadığımızda, yeni slicedaki değişiklikler orjinal sliceı da etkileyecektir.</p>
+<p><img alt="mutate" src="../../assets/img/mutate.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">apples</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
 
 <span class="nx">apples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍏&quot;</span>
 <span class="nx">apples</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="s">&quot;🍏&quot;</span>
- 
+
 <span class="nx">apples</span> <span class="c1">// [🍏 🍏]</span>
 <span class="nx">fruits</span> <span class="c1">// [🍏 🍏 🍇 🍒 🍉]</span>
 </code></pre></div>
 
 
 <h3 id="copy">copy<a class="headerlink" href="#copy" title="Permanent link">&para;</a></h3>
-<p><code>copy</code> allows us to copy one slice of another slicea of ​​the same or larger capacity and returns how many elements are copied.</p>
-<p><img alt="copy" src="../assets/img/copy.gif" /></p>
+<p><code>copy</code> bir sliceı aynı veya daha büyük kapasiteye sahip bir diğer slicea kopyalamamızı sağlar ve  kaç adet elemanın kopyalandığını döndürür.</p>
+<p><img alt="copy" src="../../assets/img/copy.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
 <span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
@@ -1268,19 +805,19 @@ the make function to pre-allocate some more memory.</p>
 </code></pre></div>
 
 
-<p>When copying a slice, the elements replace the elements in the same index in the target slice.</p>
+<p>Bir slice kopyalanırken, elemanlar hedef slicedaki aynı indexdeki elemanların yerini alır.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
-<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
+<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span>  <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
 
 <span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="nx">apples</span><span class="p">)</span>
 
-<span class="nx">fruits</span> <span class="c1">// [🍎 🍏]</span>
+<span class="nx">fruits</span> <span class="c1">// [🍎  🍏]</span>
 </code></pre></div>
 
 
 <h3 id="filter">filter<a class="headerlink" href="#filter" title="Permanent link">&para;</a></h3>
-<p>We can filter the slice elements according to a certain criterion.</p>
-<p><img alt="filter" src="../assets/img/filter.gif" /></p>
+<p>Slice elemanlarını belirli bir kritere göre filtreleyebiliriz.</p>
+<p><img alt="filter" src="../../assets/img/filter.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
 <span class="nx">apple_criteria</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span>
 
@@ -1296,11 +833,8 @@ the make function to pre-allocate some more memory.</p>
 
 
 <h3 id="append">append<a class="headerlink" href="#append" title="Permanent link">&para;</a></h3>
-<p>The <code>append</code> function takes the slice that we will increase in size as the first 
-parameter and the elements we will add later and return a <strong> new </strong> slice containing 
-all the elements to us. Therefore, it is necessary to keep the return value 
-in a variable (usually the old slice variable).</p>
-<p><img alt="append" src="../assets/img/append.gif" /></p>
+<p><code>append</code> fonksiyonu, ilk parametre olarak boyutunu artıracağımız sliceı ve devamında ekleyeceğimiz elemanları alır ve bize tüm elemanları içeren <strong>yeni</strong> bir slice döndürür. Bu nedenle, dönüş değerini bir değişkende(genellikle eski slice değişkeninde) tutmak gerekir.</p>
+<p><img alt="append" src="../../assets/img/append.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
 <span class="nx">green_apple</span> <span class="o">:=</span> <span class="s">&quot;🍏&quot;</span>
@@ -1311,11 +845,11 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="pop">pop<a class="headerlink" href="#pop" title="Permanent link">&para;</a></h3>
-<p>In the example below, we have removed the last element of the slice and assigned it to a variable.</p>
-<p><img alt="pop" src="../assets/img/pop.gif" /></p>
+<p>Aşağıdaki örnekte sliceın son elemanını çıkarıp bir değişkene atadık.</p>
+<p><img alt="pop" src="../../assets/img/pop.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
-<span class="nx">item</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nx">item</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">fruits</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="nx">item</span> <span class="c1">// 🍉</span>
 <span class="nx">fruits</span> <span class="c1">// [🍏 🍎]</span>
@@ -1323,20 +857,20 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="push-front-unshift">push front (unshift)<a class="headerlink" href="#push-front-unshift" title="Permanent link">&para;</a></h3>
-<p>In this example, we put a new element at the beginning of the slice.</p>
-<p><img alt="pushfront" src="../assets/img/pushfront.gif" /></p>
+<p>Bu örnekte yeni bir elemanı sliceın başına koyduk.</p>
+<p><img alt="pushfront" src="../../assets/img/pushfront.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
 
-<span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">banana</span><span class="p">},</span> <span class="nx">fruits</span> <span class="o">...</span><span class="p">)</span>
+<span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">banana</span><span class="p">},</span> <span class="nx">fruits</span><span class="o">...</span><span class="p">)</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍌 🍏 🍎 🍉]</span>
 </code></pre></div>
 
 
 <h3 id="pop-front-shift">pop front (shift)<a class="headerlink" href="#pop-front-shift" title="Permanent link">&para;</a></h3>
-<p>In this example, we removed the first element of the slice and assigned it to a variable.</p>
-<p><img alt="popfront" src="../assets/img/popfront.gif" /></p>
+<p>Bu örnekte de sliceın ilk elemanını çıkarıp bir değişkene atadık.</p>
+<p><img alt="popfront" src="../../assets/img/popfront.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍌&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 
 <span class="nx">banana</span><span class="p">,</span> <span class="nx">fruits</span> <span class="o">:=</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">fruits</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
@@ -1347,8 +881,8 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="insert">insert<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h3>
-<p>If we want to add a new element to any part of the slice; we can use these methods.</p>
-<p><img alt="copy" src="../assets/img/insert.gif" /></p>
+<p>Sliceın herhangi bir kısmına yeni bir eleman eklemek istiyorsak; bu yöntemleri kullanabiliriz.</p>
+<p><img alt="copy" src="../../assets/img/insert.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
 <span class="nx">insert_index</span> <span class="o">:=</span> <span class="mi">2</span>
@@ -1358,22 +892,19 @@ in a variable (usually the old slice variable).</p>
     <span class="nb">append</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="nx">banana</span><span class="p">},</span> <span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">:]</span><span class="o">...</span><span class="p">)</span><span class="o">...</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="nx">fruits</span> <span class="c1">// [🍎 🍇 🍌 🍒 🍉]</span>
+<span class="nx">fruits</span>  <span class="c1">// [🍎 🍇 🍌 🍒 🍉]</span>
 </code></pre></div>
 
 
-<blockquote>
-<p><strong> Memory Concern </strong></p>
-<p>The <code>append([]string{banana}, fruits[insert_index:] ...)</code> section in line 7 creates a new slice and copies the elements of the slice <code>fruits[insert_index:]</code> to the created slice. These elements are then copied to the <code>fruits</code> slice.</p>
-<p>Creating a new slice and copying for the 2nd time can be avoided.</p>
-</blockquote>
-<p><img alt="insert_mem" src="../assets/img/insert_mem.gif" /></p>
+<p><code>append([]string{banana}, fruits[insert_index:]...)</code> ifadesi başlı başına bir slice oluşturup, <code>fruits[insert_index:]</code> sliceının elemanlarını bu slicea kopyalıyor. Bu elemanlar daha sonra <code>fruits</code> sliceına tekrar kopyalanıyor.</p>
+<p>Yeni bir slice oluşturulmasının ve 2. kez kopyalama işleminin önüne geçilebilir.</p>
+<p><img alt="insert_mem" src="../../assets/img/insert_mem.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
 <span class="nx">insert_index</span> <span class="o">:=</span> <span class="mi">2</span>
 
 <span class="nx">fruits</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:],</span> <span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">:])</span>
+<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="o">+</span><span class="mi">1</span><span class="p">:],</span> <span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">:])</span>
 <span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">]</span> <span class="p">=</span> <span class="nx">banana</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍏 🍎 🍌 🍉]</span>
@@ -1381,8 +912,8 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="expand">expand<a class="headerlink" href="#expand" title="Permanent link">&para;</a></h3>
-<p>If we want to combine one slice and the other, we can use the following methods.</p>
-<p><img alt="expand_1" src="../assets/img/expand_1.gif" /></p>
+<p>Bir sliceı, diğeri birleştirmek istersek aşağıdaki yöntemleri kullanabiliriz.</p>
+<p><img alt="expand_1" src="../../assets/img/expand_1.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
 
@@ -1392,8 +923,8 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p>In the example below, we have combined the elements after the index determined by <code>apples</code> in line <code>7</code>. Afterwards, we added these slice elements to the bucket items up to the index we determined.</p>
-<p><img alt="expand_2" src="../assets/img/expand_2.gif" /></p>
+<p>Aşağıdaki örnekte <code>7.</code> satırda <code>apples</code> ile belirlediğimiz indexten sonraki elemanları birleştirdik. Sonrasında belirlediğimiz indexe kadar olan <code>bucket</code> elemanlarına, bu slice elemanlarını ekledik.</p>
+<p><img alt="expand_2" src="../../assets/img/expand_2.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">}</span>
 <span class="nx">expand_index</span> <span class="o">:=</span> <span class="mi">2</span>
@@ -1408,8 +939,8 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="cut">cut<a class="headerlink" href="#cut" title="Permanent link">&para;</a></h3>
-<p>If we want to subtract a certain range in the slice, we can use the method below. This method will add the elements up to the start index we have specified in Slice and the elements after the end index. Thus, we will frustrate the elements in between.</p>
-<p><img alt="slice-cut" src="../assets/img/cut.gif" /></p>
+<p>Slicedaki belli bir aralığı çıkarmak istiyorsak aşağıdaki yöntemi kullanabiliriz. Bu yöntem Sliceda belirlediğimiz başlangıç indexine kadar olan elemanlar ile bitiş indexinden sonraki elemanları ekleyecek. Böylece aradaki elemanları boşa çıkartmış olacağız.</p>
+<p><img alt="slice-cut" src="../../assets/img/cut.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span><span class="p">}</span>
 
 <span class="nx">cut_start_index</span><span class="p">,</span> <span class="nx">cut_end_index</span> <span class="o">:=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span>
@@ -1421,9 +952,9 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="cut-memory-safe">cut (memory safe)<a class="headerlink" href="#cut-memory-safe" title="Permanent link">&para;</a></h3>
-<p>If we store memory addresses in slice, operations can cause memory leak. The reason for this is that after a portion of slice is deleted, it can keep the reference of the deleted elements.</p>
-<p>In addition to the operations we have done in the examples below, we filled in the fields that were idle after my process with <code>nil</code> values. Thus, garbage collector can understand that these areas will no longer be used and bring them back to the system.</p>
-<p><img alt="slice-cut" src="../assets/img/cut_memsafe.gif" /></p>
+<p>Bellek adresi tutan slicelar üzerinde işlem yapmak memory-leak oluşturabilir. </p>
+<p>Aşağıdaki örneklerde yaptığımız işlemlere ek olarak, işlemimden sonra boşta kalan alanları <strong>nil</strong> değerleri ile doldurduk. Böylece, garbage-collector bu alanların artık kullanılmayacağını anlayabilir ve onları sisteme geri kazandırabilir.</p>
+<p><img alt="slice-cut" src="../../assets/img/cut_memsafe.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">apple</span><span class="p">,</span> <span class="nx">grapes</span><span class="p">,</span> <span class="nx">cherry</span><span class="p">,</span> <span class="nx">wmelon</span> <span class="o">:=</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span>
 <span class="nx">pepper</span><span class="p">,</span> <span class="nx">egplnt</span><span class="p">,</span> <span class="nx">corn</span><span class="p">,</span> <span class="nx">potato</span> <span class="o">:=</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span>
 <span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="o">*</span><span class="kt">string</span><span class="p">{</span><span class="o">&amp;</span><span class="nx">apple</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">grapes</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">cherry</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">wmelon</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">pepper</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">egplnt</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">corn</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">potato</span><span class="p">}</span>
@@ -1445,7 +976,7 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="delete">delete<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h3>
-<p>If we want to delete an element in the slice using its index, we can use the following method.</p>
+<p>Slicedaki bir elemanı indexini kullanarak silmek istiyorsak, aşağıdaki yöntemi kullanabiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span><span class="p">}</span>
 
 <span class="nx">index_of_cherry</span> <span class="o">:=</span> <span class="mi">2</span>
@@ -1455,24 +986,24 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p><img alt="slice-delete" src="../assets/img/delete.gif" /></p>
-<h4 id="delete-without-preserving-order">Delete Without Preserving Order<a class="headerlink" href="#delete-without-preserving-order" title="Permanent link">&para;</a></h4>
-<p>We can also do the deletion by ignoring the array order. In the example below, we have replaced the last element in the slice with the element we want to delete. Then we reduced the size of the slice by 1.</p>
-<p><img alt="slice-delete-unordered" src="../assets/img/delete_unordered.gif" /></p>
+<p><img alt="slice-delete" src="../../assets/img/delete.gif" /></p>
+<h4 id="sralamay-dikkate-almadan-silme">Sıralamayı Dikkate Almadan Silme<a class="headerlink" href="#sralamay-dikkate-almadan-silme" title="Permanent link">&para;</a></h4>
+<p>Silme işlemini array sıralamasını göz ardı ederek de yapabiliriz. Aşağıdaki örnekte, silmek istediğimiz eleman ile slicedaki en son elemanın yerini değiştirdik. Ardından sliceın boyutunu 1 azalttık.</p>
+<p><img alt="slice-delete-unordered" src="../../assets/img/delete_unordered.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">edibles</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">,</span> <span class="s">&quot;🌶&quot;</span><span class="p">,</span> <span class="s">&quot;🍆&quot;</span><span class="p">,</span> <span class="s">&quot;🌽&quot;</span><span class="p">,</span> <span class="s">&quot;🥔&quot;</span><span class="p">}</span>
 <span class="nx">index_of_cherry</span> <span class="o">:=</span> <span class="mi">2</span>
 
-<span class="nx">edibles</span><span class="p">[</span><span class="nx">index_of_cherry</span><span class="p">]</span> <span class="p">=</span> <span class="nx">edibles</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">edibles</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="nx">edibles</span> <span class="p">=</span> <span class="nx">edibles</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">edibles</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nx">edibles</span><span class="p">[</span><span class="nx">index_of_cherry</span><span class="p">]</span> <span class="p">=</span> <span class="nx">edibles</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">edibles</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nx">edibles</span> <span class="p">=</span> <span class="nx">edibles</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">edibles</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="nx">edibles</span> <span class="c1">// [🍎 🍇 🥔 🍉 🌶 🍆 🌽]</span>
 </code></pre></div>
 
 
 <h2 id="map">Map<a class="headerlink" href="#map" title="Permanent link">&para;</a></h2>
-<p>One of the most frequently used data types is maps. <code>map</code> holds values with a unique keys.</p>
-<h3 id="identification">Identification<a class="headerlink" href="#identification" title="Permanent link">&para;</a></h3>
-<p>Maps can be defined as <code>map[KeyType]ValueType</code> or <code>make(map[KeyType]ValueType)</code>.</p>
+<p>En sık kullanılan veri tiplerinden birisi de maplerdir. <code>map</code> unique anahtarları, değerlerle eşleştirebilen sonrasında bu anahtarla eşleştirilen değere erişilmesini sağlayan yapılardır. </p>
+<h3 id="tanmlama_1">Tanımlama<a class="headerlink" href="#tanmlama_1" title="Permanent link">&para;</a></h3>
+<p>Mapler <code>map[AnahtarTipi]DeğerTipi</code> veya <code>make(map[AnahtarTipi]DeğerTipi)</code>şeklinde tanımlanabilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">mymap</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{}</span>
 </code></pre></div>
 
@@ -1481,8 +1012,8 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<h3 id="assigning-value">Assigning Value<a class="headerlink" href="#assigning-value" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><code><span class="nx">monty_python_films_by_year</span> <span class="o">:=</span> <span class="kd">map</span> <span class="p">[</span><span class="kt">string</span><span class="p">]</span> <span class="kt">string</span> <span class="p">{</span>
+<h3 id="deger-atama">Değer Atama<a class="headerlink" href="#deger-atama" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">monty_python_films_by_year</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
     <span class="s">&quot;1971&quot;</span><span class="p">:</span> <span class="s">&quot;Monty Python and the Holy Grail&quot;</span><span class="p">,</span>
     <span class="s">&quot;1979&quot;</span><span class="p">:</span> <span class="s">&quot;Life of Brian&quot;</span><span class="p">,</span>
 <span class="p">}</span>
@@ -1491,7 +1022,7 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p>We can access the values ​​we assign using the same key.</p>
+<p>Atadığımız değerlere, yine aynı keyi kullanarak erişebiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">film_name</span> <span class="o">:=</span> <span class="nx">monty_python_films_by_year</span><span class="p">[</span><span class="s">&quot;1983&quot;</span><span class="p">]</span>
 
 <span class="nx">film_name</span> <span class="c1">// The Meaning of Life</span>
@@ -1499,7 +1030,7 @@ in a variable (usually the old slice variable).</p>
 
 
 <blockquote>
-<p>When accessing an element of Mapin, we can access an additional value that indicates whether the element is registered in the map.</p>
+<p>Mapin bir elemanına erişirken, elemanın mapde kayıtlı olup olmadığını gösteren ek bir değere daha erişebiliriz.</p>
 </blockquote>
 <div class="codehilite"><pre><span></span><code><span class="nx">film_name</span><span class="p">,</span> <span class="nx">registered</span> <span class="o">:=</span> <span class="nx">monty_python_films_by_year</span><span class="p">[</span><span class="s">&quot;2019&quot;</span><span class="p">]</span>
 
@@ -1511,9 +1042,11 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<h3 id="accessing-to-values-using-with-for">Accessing to values using with for<a class="headerlink" href="#accessing-to-values-using-with-for" title="Permanent link">&para;</a></h3>
-<p>Map values are accessible in 2 ways.</p>
-<p>1- By using one variable in the for loop, by accessing through keys.</p>
+<h3 id="dongu-ile-kullanma">Döngü ile kullanma<a class="headerlink" href="#dongu-ile-kullanma" title="Permanent link">&para;</a></h3>
+<p>Map elemanlarına temelde 2 yolla erişilebilir.</p>
+<ol>
+<li>For döngüsünde tek değişken kullanıp, keyler üzerinden erişerek.</li>
+</ol>
 <div class="codehilite"><pre><span></span><code><span class="nx">monty_python_films_by_year</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
     <span class="s">&quot;1971&quot;</span><span class="p">:</span> <span class="s">&quot;Monty Python and the Holy Grail&quot;</span><span class="p">,</span>
     <span class="s">&quot;1979&quot;</span><span class="p">:</span> <span class="s">&quot;Life of Brian&quot;</span><span class="p">,</span>
@@ -1527,7 +1060,9 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p>2- Using 2 variables in the loop, accessing both key and value.</p>
+<ol>
+<li>Döngüde 2 değişken kullanıp, hem anahtar hem de değere erişerek.</li>
+</ol>
 <div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="nx">year</span><span class="p">,</span> <span class="nx">film_name</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">monty_python_films_by_year</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">film_name</span><span class="p">,</span> <span class="s">&quot;was released at&quot;</span><span class="p">,</span> <span class="nx">year</span><span class="p">)</span>
 <span class="p">}</span>
@@ -1541,7 +1076,7 @@ in a variable (usually the old slice variable).</p>
 
 
 <h3 id="delete_1">delete<a class="headerlink" href="#delete_1" title="Permanent link">&para;</a></h3>
-<p>We can use the <code>delete</code> function to delete an element on the map.</p>
+<p>Mapdeki bir elemanı silmek için delete fonksiyonunu kullanabiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">monty_python_films_by_year</span> <span class="o">:=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{</span>
     <span class="s">&quot;1971&quot;</span><span class="p">:</span> <span class="s">&quot;Monty Python and the Holy Grail&quot;</span><span class="p">,</span>
     <span class="s">&quot;2016&quot;</span><span class="p">:</span> <span class="s">&quot;Batman v Superman&quot;</span><span class="p">,</span>
@@ -1557,16 +1092,16 @@ in a variable (usually the old slice variable).</p>
 
 
 <h2 id="struct">struct<a class="headerlink" href="#struct" title="Permanent link">&para;</a></h2>
-<p>Structs are user-defined data structures that can hold different types of data with their names.</p>
-<h3 id="definition_1">Definition<a class="headerlink" href="#definition_1" title="Permanent link">&para;</a></h3>
-<p>Structs can be defined as follows.</p>
+<p>Structlar kullanıcı tarafından tanımlanan ve farklı türdeki verileri isimleri ile tutabilen veri yapılarıdır.</p>
+<h3 id="tanmlama_2">Tanımlama<a class="headerlink" href="#tanmlama_2" title="Permanent link">&para;</a></h3>
+<p>Structlar aşağıdaki yapıda tanımlanabilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">StructName</span> <span class="kd">struct</span><span class="p">{</span>
     <span class="nx">field</span> <span class="nx">fieldType</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
-<p>We can define the fields of the same type of struct in one line.</p>
+<p>Structın aynı tipteki alanlarını tek satırda tanımlayabiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Film</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span><span class="p">,</span> <span class="nx">director</span> <span class="kt">string</span>
     <span class="nx">imdb</span>           <span class="kt">float32</span>
@@ -1581,7 +1116,7 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p>We can also give tags to the struct fields.</p>
+<p>Struct alanlarına ek olarak etiket de verebiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Film</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Name</span>        <span class="kt">string</span>  <span class="s">`json:&quot;film_name&quot;`</span>
     <span class="nx">Director</span>    <span class="kt">string</span>  <span class="s">`json:&quot;director_name&quot;`</span>
@@ -1591,7 +1126,7 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p>Tags are popular among ORMs and serialization libraries that deal with type conversion. These tags can be accessed with the 'reflect` module.</p>
+<p>Etiketler tip dönüşümü ile çokça uğraşan ORMler ve serialization kütüphaneleri arasında popülerdir. Bu etiketlere <code>reflect</code> modülü ile erişilebilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">f</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{}</span>
 <span class="nx">t</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">TypeOf</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
 <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="s">&quot;Director&quot;</span><span class="p">,</span> <span class="s">&quot;Imdb&quot;</span><span class="p">,</span> <span class="s">&quot;ReleaseYear&quot;</span><span class="p">}</span> <span class="p">{</span>
@@ -1611,15 +1146,15 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<h3 id="assigning-value_1">Assigning Value<a class="headerlink" href="#assigning-value_1" title="Permanent link">&para;</a></h3>
-<p>A struct can be created by giving its parameters in order.</p>
+<h3 id="deger-atama_1">Değer Atama<a class="headerlink" href="#deger-atama_1" title="Permanent link">&para;</a></h3>
+<p>Bir struct, parametreleri sırasıyla verilerek oluşturulabilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">new_film</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{</span><span class="s">&quot;Mad Max: Fury Road&quot;</span><span class="p">,</span> <span class="s">&quot;George Miller&quot;</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="mi">2015</span><span class="p">}</span>
 
 <span class="nx">new_film</span> <span class="c1">// {Mad Max: Fury Road George Miller 8.1 2015}</span>
 </code></pre></div>
 
 
-<p>Similarly, it can be created by specifying the parameters and the values with the separator <code>:</code>.</p>
+<p>Benzer biçimde,  parametreleri ve alacakları değerleri <code>:</code> ayracı ile belirterek de oluşturulabilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">new_film</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{</span>
         <span class="nx">Name</span><span class="p">:</span>        <span class="s">&quot;Ran&quot;</span><span class="p">,</span>
         <span class="nx">Director</span><span class="p">:</span>    <span class="s">&quot;Akira Kurosawa&quot;</span><span class="p">,</span>
@@ -1631,7 +1166,7 @@ in a variable (usually the old slice variable).</p>
 </code></pre></div>
 
 
-<p>If some fields are left blank while creating Struct; these fields are defined by the null values of that data type.</p>
+<p>Struct oluştururken bazı alanlar boş bırakılırsa; bu alanlar o veri tipinin boş değerleri ile tanımlanır.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">new_film</span> <span class="o">:=</span> <span class="nx">Film</span><span class="p">{</span>
     <span class="nx">name</span><span class="p">:</span>         <span class="s">&quot;Batman v Superman&quot;</span><span class="p">,</span>
     <span class="nx">director</span><span class="p">:</span>     <span class="s">&quot;Zack Snyder&quot;</span><span class="p">,</span>
@@ -1643,7 +1178,7 @@ in a variable (usually the old slice variable).</p>
 
 
 <h4 id="anonymous-struct">Anonymous struct<a class="headerlink" href="#anonymous-struct" title="Permanent link">&para;</a></h4>
-<p>In some special cases, we may need to define structs in the function body. We can do this by the following method.</p>
+<p>Bazı özel durumlarda structları fonksiyon gövdesi içerisinde tanımlamamız gerekebilir. Bunu aşağıdaki yöntemle yapabiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">provider_config</span> <span class="o">:=</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span>    <span class="kt">string</span>
     <span class="nx">baseUrl</span> <span class="kt">string</span>
@@ -1659,8 +1194,7 @@ in a variable (usually the old slice variable).</p>
 
 
 <h4 id="anonymous-fields">Anonymous fields<a class="headerlink" href="#anonymous-fields" title="Permanent link">&para;</a></h4>
-<p>Struct can also be defined without specifying field names. 
-The data types specified in such a definition must be different from each other.</p>
+<p>Alan isimlerini belirtilmeden de struct tanımlanabilir. Bu tarz bir tanımlamada belirtilen veri tiplerinin birbirinden farklı olması gerekir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Item</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="kt">string</span>  <span class="c1">// code</span>
     <span class="kt">int</span>     <span class="c1">// quantity</span>
@@ -1678,8 +1212,7 @@ The data types specified in such a definition must be different from each other.
 
 
 <h4 id="promoted-fields">Promoted fields<a class="headerlink" href="#promoted-fields" title="Permanent link">&para;</a></h4>
-<p>A struct can be used in another struct without giving the domain name. In this case, 
-the structure inside is accessed by its own name. Based on the example below, <code>Content</code> in <code>Page</code> can be accessed as <code>page.Content</code>.</p>
+<p>Bir struct başka bir struct içerisinde alan ismi verilmeden kullanılabilir. Bu durumda içerideki structa kendi ismiyle erişilir. Aşağıdaki örneği baz alırsak <code>Page</code> içerisindeki <code>Content</code>e <code>page.Content</code> şeklinde erişilebilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Content</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">body</span> <span class="kt">string</span>
     <span class="nx">size</span> <span class="kt">int</span>
@@ -1711,29 +1244,25 @@ the structure inside is accessed by its own name. Based on the example below, <c
 
 
 <h2 id="pointer">Pointer<a class="headerlink" href="#pointer" title="Permanent link">&para;</a></h2>
-<p>Pointer is a variable that holds the memory address of another variable.
-  
-When a new object is created in runtime, we need to keep it in memory. 
-We substitute the space allocated in the memory for the object with variables.</p>
-<h3 id="definition_2">Definition<a class="headerlink" href="#definition_2" title="Permanent link">&para;</a></h3>
-<p>Pointers are also variables. The difference from other variables is that it keeps the address of the variable that indicates the location of that data, not any data.</p>
-<p>A pointer can be defined using the <code>var pointer * Type</code> structure. 
-If no value is assigned, the value of the pointer is determined as <code>nil</code>.</p>
+<p>Pointer bir başka değişkenin memory adresini tutan bir değişkendir.  </p>
+<p>Çalışma esnasında yeni bir nesne oluşturulduğunda, bu nesneyi hafızada tutmamız gerekir. Nesne için hafızada ayrılan alanın yerini değişkenler ile tutarız.</p>
+<h3 id="tanmlama_3">Tanımlama<a class="headerlink" href="#tanmlama_3" title="Permanent link">&para;</a></h3>
+<p>Pointer da değişkenlerdir. Diğer değişkenlerden farkı herhangi bir veriyi değil, o verinin yerini belirten değişkenin adresini tutmasıdır.</p>
+<p>Pointerlar <code>var pointer *Type</code> yapısı kullanılarak tanımlanır. Değer atanmadığı takdirde pointerin değeri <code>nil</code> olarak belirlenir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">ptr</span> <span class="o">*</span><span class="kt">int</span>
 <span class="nx">ptr</span> <span class="c1">// nil</span>
 </code></pre></div>
 
 
-<p>We can also define pointers using the <code>new</code> function.</p>
+<p>Pointerları <code>new</code> fonksiyonunu kullanarak da tanımlayabiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">ptr</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
 <span class="nx">ptr</span> <span class="c1">// nil</span>
 </code></pre></div>
 
 
-<h3 id="assigning-value_2">Assigning Value<a class="headerlink" href="#assigning-value_2" title="Permanent link">&para;</a></h3>
-<p>Assigning Value</p>
-<p>We can assign the address of another variable as a value to the Pointer by using the <code>&amp;</code> sign.</p>
-<p>Using the pointer with the <code>*</code> sign, we can access the variable it is pointing to (hence the data).</p>
+<h3 id="deger-atama_2">Değer Atama<a class="headerlink" href="#deger-atama_2" title="Permanent link">&para;</a></h3>
+<p>Pointera <code>&amp;</code> işaretini kullanarak, bir başka değişlenin adresini, değer olarak atayabiliriz. </p>
+<p><code>*</code> işareti ile pointeri kullanarak, işaret ettiği değişkene(dolayısıyla tutulan veriye) erişebiliriz.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">var</span> <span class="nx">carbon</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">&quot;Carbon&quot;</span>
 <span class="kd">var</span> <span class="nx">ptrCarbon</span> <span class="o">*</span><span class="kt">string</span>
 
@@ -1748,11 +1277,11 @@ If no value is assigned, the value of the pointer is determined as <code>nil</co
 </code></pre></div>
 
 
-<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
-<p>In general, functions in GO are defined in the following structure.</p>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">fonksiyon_name</span><span class="p">([</span><span class="nx">list</span> <span class="nx">of</span> <span class="nx">parameters</span><span class="p">])</span> <span class="p">[</span><span class="nx">returning</span> <span class="nx">data</span> <span class="nx">types</span><span class="p">]</span>
+<h2 id="fonksiyonlar">Fonksiyonlar<a class="headerlink" href="#fonksiyonlar" title="Permanent link">&para;</a></h2>
+<p>Genel olarak GO'da fonksiyonlar aşağıdaki yapıda tanımlanır.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">fonksiyon_adı</span><span class="p">(</span> <span class="p">[</span><span class="nx">parametre</span> <span class="nx">listesi</span><span class="p">]</span> <span class="p">)</span> <span class="p">[</span><span class="nx">dönüş</span> <span class="nx">değerlerinin</span> <span class="nx">tipleri</span><span class="p">]</span>
 <span class="p">{</span>
-   <span class="nx">function</span> <span class="nx">body</span>
+   <span class="nx">fonksiyon</span> <span class="nx">gövdesi</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1765,9 +1294,8 @@ If no value is assigned, the value of the pointer is determined as <code>nil</co
 </code></pre></div>
 
 
-<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
-<p>Parameters given to functions are copied. 
-For this reason, changes made on the parameters do not affect the status of variables outside the function.</p>
+<h3 id="parametreler">Parametreler<a class="headerlink" href="#parametreler" title="Permanent link">&para;</a></h3>
+<p>GO fonksiyonlarına parametre olarak girilen değişkenler kopyalanır. Bu nedenle parametreler üzerinde yapılan değişiklikler değişkenlerin fonksiyon dışındaki durumlarını etkilemez.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Wallet</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">userID</span>  <span class="kt">int</span>
     <span class="nx">balance</span> <span class="kt">float64</span>
@@ -1780,8 +1308,7 @@ For this reason, changes made on the parameters do not affect the status of vari
 </code></pre></div>
 
 
-<p>In the above code, we have simply defined a wallet structure and the 'withdraw' function that can withdraw money from the wallet. 
-In the lines below, we created a wallet and used it with this function.</p>
+<p>Yukarıdaki kodda basitçe bir cüzdan yapısı ve bu cüzdandan para çekebilen <code>withdraw</code> fonksiyonu tanımladık. Aşağıdaki satırlarda da bir adet cüzdan oluşturup bu fonksiyon ile kullandık.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">wallet</span> <span class="o">:=</span> <span class="nx">Wallet</span><span class="p">{</span>
     <span class="nx">userID</span><span class="p">:</span>  <span class="mi">1</span><span class="p">,</span>
     <span class="nx">balance</span><span class="p">:</span> <span class="mf">30000.12</span><span class="p">,</span>
@@ -1795,9 +1322,10 @@ In the lines below, we created a wallet and used it with this function.</p>
 </code></pre></div>
 
 
-<p>As you can see, the money in the wallet has not changed. 
-We can prevent this type of accident in 2 ways.</p>
-<p>Method 1, we can return the new balance of the wallet and update the wallet later.</p>
+<p>Görüldüğü üzere cüzdandaki para değişmedi. Bu tarz kazaları 2 yolla önleyebiliriz.</p>
+<ol>
+<li>Yöntem, cüzdandaki son para durumunu döndürüp, cüzdanı sonradan güncelleyebiliriz.</li>
+</ol>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">withdraw</span><span class="p">(</span><span class="nx">wallet</span> <span class="nx">Wallet</span><span class="p">,</span> <span class="nx">amount</span> <span class="kt">float64</span><span class="p">)</span> <span class="kt">float64</span> <span class="p">{</span>
     <span class="nx">new_balance</span> <span class="o">:=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="o">-</span> <span class="nx">amount</span>
     <span class="k">return</span> <span class="nx">new_balance</span>
@@ -1808,9 +1336,10 @@ We can prevent this type of accident in 2 ways.</p>
 </code></pre></div>
 
 
-<p>This change changes the intended use of the withdraw function, 
-whose job is to withdraw money from the wallet.</p>
-<p>Method 2, Instead of the wallet variable, we can give the wallet's address as a parameter.</p>
+<p>Bu değişim, işi <em>cüzdandan para çekmek</em> olan withdraw fonksiyonunun kullanım amacını değiştirmiş oluyor.</p>
+<ol>
+<li>Yöntem, cüzdan değişkeni yerine, cüzdanın adresini parametre olarak verebiliriz.</li>
+</ol>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">withdraw</span><span class="p">(</span><span class="nx">wallet</span> <span class="o">*</span><span class="nx">Wallet</span><span class="p">,</span> <span class="nx">amount</span> <span class="kt">float64</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">wallet</span><span class="p">.</span><span class="nx">balance</span> <span class="o">-=</span> <span class="nx">amount</span>
 <span class="p">}</span>
@@ -1821,12 +1350,9 @@ whose job is to withdraw money from the wallet.</p>
 </code></pre></div>
 
 
-<p>The disadvantage of this method is that it is not thread safe. 
-When we want to withdraw money from the wallet with different threads, 
-it will be difficult to keep track of the balance status.</p>
-<h4 id="dynamic-parameters">Dynamic parameters<a class="headerlink" href="#dynamic-parameters" title="Permanent link">&para;</a></h4>
-<p>Dynamic parameters can be defined in GO functions. 
-To define the parameters of this type, the sign <code>...</code> is written before the parameter type.</p>
+<p>Bu yöntemin dezavantajı da farklı concurrency safe olmamasıdır. Farklı threadler ile cüzdandan para çekmek istediğimizde, bakiye durumunu takip etmek zor olacaktır.</p>
+<h4 id="dinamik-parametreler">Dinamik parametreler<a class="headerlink" href="#dinamik-parametreler" title="Permanent link">&para;</a></h4>
+<p>GO fonksiyonlarında dinamik parametreler tanımlanabilir. Bu türdeki parametreleri tanımlamak için parametre tipinin önüne <code>...</code> işareti yazılır.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">ReLU</span><span class="p">(</span><span class="nx">nums</span> <span class="o">...</span><span class="kt">float64</span><span class="p">)</span> <span class="p">[]</span><span class="kt">float64</span> <span class="p">{</span>
     <span class="nx">new_nums</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">float64</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">nums</span><span class="p">))</span>
     <span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">value</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">nums</span> <span class="p">{</span>
@@ -1849,10 +1375,9 @@ To define the parameters of this type, the sign <code>...</code> is written befo
 </code></pre></div>
 
 
-<h3 id="return-values">Return Values<a class="headerlink" href="#return-values" title="Permanent link">&para;</a></h3>
-<h4 id="returning-multiple-values">Returning multiple values<a class="headerlink" href="#returning-multiple-values" title="Permanent link">&para;</a></h4>
-<p>Multiple values can be returned in GO functions. 
-It is necessary to define the values to be returned in order between <code>()</code>.</p>
+<h3 id="donus-degerleri">Dönüş Değerleri<a class="headerlink" href="#donus-degerleri" title="Permanent link">&para;</a></h3>
+<h4 id="birden-fazla-deger-dondurme">Birden fazla değer döndürme<a class="headerlink" href="#birden-fazla-deger-dondurme" title="Permanent link">&para;</a></h4>
+<p>GO fonksiyonlarında birden fazla değer döndürülebilir. Dönülecek değerleri <code>()</code> arasında sırasıyla tanımlamak gerekmektedir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">swap</span><span class="p">(</span><span class="nx">first_arg</span><span class="p">,</span> <span class="nx">second_arg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
    <span class="k">return</span> <span class="nx">second_arg</span><span class="p">,</span> <span class="nx">first_arg</span>
 <span class="p">}</span>
@@ -1867,10 +1392,8 @@ It is necessary to define the values to be returned in order between <code>()</c
 </code></pre></div>
 
 
-<h4 id="naming-return-values">Naming Return Values<a class="headerlink" href="#naming-return-values" title="Permanent link">&para;</a></h4>
-<p>We can name the return values of the functions and determine the values with these variables. 
-Since the named return values will take the null value of the data type, 
-they can also be used as the default return values of the function.</p>
+<h4 id="donus-degerlerini-isimlendirme">Dönüş değerlerini isimlendirme<a class="headerlink" href="#donus-degerlerini-isimlendirme" title="Permanent link">&para;</a></h4>
+<p>Fonksiyonların dönüş değerlerine isim verip, değerleri bu değişkenler ile belirleyebiliriz. İsimlendirilmiş dönüş değerleri veri tipinin boş değerini alacağı için, fonksiyonun ön tanımlı dönüş değerleri olarak da kullanılabilirler.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Record</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">id</span>   <span class="kt">int</span>
     <span class="nx">data</span> <span class="kt">string</span>
@@ -1914,11 +1437,9 @@ they can also be used as the default return values of the function.</p>
 </code></pre></div>
 
 
-<h3 id="anonymous-function">Anonymous Function<a class="headerlink" href="#anonymous-function" title="Permanent link">&para;</a></h3>
-<p>Functions in GO are also variable and can be defined within other functions. 
-We can use anonymous functions in a limited part of the project to get a specific job done.
-In the code example below, we assumed that we would not need this process elsewhere 
-in the project, we used an anonymous function to break up a slice of the specified size.</p>
+<h3 id="anonim-fonksiyon">Anonim Fonksiyon<a class="headerlink" href="#anonim-fonksiyon" title="Permanent link">&para;</a></h3>
+<p>GO'da fonksiyonlar da veri yapılarıdır ve diğer fonksiyonların içerisinde tanımlanabilirler. Anonim fonksiyonları, projenin kısıtlı bir bölümünde, spesifik bir işi halletmek için kullanabiliriz.</p>
+<p>Aşağıdaki kod örneğinde, projenin başka yerinde bu işleme ihtiyaç duymayacağımızı varsayarak, bir sliceı belirlenen boyutta parçalayan bir anonim fonksiyon kullandık.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">records</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
 <span class="nx">batchSize</span> <span class="o">:=</span> <span class="mi">3</span>
 
@@ -1936,9 +1457,8 @@ in the project, we used an anonymous function to break up a slice of the specifi
 </code></pre></div>
 
 
-<p>We can assign  this type of functions to a variable and use it several times.</p>
-<p>In the example below, we combine the country code and phone numbers that are sent 
-separately from a specific API with the function we define as variables.</p>
+<p>Bu türdeki fonksiyonları bir değişkene atayıp bir kaç kez de kullanabiliriz.</p>
+<p>Aşağıdaki örnekte spesifik bir APIden ayrı ayrı gönderilen ülke kodu ve telefon numaralarını değişken olarak tanımladığımız fonksiyonla birleştirdik.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Vendor</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">name</span>        <span class="kt">string</span>
     <span class="nx">countryCode</span> <span class="kt">string</span>
@@ -1959,10 +1479,8 @@ separately from a specific API with the function we define as variables.</p>
 </code></pre></div>
 
 
-<h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
-<p>There are no classes or inheritance in GO language like other object oriented programming languages. </p>
-<p>An experience similar to object oriented programming can be achieved in GO language 
-by adding an additional argument called `receiver 'to the functions. </p>
+<h2 id="metodlar">Metodlar<a class="headerlink" href="#metodlar" title="Permanent link">&para;</a></h2>
+<p>GO dilinde diğer nesne yönelimli programlama dilleri gibi classlar ve kalıtım yoktur. Fakat fonksiyonlara <code>receiver</code> denilen ek bir argüman ekleyerek ile kendi oluşturduğumuz tiplere fonksiyonları bağlayabiliriz. Böylece GO dilinde de nesne yönelimli programlamaya benzer bir deneyim yakalanabilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Connection</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">host</span>     <span class="kt">string</span>
     <span class="nx">port</span>     <span class="kt">int</span>
@@ -1977,9 +1495,7 @@ by adding an additional argument called `receiver 'to the functions. </p>
 </code></pre></div>
 
 
-<p>In the above structure, we have added <code>(conn * Connection)</code> to the <code>Close</code> 
-function in addition to a normal function. Thus, as we can see in the example below, 
-we were able to access the function via the <code>Connection</code> type as <code>c.Close ()</code>.</p>
+<p>Yukarıdaki yapıda <code>Close</code> fonksiyonuna normal bir fonksiyona ek olarak <code>(conn *Connection)</code> kısmını ekledik. Böylece aşağıdaki örnekte görüldüğü gibi <code>c.Close()</code>  şeklinde<code>Connection</code> tipi üzerinden fonksiyona erişebildik.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">c</span> <span class="o">:=</span> <span class="nx">Connection</span><span class="p">{</span>
     <span class="nx">host</span><span class="p">:</span>     <span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
     <span class="nx">port</span><span class="p">:</span>     <span class="mi">8080</span><span class="p">,</span>
@@ -1992,9 +1508,8 @@ we were able to access the function via the <code>Connection</code> type as <cod
 
 <blockquote>
 <h4 id="pointer-receiver-value-receiver">Pointer receiver | Value receiver<a class="headerlink" href="#pointer-receiver-value-receiver" title="Permanent link">&para;</a></h4>
-<p>As with the function parameters, it should be decided whether the receivers will be used 
-with the value of the structure or the memory address.</p>
-<p>We can also use receivers for types other than struct.</p>
+<p>Fonksiyon parametrelerinde olduğu gibi receiverlerde de yapının değeri ile mi yoksa memory adresi ile mi kullanılacağına karar verilmelidir.</p>
+<p>Receiverları struct dışındaki tipler için de kullanabiliriz.</p>
 </blockquote>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Iterable</span> <span class="p">[]</span><span class="kt">int</span>
 
@@ -2009,12 +1524,10 @@ with the value of the structure or the memory address.</p>
 </code></pre></div>
 
 
-<h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
-<p>In GO, we can create our own error types.
-To achieve this, the data type must implement the Error method.</p>
-<h3 id="definition_3">Definition<a class="headerlink" href="#definition_3" title="Permanent link">&para;</a></h3>
-<p>In the example below, we have defined a new error called 'HTTPError', 
-which indicates the HTTP code and the reason for the error.</p>
+<h2 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h2>
+<p>GOda kendi hata tiplerimizi oluşturabiliriz. Bunun için oluşturduğumuz tipin sadece Error methoduna sahip olması yeterlidir.</p>
+<h3 id="tanmlama_4">Tanımlama<a class="headerlink" href="#tanmlama_4" title="Permanent link">&para;</a></h3>
+<p>Aşağıdaki örnekte HTTP kodunu ve hata nedenini belirten <code>HTTPError</code> adında yeni bir hata tanımladık.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">HTTPError</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Status</span> <span class="kt">int</span>
     <span class="nx">Reason</span> <span class="kt">string</span>
@@ -2033,9 +1546,8 @@ which indicates the HTTP code and the reason for the error.</p>
 </code></pre></div>
 
 
-<h3 id="usa-case">Usa Case<a class="headerlink" href="#usa-case" title="Permanent link">&para;</a></h3>
-<p>When the function is executed, it can be checked whether the returned error 
-value is `nil' and measures can be taken accordingly.</p>
+<h3 id="kullanm">Kullanım<a class="headerlink" href="#kullanm" title="Permanent link">&para;</a></h3>
+<p>Fonksiyon çalıştırıldığında dönülen hata değerinin <code>nil</code> olup olmadığı kontrol edilerek buna göre önlemler alınabilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="nx">err</span> <span class="o">:=</span> <span class="nx">MakeRequest</span><span class="p">()</span>
 <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
@@ -2044,19 +1556,10 @@ value is `nil' and measures can be taken accordingly.</p>
 
 
 <h2 id="interface">Interface<a class="headerlink" href="#interface" title="Permanent link">&para;</a></h2>
-<p>Interfaces are structures that specify the methods an object can have. 
-Therefore, interfaces express the behavior of objects. 
-For example; data can be read from or written to a file. 
-If an interface contains reading and writing methods and the file object has 
-these methods, it can be said that the file has implemented this interface.</p>
-<p>The main purpose of Interfaces is to create a common protocol for different data structures 
-that show the same behavior but are used in different cases by defining the methods, 
-the parameters they take and the return values in a general way; 
-.</p>
-<h3 id="definition_4">Definition<a class="headerlink" href="#definition_4" title="Permanent link">&para;</a></h3>
-<p>To indicate that one type uses an interface, we do not need to use expressions like <code>class File implements IO</code>, 
-as in most other object oriented languages. GO establishes the relationship 
-between interfaces and types by sharing the same methods.</p>
+<p>Interfaceler bir objenin sahip olabileceği methodları belirten yapılardır. Bu nedenle interfaceler objelerin davranışını ifade eder. Örneğin; bir dosyandan veri okunabilir veya dosyaya veri yazılabilir. Bir interface okuma ve yazma methodlarını barındırıyorsa ve dosya objesi bu methodlara sahipse dosyanın bu interfacei <code>implement</code> ettiği söylenebilir.</p>
+<p>Interfacelerin asıl amacı methodları, aldıkları parametreleri ve dönüş değerlerini genel bir şekilde tanımlayarak; aynı davranışı gösteren, fakat farklı işlerde kullanılan yapılar için ortak bir protokol oluşturmaktır.</p>
+<h3 id="tanmlama_5">Tanımlama<a class="headerlink" href="#tanmlama_5" title="Permanent link">&para;</a></h3>
+<p>GO dilinde interfaceler objelerle <em>kapalı</em> halde uygulanır. Başka bir deyişle; bir tipin bir interfacei kullandığını belirtmek için, diğer çoğu nesne yönelimli dillerde olduğu gibi,<code>class File implements IO</code> gibi deyimler kullanmamız gerekmez. GO aynı metodları paylaşan interface ve tipler arasındaki ilişkiyi kendisi kurar.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">IOInterface</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">Read</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
     <span class="nx">Write</span><span class="p">([]</span><span class="kt">byte</span><span class="p">)</span> <span class="kt">int</span>
@@ -2093,16 +1596,30 @@ between interfaces and types by sharing the same methods.</p>
 </code></pre></div>
 
 
-<p>In the above application, we have defined the 'IO' 
-interface that defines the 'Read' and 'Write' methods, and the 'File' and 'Socket' types with these methods.</p>
-<h3 id="use-case">Use Case<a class="headerlink" href="#use-case" title="Permanent link">&para;</a></h3>
-<p>In the example below, since the <code>Log</code> method takes the <code>IO</code> interface as a parameter,
- it can read the data and do its job without worrying 
- about which data type it comes from.</p>
+<div class="codehilite"><pre><span></span><code><span class="nx">file</span> <span class="o">:=</span> <span class="nx">File</span><span class="p">{</span>
+    <span class="nx">name</span><span class="p">:</span> <span class="s">&quot;test&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">sock</span> <span class="o">:=</span> <span class="nx">Socket</span><span class="p">{</span>
+    <span class="nx">ip</span><span class="p">:</span>   <span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="nx">port</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">)</span>
+<span class="nx">file</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+
+<span class="nx">sock</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">Read</span><span class="p">())</span>
+
+<span class="nb">string</span><span class="p">(</span><span class="nx">sock</span><span class="p">.</span><span class="nx">Read</span><span class="p">()</span> <span class="c1">// &quot;data&quot;</span>
+</code></pre></div>
+
+
+<p>Yukarıdaki uygulamada <code>Read</code> ve <code>Write</code> metodlarını tanımlayan <code>IOInterface</code> interfaceini ve bu methodlara sahip<code>File</code> ve <code>Socket</code> tiplerini tanımladık.</p>
+<h3 id="kullanm_1">Kullanım<a class="headerlink" href="#kullanm_1" title="Permanent link">&para;</a></h3>
+<p>Aşağıdaki örnekte <code>Log</code> methodu <code>IOInterface</code> interfaceini parametre olarak aldığı için hangi veri tipinden geldiğini önemsemeden veriyi okuyup, işini yapabilir.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Logger</span> <span class="kd">struct</span> <span class="p">{</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">log</span> <span class="o">*</span><span class="nx">Logger</span><span class="p">)</span> <span class="nx">Log</span><span class="p">(</span><span class="nx">io</span> <span class="nx">IO</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">log</span> <span class="o">*</span><span class="nx">Logger</span><span class="p">)</span> <span class="nx">Log</span><span class="p">(</span><span class="nx">io</span> <span class="nx">IOInterface</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">data</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Read</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
     <span class="p">}</span>
@@ -2111,8 +1628,13 @@ interface that defines the 'Read' and 'Write' methods, and the 'File' and 'Socke
 </code></pre></div>
 
 
-<div class="codehilite"><pre><span></span><code><span class="nx">file</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">File</span><span class="p">{</span><span class="nx">name</span><span class="p">:</span> <span class="s">&quot;test&quot;</span><span class="p">}</span>
-<span class="nx">sock</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Socket</span><span class="p">{</span><span class="nx">ip</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="nx">port</span><span class="p">:</span> <span class="mi">21</span><span class="p">}</span>
+<div class="codehilite"><pre><span></span><code><span class="nx">file</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">File</span><span class="p">{</span>
+    <span class="nx">name</span><span class="p">:</span> <span class="s">&quot;test&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">sock</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Socket</span><span class="p">{</span>
+    <span class="nx">ip</span><span class="p">:</span>   <span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span>
+    <span class="nx">port</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span>
+<span class="p">}</span>
 <span class="nx">logger</span> <span class="o">:=</span> <span class="nx">Logger</span><span class="p">{}</span>
 
 <span class="nx">data</span> <span class="o">:=</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&quot;data&quot;</span><span class="p">)</span>
@@ -2125,9 +1647,8 @@ interface that defines the 'Read' and 'Write' methods, and the 'File' and 'Socke
 </code></pre></div>
 
 
-<h3 id="using-multiple-interfaces">Using Multiple Interfaces<a class="headerlink" href="#using-multiple-interfaces" title="Permanent link">&para;</a></h3>
-<p>GO types can implement multiple interfaces. 
-For this, it only needs to have the methods of the interface.</p>
+<h3 id="birden-fazla-interface-kullanma">Birden Fazla interface kullanma<a class="headerlink" href="#birden-fazla-interface-kullanma" title="Permanent link">&para;</a></h3>
+<p>GO tipleri birden fazla interfacei implement edebilir. Bunun için interfacein belirttiği metodlara sahip olmaları yeterlidir.  </p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Reader</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">Read</span><span class="p">()</span> <span class="p">[]</span><span class="kt">byte</span>
 <span class="p">}</span>
@@ -2167,18 +1688,15 @@ For this, it only needs to have the methods of the interface.</p>
 </code></pre></div>
 
 
-<h3 id="type-conversion">Type Conversion<a class="headerlink" href="#type-conversion" title="Permanent link">&para;</a></h3>
-<p>If we need to take advantage of certain properties of data type hierarchies, 
-we need to convert assets from one data type to another.</p>
-<blockquote>
-<p>We can check whether the type we are converting correctly implements 
-that interface with an additional parameter that we can get from conversion.</p>
-</blockquote>
+<h3 id="tip-donusumu">Tip dönüşümü<a class="headerlink" href="#tip-donusumu" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="nx">s</span> <span class="o">:=</span> <span class="nx">sock</span><span class="p">.(</span><span class="o">*</span><span class="nx">Socket</span><span class="p">)</span>
 <span class="nb">string</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">buffer</span><span class="p">)</span> <span class="c1">// &quot;data&quot;</span>
 </code></pre></div>
 
 
+<blockquote>
+<p>Dönüştürdüğümüz tipin o interfacei doğru bir şekilde implement edip etmediğini dönüşüm sırasında alacağımız ek bir parametre ile kontrol edebiliriz.</p>
+</blockquote>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Serializer</span> <span class="kd">interface</span> <span class="p">{</span>
     <span class="nx">Serialize</span><span class="p">()</span>
 <span class="p">}</span>
@@ -2188,9 +1706,9 @@ that interface with an additional parameter that we can get from conversion.</p>
 </code></pre></div>
 
 
-<h3 id="empty-interface">Empty Interface<a class="headerlink" href="#empty-interface" title="Permanent link">&para;</a></h3>
-<p>Interfaces are types like other data structures and can be used in the same way. Empty interface in GO projects; It is defined as <code>interface {}</code>.</p>
-<p>Since it has no method, the requirements of the empty interface are met by all types. This feature of the empty interface allows us to define dynamic parameters and values.</p>
+<h3 id="bos-interface">Boş interface<a class="headerlink" href="#bos-interface" title="Permanent link">&para;</a></h3>
+<p>Interfaceler de diğer veri yapıları gibi tiplerdir ve aynı şekilde kullanılabilir. GO projelerinde boş interface; <code>interface{}</code> şeklinde tanımlanır. </p>
+<p>Hiçbir metodu olmadığı için boş interfacein gereksinimleri bütün tipler tarafından karşılanır. boş interfacein bu özelliği, dinamik parametreler ve değerler tanımlamamıza olanak tanır.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Booking</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Provider</span>            <span class="kt">string</span>
     <span class="nx">CustomerID</span>          <span class="kt">string</span>
@@ -2221,10 +1739,9 @@ that interface with an additional parameter that we can get from conversion.</p>
 </code></pre></div>
 
 
-<h3 id="type-checking">Type Checking<a class="headerlink" href="#type-checking" title="Permanent link">&para;</a></h3>
-<p>Interface types can be controlled by the switch structure. </p>
-<p>In the example below, the <code>Stringify</code> function allows us to use different data types in the function by taking the parameter as <code>interface {}</code>.
-In this function, we will check the int string and float incoming values according to their types and convert them to string as we determine.</p>
+<h3 id="tip-kontrolu">Tip Kontrolü<a class="headerlink" href="#tip-kontrolu" title="Permanent link">&para;</a></h3>
+<p>Interface tipleri <code>switch</code> yapısı ile kontrol edilebilir. Aşağıdaki örnekte <code>Stringify</code> fonksiyonu<code>interface{}</code> tipinde parametre olarak alarak farklı veri tiplerini fonksiyonda kullanmamıza olanak sağlıyor. </p>
+<p>Bu fonksiyonda int string ve float gelen değerleri tiplerine göre kontrol edip belirlediğimiz şekilde stringe çevireceğiz.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Stringify</span><span class="p">(</span><span class="nx">value</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="nx">value</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">case</span> <span class="kt">string</span><span class="p">:</span>
@@ -2256,41 +1773,6 @@ In this function, we will check the int string and float incoming values accordi
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href=".." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Home
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../concurrency/" title="Concurrency" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Concurrency
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -2330,15 +1812,15 @@ In this function, we will check the int string and float incoming values accordi
       
     </div>
     
-      <script src="../assets/javascripts/vendor.f45d2d8d.min.js"></script>
-      <script src="../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.f45d2d8d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
-          base: "..",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.7f7c8775.min.js"
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
