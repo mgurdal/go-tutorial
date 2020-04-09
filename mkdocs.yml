@@ -18,6 +18,10 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/mgurdal
 
+google_analytics:
+  - UA-152694708-2
+  - auto
+
 theme:
   name: 'material'
 
