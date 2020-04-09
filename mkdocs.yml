@@ -9,13 +9,13 @@ nav:
     - Data Structures : data-structures.md
     - Concurrency: concurrency.md
 
-extra:	
-  social:	
-    - type: github-alt	
-      link: https://github.com/mgurdal	
-    - type: twitter	
-      link: https://twitter.com/mgurdal_	
-    - type: linkedin	
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/mgurdal
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/mgurdal_
+    - icon: fontawesome/brands/linkedin
       link: https://linkedin.com/in/mgurdal
 
 theme:
