@@ -132,10 +132,87 @@ While creating the slice, it is filled with the default value of the data type t
 
 If we want to increase the size of a slice, we can use the `append` and` copy` functions for this.
 
+
+### index
+When we resize a slice and assign it to another variable, changes in the new slice will also affect the original slice.
+
+
+```go
+fruits := []string{"🍎", "🍎", "🍇", "🍒", "🍉"}
+apples := fruits[:2]
+
+apples[0] = "🍏"
+apples[1] = "🍏"
+ 
+apples // [🍏 🍏]
+fruits // [🍏 🍏 🍇 🍒 🍉]
+```
+
+
+
+### append
+
+The `append` function takes the slice that we will increase in size as the first 
+parameter and the elements we will add later and return a ** new ** slice containing 
+all the elements to us. Therefore, it is necessary to keep the return value 
+in a variable (usually the old slice variable).
+
+![copy](assets/img/append.gif)
+
+```go
+bucket := []string{"🍎", "🍇", "🍒", "🍉"}
+
+green_apple := "🍏"
+bucket = append(bucket, green_apple)
+
+bucket // [🍎 🍇 🍒 🍉 🍏]
+```
+
+### insert
+
+If we want to add a new element to any part of the slice; we can use these methods.
+
+![copy](assets/img/insert.gif)
+```go
+fruits := []string{"🍎", "🍇", "🍒", "🍉"}
+banana := "🍌"
+insert_index := 2
+
+fruits = append(
+    fruits[:insert_index],
+    append([]string{banana}, fruits[insert_index:]...)...,
+)
+
+fruits // [🍎 🍇 🍌 🍒 🍉]
+```
+
+
+> ** Memory Concern **
+>
+> The `append([]string{banana}, fruits[insert_index:] ...)` section in line 7 creates a new slice and copies the elements of the slice `fruits[insert_index:]` to the created slice. These elements are then copied to the `fruits` slice.
+>
+> Creating a new slice and copying for the 2nd time can be avoided.
+
+
+![copy](assets/img/insert_mem.gif)
+```go
+fruits := []string{"🍏", "🍎", "🍉"}
+banana := "🍌"
+insert_index := 2
+
+fruits = append(fruits, "")
+copy(fruits[insert_index + 1:], fruits[insert_index:])
+fruits[insert_index] = banana
+
+fruits // [🍏 🍎 🍌 🍉]
+```
+
+
 ### copy
 
 `copy` allows us to copy one slice of another slicea of ​​the same or larger capacity and returns how many elements are copied.
 
+![copy](assets/img/copy.gif)
 
 ```go
 bucket := make([]string, 5)
@@ -163,170 +240,6 @@ fruits // [🍎 🍏]
 ```
 
 
-### append
-
-The `append` function takes the slice that we will increase in size as the first 
-parameter and the elements we will add later and return a ** new ** slice containing 
-all the elements to us. Therefore, it is necessary to keep the return value 
-in a variable (usually the old slice variable).
-
-
-```go
-bucket := []string{"🍎", "🍇", "🍈", "🍉"}
-
-green_apple := "🍏"
-bucket = append(bucket, green_apple)
-
-bucket // [🍎 🍇 🍈 🍉 🍏]
-```
-
-
-> When we resize a slice and assign it to another variable, changes in the new slice will also affect the original slice.
-
-
-```go
-fruits := []string{"🍎", "🍎", "🍇", "🍒", "🍉"}
-apples := fruits[:2]
-
-apples[0] = "🍏"
-apples[1] = "🍏"
- 
-apples // [🍏 🍏]
-fruits // [🍏 🍏 🍇 🍒 🍉]
-
-
-```
-
-
-### cut
-
-If we want to subtract a certain range in the slice, we can use the method below. This method will add the elements up to the start index we have specified in Slice and the elements after the end index. Thus, we will frustrate the elements in between.
-
-
-```go
-edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
-
-cut_start_index, cut_end_index := 4, 6
- 
-edibles = append(edibles[:cut_start_index], edibles[cut_end_index:] ...)
-
-edibles // [🍎 🍇 🍒 🍉 🌽 🥔]
-```
-
-### delete
-
-If we want to delete an element in the slice using its index, we can use the following method.
-
-
-```go
-edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
-
-index_of_cherry := 2
-edibles = append(edibles[:index_of_cherry], edibles[index_of_cherry + 1:] ...)
-
-edibles // [🍎 🍇 🍉 🌶 🍆 🌽 🥔]
-```
-
-
-We can do the same with the `copy` function. In the example below, unlike the above, line 4:
-
-* First, we selected the section after the element of éedible in slice. This gave us a slice in the format \ [🍒 🍉 🌶 🍆 🌽 🥔 \], if we show all the capacity.
-* Then, after the element `` 1 '' index, we have _ replaced_ with the selected slice. Thus, we have obtained the list of [[🍎 🍇 🍉 🌶 🍆 🌽 🥔 🥔 \].
-
-In line 5, we slice the slice according to the number of new staff.
-
-
-```go
-edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
-index_of_cherry := 2
-
-n_copied := copy(edibles[index_of_cherry:], edibles[index_of_cherry + 1:])
-new_length := index_of_cherry + n_copied
-
-edibles = edibles[:new_length]
-
-edibles // [🍎 🍇 🍉 🌶 🍆 🌽 🥔]
-```
-
-
-#### Delete Without Preserving Order
-
-We can also do the deletion by ignoring the array order. In the example below, we have replaced the last element in the slice with the element we want to delete. Then we reduced the size of the slice by 1.
-
-
-```go
-edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
-index_of_cherry := 2
-
-edibles[index_of_cherry] = edibles[len(edibles) -1]
-edibles = edibles[:len(edibles) -1]
-
-edibles // [🍎 🍇 🥔 🍉 🌶 🍆 🌽]
-```
-
-> ** Garbage Collection **
-> If the elements we use in slice are `struct` with` pointer` or `pointer` fields, the ** cut ** and ** delete ** operations shown above can create a memory leak. The reason for this is that after slice is deleted, it can keep the reference of the deleted element.
-
-In addition to the operations we have done in the examples below, we filled in the fields that were idle after my process with `nil` values. Thus, garbage collector can understand that these areas will no longer be used and bring them back to the system.
-
-### cut (memory safe)
-
-
-```go
-apple := "🍎"
-banana := "🍌"
-fruits := []*string {&apple, &apple, &apple, &banana, &banana, &banana}
-
-cut_start_index, cut_end_index := 1, 5
-
-copy(fruits[cut_start_index:], fruits[cut_end_index:])
-
-cleanup_index := len(fruits) - cut_end_index + cut_start_index
-
-for free_index, free_end := cleanup_index, len(fruits); free_index <free_end; free_index ++ {
-    fruits[free_index] = nil
-}
-
-fruits = fruits[:cleanup_index]
-
-fruits // [🍎 🍌]
-```
-
-
-### delete (memory safe)
-
-
-```go
-apple := "🍎"
-banana := "🍌"
-fruits := []*string {&apple, &apple, &apple, &banana, &banana, &banana}
-delete_index := 2
-
-copy(fruits[delete_index:], fruits[delete_index + 1:])
-fruits[len(fruits) -1] = nil
-fruits = fruits[:len(fruits) -1]
-
-fruits // [🍎 🍎 🍌 🍌 🍌]
-```
-
-
-#### Delete Without Preserving Order (memory safe)
-
-
-```go
-apple := "🍎"
-banana := "🍌"
-fruits := []*string {&apple, &apple, &apple, &banana, &banana, &banana}
-
-delete_index := 2
-
-fruits[delete_index] = fruits[len(fruits) -1]
-fruits[len(fruits) -1] = nil
-fruits = fruits[:len(fruits) -1]
-
-fruits // [🍎 🍎 🍌 🍌 🍌]
-```
-
 
 ### expand
 
@@ -334,12 +247,12 @@ If we want to combine one slice and the other, we can use the following methods.
 
 
 ```go
-bucket := []string{"🍌", "🍇", "🍉"}
+bucket := []string{"🍇", "🍒", "🍉"}
 apples := []string{"🍏", "🍎"}
 
 bucket = append(bucket, apples...)
 
-bucket // [🍌 🍇 🍉 🍏 🍎]
+bucket // [🍇 🍒 🍉 🍏 🍎]
 ```
 
 In the example below, we have combined the elements after the index determined by `apples` in line` 7`. Afterwards, we added these slice elements to the bucket items up to the index we determined.
@@ -357,6 +270,7 @@ bucket = append(
 
 bucket // [🍌 🍇 🍏 🍎 🍉]
 ```
+
 
 
 ### filter
@@ -377,44 +291,83 @@ for _, fruit := range fruits {
 
 apples // [🍎 🍎]
 ```
-### insert
 
-If we want to add a new element to any part of the slice; we can use these methods.
+### cut
 
+If we want to subtract a certain range in the slice, we can use the method below. This method will add the elements up to the start index we have specified in Slice and the elements after the end index. Thus, we will frustrate the elements in between.
 
+![slice-cut](assets/img/cut.gif)
 ```go
-fruits := []string{"🍏", "🍎", "🍉"}
-banana := "🍌"
-insert_index := 2
+edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
 
-fruits = append(
-    fruits[:insert_index],
-    append([]string{banana}, fruits[insert_index:]...)...,
-)
+cut_start_index, cut_end_index := 4, 6
+ 
+edibles = append(edibles[:cut_start_index], edibles[cut_end_index:]...)
 
-fruits // [🍏 🍎 🍌 🍉]
+edibles // [🍎 🍇 🍒 🍉 🌽 🥔]
 ```
 
 
-> ** Memory Concern **
->
-> The `append([]string{banana}, fruits[insert_index:] ...)` section in line 7 creates a slice itself and copies the elements of the slice `fruits[insert_index:]` to this slicea. These elements are then copied to the `fruits` slice.
->
-> Creating a new slice and copying for the 2nd time can be avoided.
+### cut (memory safe)
 
+If we store memory addresses in slice, operations can cause memory leak. The reason for this is that after a portion of slice is deleted, it can keep the reference of the deleted elements.
+
+In addition to the operations we have done in the examples below, we filled in the fields that were idle after my process with `nil` values. Thus, garbage collector can understand that these areas will no longer be used and bring them back to the system.
+
+![slice-cut](assets/img/cut_memsafe.gif)
+
+```go
+apple, grapes, cherry, wmelon := "🍎", "🍇", "🍒", "🍉"
+pepper, egplnt, corn, potato := "🌶", "🍆", "🌽", "🥔"
+edibles := []*string{&apple, &grapes, &cherry, &wmelon, &pepper, &egplnt, &corn, &potato}
+
+cut_start_index, cut_end_index := 4, 6
+
+copy(edibles[cut_start_index:], edibles[cut_end_index:])
+
+cleanup_index := len(edibles) - cut_end_index + cut_start_index
+
+for free_index, free_end := cleanup_index, len(edibles); free_index < free_end; free_index++ {
+	edibles[free_index] = nil
+}
+
+edibles = edibles[:cleanup_index]
+
+edibles // [🍎 🍇 🍒 🍉 🌽 🥔]
+```
+
+### delete
+
+If we want to delete an element in the slice using its index, we can use the following method.
+
+```go
+edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
+
+index_of_cherry := 2
+edibles = append(edibles[:index_of_cherry], edibles[index_of_cherry + 1:]...)
+
+edibles // [🍎 🍇 🍉 🌶 🍆 🌽 🥔]
+```
+
+![slice-cut](assets/img/delete.gif)
+
+#### Delete Without Preserving Order
+
+We can also do the deletion by ignoring the array order. In the example below, we have replaced the last element in the slice with the element we want to delete. Then we reduced the size of the slice by 1.
 
 
 ```go
-fruits := []string{"🍏", "🍎", "🍉"}
-banana := "🍌"
-insert_index := 2
+edibles := []string{"🍎", "🍇", "🍒", "🍉", "🌶", "🍆", "🌽", "🥔"}
+index_of_cherry := 2
 
-fruits = append(fruits, "")
-copy(fruits[insert_index + 1:], fruits[insert_index:])
-fruits[insert_index] = banana
+edibles[index_of_cherry] = edibles[len(edibles) -1]
+edibles = edibles[:len(edibles) -1]
 
-fruits // [🍏 🍎 🍌 🍉]
+edibles // [🍎 🍇 🥔 🍉 🌶 🍆 🌽]
 ```
+![slice-cut](assets/img/delete_unordered.gif)
+
+
 
 
 ### pop

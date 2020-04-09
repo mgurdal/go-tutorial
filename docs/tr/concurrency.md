@@ -266,7 +266,7 @@ maden arayıp, kazıp bu madenleri işlemektedir.
 
 Aşağıdaki uygulamada go dilinin sağladığı concurrency araçları ile işçilerin eş zamanlı olarak nasıl çalıştırılabileceğini görebiliriz. 
 
-![Miners](../assets/miners.png)
+![Miners](../assets/img/miners.png)
 
 ```go
 package main
