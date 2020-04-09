@@ -1,14 +1,12 @@
 
 
 
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta http-equiv="x-ua-compatible" content="ie=edge">
       
         <meta name="description" content="Go Tutorial">
       
@@ -18,27 +16,8 @@
       
         <meta name="author" content="Mehmet Gürdal">
       
-      
-        <meta name="lang:clipboard.copy" content="Copy to clipboard">
-      
-        <meta name="lang:clipboard.copied" content="Copied to clipboard">
-      
-        <meta name="lang:search.language" content="en">
-      
-        <meta name="lang:search.pipeline.stopwords" content="True">
-      
-        <meta name="lang:search.pipeline.trimmer" content="True">
-      
-        <meta name="lang:search.result.none" content="No matching documents">
-      
-        <meta name="lang:search.result.one" content="1 matching document">
-      
-        <meta name="lang:search.result.other" content="# matching documents">
-      
-        <meta name="lang:search.tokenizer" content="[\s\-]+">
-      
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.1">
     
     
       
@@ -46,21 +25,18 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.750b69bd.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.c3000690.min.css">
       
       
     
-    
-      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
-        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
       <link rel="stylesheet" href="../../assets/css/extra.css">
@@ -71,65 +47,70 @@
     
   </head>
   
+  
     <body dir="ltr">
   
-    <svg class="md-svg">
-      <defs>
-        
-        
-      </defs>
-    </svg>
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#concurrency" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#concurrency" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
     
       <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid">
-    <div class="md-flex">
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-header-nav__button md-logo">
-          
-            <i class="md-icon"></i>
-          
-        </a>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
-      </div>
-      <div class="md-flex__cell md-flex__cell--stretch">
-        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
-          
-            <span class="md-header-nav__topic">
-              Go Tutorial
-            </span>
-            <span class="md-header-nav__topic">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-header-nav__button md-logo" aria-label="Go Tutorial">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Go Tutorial
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
               Concurrency
-            </span>
-          
+            
+          </span>
         </div>
-      </div>
-      <div class="md-flex__cell md-flex__cell--shrink">
-        
-          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+      </label>
+      
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="__search"></label>
-      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
-        &#xE5CD;
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="result">
+        <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Type to start searching
           </div>
@@ -139,31 +120,32 @@
     </div>
   </div>
 </div>
-        
-      </div>
-      
-    </div>
+    
+    
   </nav>
 </header>
     
-    <div class="md-container">
+    <div class="md-container" data-md-component="container">
       
         
       
       
-      <main class="md-main">
-        <div class="md-main__inner md-grid" data-md-component="container">
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
           
             
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-nav__button md-logo">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://mgurdal.github.io/go-tutorial" title="Go Tutorial" class="md-nav__button md-logo" aria-label="Go Tutorial">
       
-        <i class="md-icon"></i>
-      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
     </a>
     Go Tutorial
   </label>
@@ -217,25 +199,30 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
-<nav class="md-nav md-nav--secondary">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#goroutines" title="Goroutines" class="md-nav__link">
+  <a href="#goroutines" class="md-nav__link">
     Goroutines
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Goroutines">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#waitgroup" title="waitGroup" class="md-nav__link">
+  <a href="#waitgroup" class="md-nav__link">
     waitGroup
   </a>
   
@@ -247,29 +234,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#channels" title="Channels" class="md-nav__link">
+  <a href="#channels" class="md-nav__link">
     Channels
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mutex" title="Mutex" class="md-nav__link">
+  <a href="#mutex" class="md-nav__link">
     Mutex
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#select" title="Select" class="md-nav__link">
+  <a href="#select" class="md-nav__link">
     Select
   </a>
   
-    <nav class="md-nav">
+    <nav class="md-nav" aria-label="Select">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#zaman-asm" title="Zaman Aşımı" class="md-nav__link">
+  <a href="#zaman-asm" class="md-nav__link">
     Zaman Aşımı
   </a>
   
@@ -281,15 +268,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ornek-uygulama" title="Örnek Uygulama" class="md-nav__link">
+  <a href="#ornek-uygulama" class="md-nav__link">
     Örnek Uygulama
   </a>
   
 </li>
-      
-      
-      
-      
       
     </ul>
   
@@ -304,15 +287,18 @@
               
                 
                 
-                <h1 id="concurrency">Concurrency</h1>
+                  
+                
+                
+                <h1 id="concurrency">Concurrency<a class="headerlink" href="#concurrency" title="Permanent link">&para;</a></h1>
 <p><a href="/go-tutorial/concurrency">English</a> | <a href="/go-tutorial/tr/concurrency">Türkçe</a></p>
 <p>Bilgisayar biliminde concurrency(eşzamanlılık), bir programdaki iş birimlerinin veya algoritmaların sonucu etkilemeyecek şekilde <strong>sırasız</strong> bir biçimde çalıştırılabilmesidir.</p>
 <p>İş parçalarını birbirinden bağımsız çalıştırabilmemiz, süreçleri farklı çekirdeklerde yürüterek, işlemciyi maksimum verimde kullanmamızı sağlar.</p>
 <p>GO dilinde concurrency goroutineler ile sağlanır.</p>
-<h2 id="goroutines">Goroutines</h2>
+<h2 id="goroutines">Goroutines<a class="headerlink" href="#goroutines" title="Permanent link">&para;</a></h2>
 <p>GO routineler boyutları küçük threadler olarak düşünülebilir. Goroutine oluşturmak için sadece fonksiyonu çalıştırırken başına <code>go</code> yazmamız yeterli.</p>
 <p>Aşağıdaki uygulamada Work fonksiyonu her çağrıldığında, çalışması bitene kadar uygulamayı blokluyor.</p>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">}</span>
@@ -321,19 +307,19 @@
     <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work work work work work work...&quot;</span><span class="p">)</span>
     <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;zxcasfv&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Bloklayan kısımları goroutine olarak çalıştıralım.</p>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work work work work work work...&quot;</span><span class="p">)</span>
     <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;zxcasfv&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Programı çalıştırdığımızda ekrana hiçbir şey yazdırmadan sonlanacak. <code>main</code>fonksiyonu, <code>Work</code> fonksiyonu henüz ekrana bir şeyler yazacak kadar çalışmadan, bitiyor ve program kapanıyor. Ufak bir hile ile <code>Work</code> fonksiyonunun çıktısını alabiliriz.</p>
-<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -350,13 +336,13 @@
     <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;zxcasfv&quot;</span><span class="p">)</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h3 id="waitgroup">waitGroup</h3>
+<h3 id="waitgroup">waitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h3>
 <p>Uygulamanın belli anlarında bazı goroutinelerin bitmesini beklememiz gerekebilir.</p>
 <p>WaitGroup ile kaç tane gorouitne çalışacağını öncesinde girip sonrasında işlerini bitirmelerini bekleyebiliriz. Goroutinelerin burada tek yapması gereken, işi bittiğinde WaitGroup'un Done methodunu çalıştırması.</p>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
@@ -380,14 +366,14 @@
 
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h2 id="channels">Channels</h2>
+<h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
 <p>Channeller goroutinelerin birbirleri ile haberleşmesini sağlar.</p>
 <p>Yukarıdaki örnekte <code>go</code> ile çalıştırdığımız fonksiyonlardan dönüş değeri alamıyoruz. Channellar ile goroutinin sonucu ana fonksiyona veya başka bir goroutine göndermesini sağlayabiliriz.</p>
 <p>channeller <code>make(chan veritipi, buffer)</code> şeklinde oluşturulabilir.</p>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">msg</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">}</span>
@@ -402,15 +388,15 @@
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h2 id="mutex">Mutex</h2>
+<h2 id="mutex">Mutex<a class="headerlink" href="#mutex" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p><strong>Wikipedia Tanımı</strong></p>
 <p>In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.</p>
 </blockquote>
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
     <span class="o">*</span><span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 <span class="p">}</span>
@@ -431,10 +417,10 @@
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span>
 
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="codehilite"><pre><span></span><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">mx</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">)</span> <span class="p">{</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">mx</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">mx</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
     <span class="o">*</span><span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="nx">mx</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
@@ -460,17 +446,17 @@
 
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h2 id="select">Select</h2>
+<h2 id="select">Select<a class="headerlink" href="#select" title="Permanent link">&para;</a></h2>
 <p>Kanallara veri göndermek veya kanallardan veri beklemek uygulamayı bloklar. 
 Select aynı anda birkaç tane kanalı beklememize olanak sağlar.</p>
 <p>Aşağıdaki örnekte 2 goroutine <code>chan1</code> ve <code>chan2</code> kanallarına sürekli veri gönderiyor.
 İki kanaldan da gelen tüm verileri sonsuz bir döngü içindeki select yapısı ile alabiliriz.
 Herhangi bir kanaldan mesaj geldiğinde select o kanalı bekleyen <code>case</code>e girecek ve
 içinde tanımlanan işlemler bittikten sonra döngü kanal bekleme işlemini tekrarlayacaktır.</p>
-<div class="codehilite"><pre><span></span><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 <span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 
 <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -494,15 +480,15 @@ içinde tanımlanan işlemler bittikten sonra döngü kanal bekleme işlemini te
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span> <span class="nx">msg2</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h3 id="zaman-asm">Zaman Aşımı</h3>
+<h3 id="zaman-asm">Zaman Aşımı<a class="headerlink" href="#zaman-asm" title="Permanent link">&para;</a></h3>
 <p>Yukarıdaki gibi bir program 2 channela da veri gönderilmezse kilitlenecektir. 
 Bu sonsuz döngüyü başka bir channelı bekleyerek kırabiliriz. </p>
 <p>Go, bu tür bir amaç için önceden tanımlanmış yapılara sahiptir. 
 Time modülündeki <code>time.After</code> metodunu bellirlediğimiz bir süreden sonra bir channelı tetiklemek için kullanabiliriz.</p>
-<div class="codehilite"><pre><span></span><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 <span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 
 <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
@@ -531,15 +517,15 @@ Time modülündeki <code>time.After</code> metodunu bellirlediğimiz bir sürede
     <span class="p">}</span>
 
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<h2 id="ornek-uygulama">Örnek Uygulama</h2>
+<h2 id="ornek-uygulama">Örnek Uygulama<a class="headerlink" href="#ornek-uygulama" title="Permanent link">&para;</a></h2>
 <p>Bir gurup işçi demir ve kömür barındıran maden yataklarında
 maden arayıp, kazıp bu madenleri işlemektedir. </p>
 <p>Aşağıdaki uygulamada go dilinin sağladığı concurrency araçları ile işçilerin eş zamanlı olarak nasıl çalıştırılabileceğini görebiliriz. </p>
-<p><img alt="Miners" src="../../assets/miners.png" /></p>
-<div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nx">main</span>
+<p><img alt="Miners" src="../../assets/img/miners.png" /></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -683,9 +669,7 @@ maden arayıp, kazıp bu madenleri işlemektedir. </p>
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
 
 <span class="p">}</span>
-</pre></div>
-                
-                  
+</code></pre></div>
                 
               
               
@@ -705,33 +689,30 @@ maden arayıp, kazıp bu madenleri işlemektedir. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        powered by
-        <a href="https://www.mkdocs.org">MkDocs</a>
-        and
-        <a href="https://squidfunk.github.io/mkdocs-material/">
-          Material for MkDocs</a>
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
       </div>
       
-  <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
-    
-      <a href="https://github.com/mgurdal" class="md-footer-social__link fa fa-github-alt"></a>
-    
-      <a href="https://twitter.com/mgurdal_" class="md-footer-social__link fa fa-twitter"></a>
-    
-      <a href="https://linkedin.com/in/mgurdal" class="md-footer-social__link fa fa-linkedin"></a>
-    
-  </div>
-
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../../assets/javascripts/application.39abc4af.js"></script>
+      <script src="../../assets/javascripts/vendor.f45d2d8d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.74d0b805.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
       
     
   </body>
