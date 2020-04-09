@@ -250,6 +250,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    copy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#filter" class="md-nav__link">
     filter
   </a>
@@ -287,13 +294,6 @@
           <li class="md-nav__item">
   <a href="#insert" class="md-nav__link">
     insert
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#copy" class="md-nav__link">
-    copy
   </a>
   
 </li>
@@ -727,6 +727,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#copy" class="md-nav__link">
+    copy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#filter" class="md-nav__link">
     filter
   </a>
@@ -764,13 +771,6 @@
           <li class="md-nav__item">
   <a href="#insert" class="md-nav__link">
     insert
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#copy" class="md-nav__link">
-    copy
   </a>
   
 </li>
@@ -1212,12 +1212,22 @@ If we are going to create the arrayi with the values, we can leave the dimension
 
 <h4 id="make">make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h4>
 <p>We can also use the <code>make</code> function to define the slice. The first parameter of the <code>make</code> function determines the size of the slice to be created.</p>
+<p>If we make a slice by defining only its size it will only allocate memory
+total of the size of its item type. And if we later append new items into the slice it will allocate some more memory in runtime.</p>
+<p><img alt="make-1" src="../assets/img/make-1.png" /></p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// define by size</span>
-<span class="nx">n_items</span> <span class="p">=</span> <span class="mi">20</span>
+<span class="nx">n_items</span> <span class="p">=</span> <span class="mi">3</span>
 <span class="nx">slc</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n_items</span><span class="p">)</span>
+</code></pre></div>
 
-<span class="c1">// definition by size and capacity</span>
-<span class="nx">capacity</span> <span class="o">:=</span> <span class="mi">40</span>
+
+<p>Allocating new memory in runtime sometimes can be costly. If we have an
+estimation over the size of the slice; we can give a third parameter to 
+the make function to pre-allocate some more memory.</p>
+<p><img alt="make-2" src="../assets/img/make-2.png" /></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// definition by size and capacity</span>
+<span class="nx">n_items</span> <span class="p">=</span> <span class="mi">3</span>
+<span class="nx">capacity</span> <span class="o">:=</span> <span class="mi">5</span>
 <span class="nx">slc</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">n_items</span><span class="p">,</span> <span class="nx">capacity</span><span class="p">)</span>
 </code></pre></div>
 
@@ -1236,6 +1246,30 @@ If we are going to create the arrayi with the values, we can leave the dimension
  
 <span class="nx">apples</span> <span class="c1">// [🍏 🍏]</span>
 <span class="nx">fruits</span> <span class="c1">// [🍏 🍏 🍇 🍒 🍉]</span>
+</code></pre></div>
+
+
+<h3 id="copy">copy<a class="headerlink" href="#copy" title="Permanent link">&para;</a></h3>
+<p><code>copy</code> allows us to copy one slice of another slicea of ​​the same or larger capacity and returns how many elements are copied.</p>
+<p><img alt="copy" src="../assets/img/copy.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+
+<span class="nx">n_copied</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">bucket</span><span class="p">,</span> <span class="nx">fruits</span><span class="p">)</span>
+
+<span class="nx">n_copied</span> <span class="c1">// 5</span>
+<span class="nx">bucket</span> <span class="c1">// [🍎 🍇 🍈 🍉]</span>
+</code></pre></div>
+
+
+<p>When copying a slice, the elements replace the elements in the same index in the target slice.</p>
+<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
+<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
+
+<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="nx">apples</span><span class="p">)</span>
+
+<span class="nx">fruits</span> <span class="c1">// [🍎 🍏]</span>
 </code></pre></div>
 
 
@@ -1328,7 +1362,7 @@ in a variable (usually the old slice variable).</p>
 <p>The <code>append([]string{banana}, fruits[insert_index:] ...)</code> section in line 7 creates a new slice and copies the elements of the slice <code>fruits[insert_index:]</code> to the created slice. These elements are then copied to the <code>fruits</code> slice.</p>
 <p>Creating a new slice and copying for the 2nd time can be avoided.</p>
 </blockquote>
-<p><img alt="copy" src="../assets/img/insert_mem.gif" /></p>
+<p><img alt="insert_mem" src="../assets/img/insert_mem.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍏&quot;</span><span class="p">,</span> <span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
 <span class="nx">banana</span> <span class="o">:=</span> <span class="s">&quot;🍌&quot;</span>
 <span class="nx">insert_index</span> <span class="o">:=</span> <span class="mi">2</span>
@@ -1338,30 +1372,6 @@ in a variable (usually the old slice variable).</p>
 <span class="nx">fruits</span><span class="p">[</span><span class="nx">insert_index</span><span class="p">]</span> <span class="p">=</span> <span class="nx">banana</span>
 
 <span class="nx">fruits</span> <span class="c1">// [🍏 🍎 🍌 🍉]</span>
-</code></pre></div>
-
-
-<h3 id="copy">copy<a class="headerlink" href="#copy" title="Permanent link">&para;</a></h3>
-<p><code>copy</code> allows us to copy one slice of another slicea of ​​the same or larger capacity and returns how many elements are copied.</p>
-<p><img alt="copy" src="../assets/img/copy.gif" /></p>
-<div class="codehilite"><pre><span></span><code><span class="nx">bucket</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">string</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-
-<span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
-
-<span class="nx">n_copied</span> <span class="o">:=</span> <span class="nb">copy</span><span class="p">(</span><span class="nx">bucket</span><span class="p">,</span> <span class="nx">fruits</span><span class="p">)</span>
-
-<span class="nx">n_copied</span> <span class="c1">// 5</span>
-<span class="nx">bucket</span> <span class="c1">// [🍎 🍇 🍈 🍉]</span>
-</code></pre></div>
-
-
-<p>When copying a slice, the elements replace the elements in the same index in the target slice.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">fruits</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍇&quot;</span><span class="p">,</span> <span class="s">&quot;🍒&quot;</span><span class="p">,</span> <span class="s">&quot;🍉&quot;</span><span class="p">}</span>
-<span class="nx">apples</span> <span class="o">:=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;🍎&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;🍏&quot;</span><span class="p">}</span>
-
-<span class="nb">copy</span><span class="p">(</span><span class="nx">fruits</span><span class="p">,</span> <span class="nx">apples</span><span class="p">)</span>
-
-<span class="nx">fruits</span> <span class="c1">// [🍎 🍏]</span>
 </code></pre></div>
 
 
