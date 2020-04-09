@@ -133,9 +133,11 @@ While creating the slice, it is filled with the default value of the data type t
 If we want to increase the size of a slice, we can use the `append` and` copy` functions for this.
 
 
-### index
+### mutate
 When we resize a slice and assign it to another variable, changes in the new slice will also affect the original slice.
 
+
+![mutate](assets/img/mutate.gif)
 
 ```go
 fruits := []string{"🍎", "🍎", "🍇", "🍒", "🍉"}
@@ -149,6 +151,26 @@ fruits // [🍏 🍏 🍇 🍒 🍉]
 ```
 
 
+
+### filter
+
+We can filter the slice elements according to a certain criterion.
+
+
+![filter](assets/img/filter.gif)
+```go
+fruits := []string{"🍏", "🍎", "🍉", "🍏", "🍎"}
+apple_criteria := "🍎"
+
+apples := []string{}
+for _, fruit := range fruits {
+    if fruit == apple_criteria {
+        apples = append(apples, fruit)
+    }
+}
+
+apples // [🍎 🍎]
+```
 
 ### append
 
@@ -167,6 +189,55 @@ bucket = append(bucket, green_apple)
 
 bucket // [🍎 🍇 🍒 🍉 🍏]
 ```
+
+
+### pop
+
+In the example below, we have removed the last element of the slice and assigned it to a variable.
+
+![pop](assets/img/pop.gif)
+
+```go
+fruits := []string{"🍏", "🍎", "🍉"}
+
+item, fruits := fruits[len(fruits) -1], fruits[:len(fruits) -1]
+
+item // 🍉
+fruits // [🍏 🍎]
+```
+
+
+### push front (unshift)
+
+In this example, we put a new element at the beginning of the slice.
+
+![pushfront](assets/img/pushfront.gif)
+
+```go
+fruits := []string{"🍏", "🍎", "🍉"}
+banana := "🍌"
+
+fruits = append([]string{banana}, fruits ...)
+
+fruits // [🍌 🍏 🍎 🍉]
+```
+
+
+### pop front (shift)
+
+In this example, we removed the first element of the slice and assigned it to a variable.
+
+![popfront](assets/img/popfront.gif)
+
+```go
+fruits := []string{"🍌", "🍏", "🍎", "🍉"}
+
+banana, fruits := fruits[0], fruits[1:]
+
+banana // 🍌
+fruits // [🍏 🍎 🍉]
+```
+
 
 ### insert
 
@@ -245,6 +316,7 @@ fruits // [🍎 🍏]
 
 If we want to combine one slice and the other, we can use the following methods.
 
+![expand_1](assets/img/expand_1.gif)
 
 ```go
 bucket := []string{"🍇", "🍒", "🍉"}
@@ -255,42 +327,23 @@ bucket = append(bucket, apples...)
 bucket // [🍇 🍒 🍉 🍏 🍎]
 ```
 
-In the example below, we have combined the elements after the index determined by `apples` in line` 7`. Afterwards, we added these slice elements to the bucket items up to the index we determined.
+In the example below, we have combined the elements after the index determined by `apples` in line `7`. Afterwards, we added these slice elements to the bucket items up to the index we determined.
 
-
+![expand_2](assets/img/expand_2.gif)
 ```go
-bucket := []string{"🍌", "🍇", "🍉"}
+bucket := []string{"🍇", "🍒", "🍉"}
 apples := []string{"🍏", "🍎"}
 expand_index := 2
 
 bucket = append(
     bucket [:expand_index]
-    append(apples, bucket [expand_index:]...)...,
+    append(apples, bucket[expand_index:]...)...,
 )
 
-bucket // [🍌 🍇 🍏 🍎 🍉]
+bucket // [🍇 🍒 🍏 🍎 🍉]
 ```
 
 
-
-### filter
-
-We can filter the slice elements according to a certain criterion.
-
-
-```go
-fruits := []string{"🍏", "🍎", "🍉", "🍏", "🍎"}
-apple_criteria := "🍎"
-
-apples := []string{}
-for _, fruit := range fruits {
-    if fruit == apple_criteria {
-        apples = append(apples, fruit)
-    }
-}
-
-apples // [🍎 🍎]
-```
 
 ### cut
 
@@ -368,51 +421,6 @@ edibles // [🍎 🍇 🥔 🍉 🌶 🍆 🌽]
 ![slice-cut](assets/img/delete_unordered.gif)
 
 
-
-
-### pop
-
-In the example below, we have removed the last element of the slice and assigned it to a variable.
-
-
-```go
-fruits := []string{"🍏", "🍎", "🍉"}
-
-item, fruits := fruits[len(fruits) -1], fruits[:len(fruits) -1]
-
-item // 🍉
-fruits // [🍏 🍎]
-```
-
-
-### push front (unshift)
-
-In this example, we put a new element at the beginning of the slice.
-
-
-```go
-fruits := []string{"🍏", "🍎", "🍉"}
-banana := "🍌"
-
-fruits = append([]string{banana}, fruits ...)
-
-fruits // [🍌 🍏 🍎 🍉]
-```
-
-
-### pop front (shift)
-
-In this example, we removed the first element of the slice and assigned it to a variable.
-
-
-```go
-fruits := []string{"🍌", "🍏", "🍎", "🍉"}
-
-banana, fruits := fruits[0], fruits[1:]
-
-banana // 🍌
-fruits // [🍏 🍎 🍉]
-```
 
 
 Map
@@ -1328,40 +1336,3 @@ Stringify(12) // "12"
 Stringify(12.52312313) // "12.52"
 Stringify("test")  // "test"
 ```
-
-
-Additional Resources
-----------------
-[https://medium.com/rungo/structures-in-go-76377cc106a2](https://medium.com/rungo/structures-in-go-76377cc106a2)  
-[https://golangbot.com/arrays-and-slices/](https://golangbot.com/arrays-and-slices/)  
-[https://blog.golang.org/go-slices-usage-and-internals](https://blog.golang.org/go-slices-usage-and-internals)  
-[https://gobyexample.com/slices](https://gobyexample.com/slices)  
-[https://medium.com/rungo/the-anatomy-of-slices-in-go-6450e3bb2b94](https://medium.com/rungo/the-anatomy-of-slices-in-go-6450e3bb2b94)  
-[https://opensource.com/article/18/7/introduction-go-arrays-and-slices](https://opensource.com/article/18/7/introduction-go-arrays-and-slices)  
-[https://appliedgo.net/slices/](https://appliedgo.net/slices/)  
-[https://gobyexample.com/maps](https://gobyexample.com/maps)  
-[https://blog.golang.org/go-maps-in-action](https://blog.golang.org/go-maps-in-action)  
-[https://medium.com/rungo/the-anatomy-of-maps-in-go-79b82836838b](https://medium.com/rungo/the-anatomy-of-maps-in-go-79b82836838b)  
-[https://github.com/Pungyeon/clean-go-article](https://github.com/Pungyeon/clean-go-article)  
-[https://medium.com/rungo/error-handling-in-go-f0125de052f0](https://medium.com/rungo/error-handling-in-go-f0125de052f0)  
-[https://github.com/golang/go/wiki/SliceTricks](https://github.com/golang/go/wiki/SliceTricks)  
-[https://gobyexample.com/variadic-functions](https://gobyexample.com/variadic-functions)  
-[https://github.com/emirpasic/gods](https://github.com/emirpasic/gods)  
-[https://github.com/avelino/awesome-go](https://github.com/avelino/awesome-go)  
-[https://golangbot.com/pointers/](https://golangbot.com/pointers/)  
-[http://www.golang-book.com/books/intro/8](http://www.golang-book.com/books/intro/8)  
-[https://medium.com/rungo/the-anatomy-of-arrays-in-go-24429e4491b7](https://medium.com/rungo/the-anatomy-of-arrays-in-go-24429e4491b7)  
-[https://medium.com/rungo/achieving-concurrency-in-go-3f84cbf870ca](https://medium.com/rungo/achieving-concurrency-in-go-3f84cbf870ca)  
-[https://medium.com/rungo/interfaces-in-go-ab1601159b3a](https://medium.com/rungo/interfaces-in-go-ab1601159b3a)  
-[https://medium.com/@dotronglong/interface-naming-convention-in-golang-f53d9f471593](https://medium.com/@dotronglong/interface-naming-convention-in-golang-f53d9f471593)  
-[https://yourbasic.org/golang/interfaces-explained/](https://yourbasic.org/golang/interfaces-explained/)  
-[https://medium.com/rungo/structures-in-go-76377cc106a2](https://medium.com/rungo/structures-in-go-76377cc106a2)  
-[https://talks.golang.org/2012/10things.slide\#9](https://talks.golang.org/2012/10things.slide#9)  
-[https://flaviocopes.com/go-empty-interface/](https://flaviocopes.com/go-empty-interface/)  
-[https://research.swtch.com/interfaces](https://research.swtch.com/interfaces)  
-[https://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go](https://jordanorelli.com/post/32665860244/how-to-use-interfaces-in-go)
-
-
-
-
-
