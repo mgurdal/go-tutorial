@@ -270,7 +270,7 @@ A group of workers is working in a iron and coal mine deposit, where ores are ex
 
 In the application below, we can see how workers can work in parallel with the concurrency tools provided by the go language.
 
-![Miners](assets/miners.png)
+![Miners](assets/img/miners.png)
 
 ```go
 package main
