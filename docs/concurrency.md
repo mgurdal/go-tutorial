@@ -63,7 +63,7 @@ func main() {
 
 ```
 
-### WaitGroup
+## WaitGroup
 In certain moments of the application, we may have to wait for some goroutines to end.
 
 With WaitGroup, we can specify the number of goroutines we want to run and wait for them to finish their work. 
@@ -126,65 +126,132 @@ func main() {
 
 ## Mutex
 
+Mutexes are the concurrency primitives that allows goroutines to alter a shared variable without causing a race condition.
 
-> **Wikipedia Definition**
->
-> In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.
+!!! quote "Wikipedia Definition"
+	In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.
 
+In the example below we use a Counter to count the user clicks.
+At first glance, our program does not look suspicous but if we build the
+program with the **--race** flag and run it will show us that we have a race condition here.
+
+![race](assets/img/race.png)
+
+
+What happens is that if we have a machine with multiple cores it can execute the `Click` function calls
+at the same and program gets confused about the new `c.Value`.
+
+![race](assets/img/race.gif)
 ```go
-func Click(counter *int, wg *sync.WaitGroup) {
-	counter += 1
+
+type  Counter struct {
+	Value int
+}
+
+func (c *Counter) Inc() {
+	c.Value++
+}
+
+
+func Click(c *Counter, wg *sync.WaitGroup) {
+	c.Inc()
 	wg.Done()
 }
 
 func main() {
 
-    counter := 0
-
-	nWorkers := 500
+	nUsers := 500
 	wg := &sync.WaitGroup{}
-	wg.Add(nWorkers1)
+	wg.Add(nUsers)
 
-	for i := 0; i < nWorkers1; i++ {
-		go Click(&counter, wg)
+	counter := &Counter{}
+
+	for i := 0; i < nUsers; i++ {
+		go Click(counter, wg)
 	}
 
 	wg.Wait()
-    fmt.Println(counter)
+	fmt.Println(counter.Value)
 
 }
 
+
 ```
 
+Now, lets use mutex to fix this problem by defining a mutex in `main`  and
+using the `mx.Lock` and `mx.Unlock` methods within the `Click` function.
+
+![race](assets/img/mutex.gif)
 
 ```go
-func Click(counter *int, wg *sync.WaitGroup) {
-	mx.Lock()
-    counter += 1
-	mx.Unlock()
 
+
+func Click(c *Counter, wg *sync.WaitGroup, mx *sync.Mutex) {
+	mx.Lock()
+	c.Inc()
+	mx.Unlock()
 	wg.Done()
 }
 
 func main() {
 
-	counter := 0
+	nUsers := 500
+	wg := &sync.WaitGroup{}
+	wg.Add(nUsers)
 
 	mx := &sync.Mutex{}
+	counter := &Counter{}
 
-    nWorkers := 500
-	wg := &sync.WaitGroup{}
-	wg.Add(nWorkers)
-
-	for i := 0; i < nWorkers; i++ {
-		go Work(&counter, wg, mx)
+	for i := 0; i < nUsers; i++ {
+		go Click(counter, wg, mx)
 	}
 
 	wg.Wait()
+	fmt.Println(counter.Value)
 
-	fmt.Println(counter)
 }
 ```
+
+It is also common to define mutex in structs. As we can see below,
+we have defined the `*sync.Mutex` as a promoted field in `Counter`
+and used `c.Lock` and `c.Unlock` methods to protect the counter value.
+
+```go
+type  Counter struct {
+	Value int
+	*sync.Mutex
+}
+
+func (c *Counter) Inc() {
+	c.Value++
+}
+
+
+func Click(c *Counter, wg *sync.WaitGroup) {
+	c.Lock()
+	c.Inc()
+	c.Unlock()
+	wg.Done()
+}
+
+func main() {
+
+	nUsers := 500
+	wg := &sync.WaitGroup{}
+	wg.Add(nUsers)
+
+	counter := &Counter{Mutex: &sync.Mutex{}}
+
+	for i := 0; i < nUsers; i++ {
+		go Click(counter, wg)
+	}
+
+	wg.Wait()
+	fmt.Println(counter.Value)
+
+}
+```
+
 
 ## Select
 
@@ -223,7 +290,7 @@ for {
 }
 ```
 
-### Adding Timeout
+## Adding Timeout
 
 A program like above will be locked if no data is sent to both channels. To prevent this, we can add timeouts.
 
@@ -263,6 +330,9 @@ for {
 
 }
 ```
+
+## Context
+ 
 
 Example
 --------
