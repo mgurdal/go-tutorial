@@ -226,18 +226,12 @@
     Goroutines
   </a>
   
-    <nav class="md-nav" aria-label="Goroutines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#waitgroup" class="md-nav__link">
     WaitGroup
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -319,18 +313,12 @@
     Goroutines
   </a>
   
-    <nav class="md-nav" aria-label="Goroutines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#waitgroup" class="md-nav__link">
     WaitGroup
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -401,6 +389,7 @@ by executing the instructions in different cores.</p>
 <p>Goroutines are functions in a task queue that waits to be executed by a system thread.
 To create a goroutine, we only need to write 'go' when running the function.</p>
 <p>In the application below, every time the Work function is called it blocks the application until it is finished.</p>
+<p><img alt="routine" src="../assets/img/routine.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
@@ -421,10 +410,12 @@ To create a goroutine, we only need to write 'go' when running the function.</p>
 </code></pre></div>
 
 
+<p><img alt="goroutine" src="../assets/img/goroutine_unfinished.gif" /></p>
 <p>When we run the program, it will end without printing anything on the screen. 
 When the function <code>main</code> finishes it ends and the program closes without waiting 
 <code>Work</code> function to write something on the screen. </p>
 <p>We can capture the output of <code>Work</code> function by adding a small delay at the end of the main function,</p>
+<p><img alt="goroutine_sleep" src="../assets/img/goroutine_sleep.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -440,15 +431,21 @@ When the function <code>main</code> finishes it ends and the program closes with
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work work work work work work...&quot;</span><span class="p">)</span>
     <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;zxcasfv&quot;</span><span class="p">)</span>
-    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
-<h3 id="waitgroup">WaitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Go runtime might be limited to run only single OS thread at a time. In order to enable the multi-threading we should set the <code>GOMAXPROCS</code> environment variable. </p>
+<p>For example; <code>GOMAXPROCS=2</code> allows go to use two OS level threads.</p>
+</div>
+<h2 id="waitgroup">WaitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h2>
 <p>In certain moments of the application, we may have to wait for some goroutines to end.</p>
 <p>With WaitGroup, we can specify the number of goroutines we want to run and wait for them to finish their work. 
 All the goroutines need to do here is to run WaitGroup's <code>Done</code> method when it finishes.</p>
+<p><img alt="waitgroup" src="../assets/img/waitgroup.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
@@ -456,20 +453,13 @@ All the goroutines need to do here is to run WaitGroup's <code>Done</code> metho
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">nWorkers1</span><span class="p">,</span> <span class="nx">nWorkers2</span> <span class="o">:=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span>
+    <span class="nx">nWorkers</span> <span class="o">:=</span> <span class="mi">5</span>
     <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers1</span><span class="p">)</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-1&quot;</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work&quot;</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
     <span class="p">}</span>
-
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
-
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers2</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-2&quot;</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
 
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
 <span class="p">}</span>
@@ -478,21 +468,24 @@ All the goroutines need to do here is to run WaitGroup's <code>Done</code> metho
 
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
 <p>Channels allows us to communicate goroutines with each other.</p>
-<p>In the above example, we cannot get the return value from the functions we run with <code>go</code>. 
+<p>In the above example, we cannot get the return value from the functions if we run them as goroutines. 
 We can create channels to send the result of a goroutine to the main function or anoter goroutine.</p>
 <p>Channels can be created as <code>make(chan data_type, buffer)</code>.</p>
+<p>We can send a data to channel using the <code>channel &lt;- data</code> and wait for a data from channel  <code>data := &lt;- channel</code> signatures. </p>
+<p>Both these operations blocks the runtime until its finished.</p>
+<p><img alt="channel_simple" src="../assets/img/channel_simple.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">msg</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
-    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-1&quot;</span><span class="p">,</span> <span class="nx">ch1</span><span class="p">)</span>
-    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-2&quot;</span><span class="p">,</span> <span class="nx">ch1</span><span class="p">)</span>
+    <span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-1&quot;</span><span class="p">,</span> <span class="nx">channel</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-2&quot;</span><span class="p">,</span> <span class="nx">channel</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="nx">msg</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch1</span>
+        <span class="nx">msg</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">channel</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -500,59 +493,116 @@ We can create channels to send the result of a goroutine to the main function or
 
 
 <h2 id="mutex">Mutex<a class="headerlink" href="#mutex" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Wikipedia Definition</strong></p>
+<p>Mutexes are the concurrency primitives that allows goroutines to alter a shared variable without causing a race condition.</p>
+<div class="admonition quote">
+<p class="admonition-title">Wikipedia Definition</p>
 <p>In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.</p>
-</blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</div>
+<p>In the example below we use a Counter to count the user clicks.
+At first glance, our program does not look suspicous but if we build the
+program with the <strong>--race</strong> flag and run it will show us that we have a race condition here.</p>
+<p><img alt="race" src="../assets/img/race.png" /></p>
+<p>What happens is that if we have a machine with multiple cores it can execute the <code>Click</code> function calls
+at the same and program gets confused about the new <code>c.Value</code>.</p>
+<p><img alt="race" src="../assets/img/race.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">type</span>  <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Value</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">)</span> <span class="nx">Inc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Value</span><span class="o">++</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Inc</span><span class="p">()</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-    <span class="nx">counter</span> <span class="o">:=</span> <span class="mi">0</span>
-
-    <span class="nx">nWorkers</span> <span class="o">:=</span> <span class="mi">500</span>
+    <span class="nx">nUsers</span> <span class="o">:=</span> <span class="mi">500</span>
     <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers1</span><span class="p">)</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nUsers</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
+    <span class="nx">counter</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Counter</span><span class="p">{}</span>
+
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nUsers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
 
 <span class="p">}</span>
 </code></pre></div>
 
 
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+<p>Now, lets use mutex to fix this problem by defining a mutex in <code>main</code>  and
+using the <code>mx.Lock</code> and <code>mx.Unlock</code> methods within the <code>Click</code> function.</p>
+<p><img alt="race" src="../assets/img/mutex.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">mx</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">mx</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
-    <span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Inc</span><span class="p">()</span>
     <span class="nx">mx</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
-
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-    <span class="nx">counter</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="nx">nUsers</span> <span class="o">:=</span> <span class="mi">500</span>
+    <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nUsers</span><span class="p">)</span>
 
     <span class="nx">mx</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">{}</span>
+    <span class="nx">counter</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Counter</span><span class="p">{}</span>
 
-    <span class="nx">nWorkers</span> <span class="o">:=</span> <span class="mi">500</span>
-    <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">,</span> <span class="nx">mx</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nUsers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">,</span> <span class="nx">mx</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
 
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>It is also common to define mutex in structs. As we can see below,
+we have defined the <code>*sync.Mutex</code> as a promoted field in <code>Counter</code>
+and used <code>c.Lock</code> and <code>c.Unlock</code> methods to protect the counter value.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">type</span>  <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Value</span> <span class="kt">int</span>
+    <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">)</span> <span class="nx">Inc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Value</span><span class="o">++</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Inc</span><span class="p">()</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">nUsers</span> <span class="o">:=</span> <span class="mi">500</span>
+    <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nUsers</span><span class="p">)</span>
+
+    <span class="nx">counter</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Counter</span><span class="p">{</span><span class="nx">Mutex</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">{}}</span>
+
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nUsers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
+
 <span class="p">}</span>
 </code></pre></div>
 
@@ -564,29 +614,42 @@ Select allows us to await data from multiple channels.</p>
 We can read all incoming messages from both channel by selecting both of them within
 a infinite loop. When a message comes from any of the channels select will enter in
 a case and handle the message and the for loop will start the selection process again.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
-<span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+<p><img alt="select" src="../assets/img/select.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch2</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="s">&quot;one&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan2</span> <span class="o">&lt;-</span> <span class="s">&quot;two&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
+    <span class="c1">// Send data to ch1 every second</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+            <span class="nx">ch1</span> <span class="o">&lt;-</span> <span class="s">&quot;work-1&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
 
-<span class="k">for</span> <span class="p">{</span>
-    <span class="k">select</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
-    <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span> <span class="nx">msg2</span><span class="p">)</span>
+    <span class="c1">// Send data to ch2 every 1.5 seconds</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+            <span class="nx">ch2</span> <span class="o">&lt;-</span> <span class="s">&quot;work-2&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nx">ch2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span><span class="p">,</span> <span class="nx">ch2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
+        <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg2</span><span class="p">)</span>
+        <span class="p">}</span>
     <span class="p">}</span>
+
 <span class="p">}</span>
 </code></pre></div>
 
@@ -596,35 +659,25 @@ a case and handle the message and the for loop will start the selection process 
 <p>We can break the loop by waiting from another finite channel and then end the function when the case is matched.</p>
 <p>Go has predefined channels for this kind of purposes. Time module has the <code>time.After</code> method which yields a result
 <strong>after</strong> a certain delay.   </p>
-<div class="codehilite"><pre><span></span><code><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
-<span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nx">ch2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span><span class="p">,</span> <span class="nx">ch2</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="s">&quot;one&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan2</span> <span class="o">&lt;-</span> <span class="s">&quot;two&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
+        <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg2</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Brave Sir Robin ran away 🎵&quot;</span><span class="p">)</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Bravely ran away away    🎵&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="p">}</span>
 
-<span class="k">for</span> <span class="p">{</span>
-    <span class="k">select</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
-    <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg2</span><span class="p">)</span>
-    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Brave Sir Robin ran away 🎵&quot;</span><span class="p">)</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Bravely ran away away    🎵&quot;</span><span class="p">)</span>
-            <span class="k">return</span>
     <span class="p">}</span>
-
-<span class="p">}</span>
 </code></pre></div>
 
 

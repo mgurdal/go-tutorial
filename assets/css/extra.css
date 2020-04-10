@@ -27,3 +27,36 @@
     color: dimgray;
     font-size: 24px;
 }
+
+.coming-soon{
+    position: relative;
+    overflow: hidden;
+    border: 1px dashed dimgray;
+    opacity: 0.8;
+    cursor: default;
+}
+.coming-soon:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.coming-soon:before{
+    position: absolute;
+    display: block;
+    content: 'COMING SOON';
+    text-align: center;
+    width: 200px;
+    height: 20px;
+    color: dimgray;
+    font-size: 14px;
+    line-height: 20px;
+    padding-left: -30px;
+    padding-right: -30px;
+    left: -80px;
+    top: 10px;
+    padding-top: 2px;
+    transform-origin: 50% 50%; 
+    transform: translate(20px, 20px)  rotate(-45deg) ;
+    box-shadow: 1px 1px 1px  #ddd;
+    background:  white;
+  }
