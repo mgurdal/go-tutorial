@@ -27,6 +27,7 @@ theme:
 
 markdown_extensions:
   - codehilite
+  - admonition
   - toc:
       permalink: true
 
