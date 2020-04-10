@@ -15,6 +15,8 @@ To create a goroutine, we only need to write 'go' when running the function.
 
 In the application below, every time the Work function is called it blocks the application until it is finished.
 
+![routine](assets/img/routine.gif)
+
 ```go
 func Work(msg string) {
 	fmt.Println(msg)
@@ -35,12 +37,15 @@ func main() {
 	go Work("zxcasfv")
 }
 ```
+![goroutine](assets/img/goroutine_unfinished.gif)
 
 When we run the program, it will end without printing anything on the screen. 
 When the function `main` finishes it ends and the program closes without waiting 
 `Work` function to write something on the screen. 
  
 We can capture the output of `Work` function by adding a small delay at the end of the main function,
+
+![goroutine_sleep](assets/img/goroutine_sleep.gif)
 
 ```go
 package main
@@ -58,16 +63,18 @@ func Work(msg string) {
 func main() {
 	go Work("work work work work work work...")
 	go Work("zxcasfv")
-	time.Sleep(time.Second * 1)
+	time.Sleep(time.Second * 3)
 }
 
 ```
-
+ 
 ## WaitGroup
 In certain moments of the application, we may have to wait for some goroutines to end.
 
 With WaitGroup, we can specify the number of goroutines we want to run and wait for them to finish their work. 
 All the goroutines need to do here is to run WaitGroup's `Done` method when it finishes.
+
+![waitgroup](assets/img/waitgroup.gif)
 
 ```go
 func Work(msg string, wg *sync.WaitGroup) {
@@ -77,21 +84,14 @@ func Work(msg string, wg *sync.WaitGroup) {
 }
 
 func main() {
-	nWorkers1, nWorkers2 := 5, 4
+	nWorkers := 5
 	wg := &sync.WaitGroup{}
-	wg.Add(nWorkers1)
+	wg.Add(nWorkers)
 
-	for i := 0; i < nWorkers1; i++ {
-		go Work("work-1", wg)
+	for i := 0; i < nWorkers; i++ {
+		go Work("work", wg)
 	}
 
-	wg.Wait()
-
-	wg.Add(nWorkers2)
-
-	for i := 0; i < nWorkers2; i++ {
-		go Work("work-2", wg)
-	
 	wg.Wait()
 }
 
