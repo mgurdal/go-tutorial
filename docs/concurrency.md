@@ -68,6 +68,11 @@ func main() {
 
 ```
  
+!!! warning
+	Go runtime might be limited to run only single OS thread at a time. In order to enable the multi-threading we should set the `GOMAXPROCS` environment variable. 
+
+	For example; `GOMAXPROCS=2` allows go to use two OS level threads.
+
 ## WaitGroup
 In certain moments of the application, we may have to wait for some goroutines to end.
 
@@ -101,10 +106,16 @@ func main() {
 
 Channels allows us to communicate goroutines with each other.
 
-In the above example, we cannot get the return value from the functions we run with `go`. 
+In the above example, we cannot get the return value from the functions if we run them as goroutines. 
 We can create channels to send the result of a goroutine to the main function or anoter goroutine.
 
 Channels can be created as `make(chan data_type, buffer)`.
+
+We can send a data to channel using the `channel <- data` and wait for a data from channel  `data := <- channel` signatures. 
+
+Both these operations blocks the runtime until its finished.
+
+![channel_simple](assets/img/channel_simple.gif)
 
 ```go
 func Work(msg string, ch chan string) {
@@ -113,12 +124,12 @@ func Work(msg string, ch chan string) {
 }
 
 func main() {
-	ch1 := make(chan string)
-	go Work("work-1", ch1)
-	go Work("work-2", ch1)
+	channel := make(chan string)
+	go Work("work-1", channel)
+	go Work("work-2", channel)
 
 	for i := 0; i < 2; i++ {
-		msg := <-ch1
+		msg := <-channel
 		fmt.Println(msg)
 	}
 }
@@ -263,34 +274,49 @@ We can read all incoming messages from both channel by selecting both of them wi
 a infinite loop. When a message comes from any of the channels select will enter in
 a case and handle the message and the for loop will start the selection process again.
 
+![select](assets/img/select.gif)
+
 ```go
-chan1 := make(chan string)
-chan2 := make(chan string)
+func Work(ch1 chan string, ch2 chan string) {
 
-go func() {
-	for {
-		time.Sleep(2 * time.Second)
-		chan1 <- "one"
-	}
-}()
-go func() {
-	for {
-		time.Sleep(1 * time.Second)
-		chan2 <- "two"
-	}
-}()
+	// Send data to ch1 every second
+	go func() {
+		for {
+			time.Sleep(1 * time.Second)
+			ch1 <- "work-1"
+		}
+	}()
 
-for {
-	select {
-	case msg1 := <-chan1:
-		fmt.Println(msg1)
-	case msg2 := <-chan2:
-		fmt.Println( msg2)
-	}
+	// Send data to ch2 every 1.5 seconds
+	go func() {
+		for {
+			time.Sleep(1.5 * time.Second)
+			ch2 <- "work-2"
+		}
+	}()
+
 }
+
+func main() {
+	ch1 := make(chan string)
+	ch2 := make(chan string)
+
+	go Work(ch1, ch2)
+
+	for {
+		select {
+		case msg1 := <-ch1:
+			fmt.Println(msg1)
+		case msg2 := <-ch2:
+			fmt.Println(msg2)
+		}
+	}
+
+}
+
 ```
 
-## Adding Timeout
+### Adding Timeout
 
 A program like above will be locked if no data is sent to both channels. To prevent this, we can add timeouts.
 
@@ -300,39 +326,26 @@ Go has predefined channels for this kind of purposes. Time module has the `time.
 **after** a certain delay.   
 
 ```go
-chan1 := make(chan string)
-chan2 := make(chan string)
+func main() {
+	ch1 := make(chan string)
+	ch2 := make(chan string)
 
-go func() {
+	go Work(ch1, ch2)
+
 	for {
-		time.Sleep(1 * time.Second)
-		chan1 <- "one"
-	}
-}()
-go func() {
-	for {
-		time.Sleep(2 * time.Second)
-		chan2 <- "two"
-	}
-}()
+		select {
+		case msg1 := <-ch1:
+			fmt.Println(msg1)
+		case msg2 := <-ch2:
+			fmt.Println(msg2)
+		case <-time.After(time.Second * 1):
+			fmt.Println("🎵 Brave Sir Robin ran away 🎵")
+			fmt.Println("🎵 Bravely ran away away    🎵")
+				return
+		}
 
-for {
-	select {
-	case msg1 := <-chan1:
-		fmt.Println(msg1)
-	case msg2 := <-chan2:
-		fmt.Println(msg2)
-	case <-time.After(time.Second * 1):
-		fmt.Println("🎵 Brave Sir Robin ran away 🎵")
-        fmt.Println("🎵 Bravely ran away away    🎵")
-            return
 	}
-
-}
 ```
-
-## Context
- 
 
 Example
 --------
