@@ -347,8 +347,168 @@ func main() {
 	}
 ```
 
-Example
---------
+
+## Context
+
+"We use Context to inform goroutines about cancellations and timeouts."
+
+Contexes deserve atleast the same amout of learning effort as the other concurrency units. 
+
+Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.
+
+When we spawn a goroutine using `go Func()`, it does not give us a reference
+to later cancel it.
+
+We sometimes spawn resource intensive goroutines using another goroutine. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures  gets wasted.
+
+Uncool..
+
+This is where the contexes comes handy.
+
+- Contexes allows us to propagete cancellation to the goroutines.
+- Contexes can create hierarchies. When the root context gets cancelled all sub contexes also cancels.
+
+Without Context                         |  With Context
+:--------------------------------------:|:-------------------------:
+![nocontext](assets/img/nocontext.gif)  | ![context](assets/img/context.gif)
+
+
+### Implementation
+
+GO provides all these stuff under the `context` package.
+
+The package has the `context.Context` interface that defines 4 methods.
+
+```go
+type Context interface {
+	Deadline() (deadline time.Time, ok bool)
+	Done() <-chan struct{}
+	Err() error
+	Value(key interface{}) interface{}
+}
+```
+
+`Deadline()` method returns the deadline for the work to be completed.
+
+`Done()` returns a channel that gets closed **after the work is completed** or the **context cancelled**.
+
+`Err()` returns an error explains the reason why the context ended. It can be either `Canceled` or `DeadlineExceeded`.
+
+`Value` returns the value of given key. As the parent context data is shared through the hierarchy same key always returns the same value. 
+
+!!! warning 
+	Using this mechanic to deliver data accross contexes and hierarchies is a **bad idea** since the key and the value does not have any type checking.
+
+The context package provides functions to create contexes that implements the Context interface for various purpouses. These functions are:
+
+
+- `context.Background()` that returns the root context that does not have any logic in it. All the other contexes are the children of the background context.
+
+- `context.TODO()` that is basically same as `context.Background()` but we use this as a placeholder when we are not sure about th context type we are going to use.
+
+It also provides some functions that wraps the parent context and add some cancellation logic to it. All these functions excepts a **parent context** and they all returns the **wrapped context** and a function to `cancel` the context manually. They send a signal to `Done()` channel when their criteria is meth.
+
+
+- `context.WithCancel(parent)` is used to cancel the context manually. It does not contain a timeout or deadline logic.
+
+In the example below we create a background task and wrap it with `context.WithCancel`.
+
+Then We spawn 2 `SendRequest` goroutines and share the context with them
+and we spawn another goroutine that triggers the `cancel` function after a second.
+
+Notice how all functions passes the context to other and wait for the context to be done using the  `<- ctx.Done()` statement.
+
+When the `cancel` function gets triggered it will notify all of the tasks by sending a signal to the ` ctx.Done()` channel.
+
+![cancel](assets/img/cancel.gif)
+
+```go
+// SearchDB finishes normally after 2 seconds
+func SearchDB(ctx context.Context){
+	fmt.Println("Searching Database")
+	select {
+	case <- ctx.Done():
+		fmt.Println("Search Cancelled")
+	case <- time.After(time.Second * 2):
+		fmt.Println("Search Finished")
+	}
+
+}
+// SendRequest finishes normally after 2 seconds
+func SendRequest(ctx context.Context){
+	fmt.Println("Processing Request")
+	
+	go SearchDB(ctx)
+	go SearchDB(ctx)
+	
+	select {
+	case <- ctx.Done():
+		fmt.Println("Request Cancelled")
+	case <- time.After(time.Second * 2):
+		fmt.Println("Request Finished")
+	}
+}
+
+
+func main() {
+	ctx := context.Background()
+	cancellingCtx, cancel := context.WithCancel(ctx)
+	
+	go SendRequest(cancellingCtx)
+	go SendRequest(cancellingCtx)
+
+	// This will manually cancel all request and database searches after 1 second
+	go time.AfterFunc(time.Second, cancel)
+
+	select {
+	case <- cancellingCtx.Done():
+		fmt.Println("Cancelled by Context")
+	case <- time.After(time.Second * 3):
+		fmt.Println("Finished normally")
+	}
+
+	// This will give time to goroutines to print stuff on screen
+	<- time.After(time.Second * 3)
+}
+```
+
+- `context.WithTimeout(parent, duration)` is used to set a certain time limit. 
+
+We can also add a new timeout to existing context. For this example; we can add another timeout in `SendRequest` function. So that if the database does not return within 2 seconds we can cancel it.
+
+![timeout](assets/img/timeout.gif)
+
+
+```go
+// SendRequest finishes normally after 5 seconds
+// Cancels database search after waiting for 2 seconds
+func SendRequest(ctx context.Context){
+	fmt.Println("Processing Request")
+	
+	// This will cancel all database searches after 2 seconds
+	// We will not use the cancel function since we already set a timeout
+	dbCtx, _ := context.WithTimeout(ctx, time.Second * 2)
+
+	go SearchDB(dbCtx)
+	go SearchDB(dbCtx)
+	
+	select {
+	case <- ctx.Done():
+		fmt.Println("Request Cancelled")
+	case <- dbCtx.Done():
+		fmt.Println("Search Timeout -", dbCtx.Err())  // Search Timeout - context deadline exceeded
+	case <- time.After(time.Second * 5):
+		fmt.Println("Request Finished")
+	}
+}
+
+```
+
+-  `context.WithDeadline(parent, time)` is used to when you want context to be cancelled on a specific time.
+
+
+## Example
+
 A group of workers is working in a iron and coal mine deposit, where ores are explored, mined and processed.
 
 In the application below, we can see how workers can work in parallel with the concurrency tools provided by the go language.
