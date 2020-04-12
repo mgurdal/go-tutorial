@@ -270,6 +270,26 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    Context
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#example" class="md-nav__link">
     Example
   </a>
@@ -347,6 +367,26 @@
           <li class="md-nav__item">
   <a href="#adding-timeout" class="md-nav__link">
     Adding Timeout
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    Context
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
   </a>
   
 </li>
@@ -681,6 +721,154 @@ a case and handle the message and the for loop will start the selection process 
 </code></pre></div>
 
 
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>"We use Context to inform goroutines about cancellations and timeouts."</p>
+<p>Contexes deserve atleast the same amout of learning effort as the other concurrency units. </p>
+<p>Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.</p>
+<p>When we spawn a goroutine using <code>go Func()</code>, it does not give us a reference
+to later cancel it.</p>
+<p>We sometimes spawn resource intensive goroutines using another goroutine. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures  gets wasted.</p>
+<p>Uncool..</p>
+<p>This is where the contexes comes handy.</p>
+<ul>
+<li>Contexes allows us to propagete cancellation to the goroutines.</li>
+<li>Contexes can create hierarchies. When the root context gets cancelled all sub contexes also cancels.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Without Context</th>
+<th align="center">With Context</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="nocontext" src="../assets/img/nocontext.gif" /></td>
+<td align="center"><img alt="context" src="../assets/img/context.gif" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h3>
+<p>GO provides all these stuff under the <code>context</code> package.</p>
+<p>The package has the <code>context.Context</code> interface that defines 4 methods.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Context</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Deadline</span><span class="p">()</span> <span class="p">(</span><span class="nx">deadline</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">,</span> <span class="nx">ok</span> <span class="kt">bool</span><span class="p">)</span>
+    <span class="nx">Done</span><span class="p">()</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{}</span>
+    <span class="nx">Err</span><span class="p">()</span> <span class="kt">error</span>
+    <span class="nx">Value</span><span class="p">(</span><span class="nx">key</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kd">interface</span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p><code>Deadline()</code> method returns the deadline for the work to be completed.</p>
+<p><code>Done()</code> returns a channel that gets closed <strong>after the work is completed</strong> or the <strong>context cancelled</strong>.</p>
+<p><code>Err()</code> returns an error explains the reason why the context ended. It can be either <code>Canceled</code> or <code>DeadlineExceeded</code>.</p>
+<p><code>Value</code> returns the value of given key. As the parent context data is shared through the hierarchy same key always returns the same value. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using this mechanic to deliver data accross contexes and hierarchies is a <strong>bad idea</strong> since the key and the value does not have any type checking.</p>
+</div>
+<p>The context package provides functions to create contexes that implements the Context interface for various purpouses. These functions are:</p>
+<ul>
+<li>
+<p><code>context.Background()</code> that returns the root context that does not have any logic in it. All the other contexes are the children of the background context.</p>
+</li>
+<li>
+<p><code>context.TODO()</code> that is basically same as <code>context.Background()</code> but we use this as a placeholder when we are not sure about th context type we are going to use.</p>
+</li>
+</ul>
+<p>It also provides some functions that wraps the parent context and add some cancellation logic to it. All these functions excepts a <strong>parent context</strong> and they all returns the <strong>wrapped context</strong> and a function to <code>cancel</code> the context manually. They send a signal to <code>Done()</code> channel when their criteria is meth.</p>
+<ul>
+<li><code>context.WithCancel(parent)</code> is used to cancel the context manually. It does not contain a timeout or deadline logic.</li>
+</ul>
+<p>In the example below we create a background task and wrap it with <code>context.WithCancel</code>.</p>
+<p>Then We spawn 2 <code>SendRequest</code> goroutines and share the context with them
+and we spawn another goroutine that triggers the <code>cancel</code> function after a second.</p>
+<p>Notice how all functions passes the context to other and wait for the context to be done using the  <code>&lt;- ctx.Done()</code> statement.</p>
+<p>When the <code>cancel</code> function gets triggered it will notify all of the tasks by sending a signal to the <code>ctx.Done()</code> channel.</p>
+<p><img alt="cancel" src="../assets/img/cancel.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SearchDB finishes normally after 2 seconds</span>
+<span class="kd">func</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Searching Database&quot;</span><span class="p">)</span>
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Search Cancelled&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Search Finished&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="c1">// SendRequest finishes normally after 2 seconds</span>
+<span class="kd">func</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Processing Request&quot;</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Cancelled&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Finished&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">()</span>
+    <span class="nx">cancellingCtx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">WithCancel</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">cancellingCtx</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">cancellingCtx</span><span class="p">)</span>
+
+    <span class="c1">// This will manually cancel all request and database searches after 1 second</span>
+    <span class="k">go</span> <span class="nx">time</span><span class="p">.</span><span class="nx">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">,</span> <span class="nx">cancel</span><span class="p">)</span>
+
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">cancellingCtx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Cancelled by Context&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Finished normally&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// This will give time to goroutines to print stuff on screen</span>
+    <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<ul>
+<li><code>context.WithTimeout(parent, duration)</code> is used to set a certain time limit. </li>
+</ul>
+<p>We can also add a new timeout to existing context. For this example; we can add another timeout in <code>SendRequest</code> function. So that if the database does not return within 2 seconds we can cancel it.</p>
+<p><img alt="timeout" src="../assets/img/timeout.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SendRequest finishes normally after 5 seconds</span>
+<span class="c1">// Cancels database search after waiting for 2 seconds</span>
+<span class="kd">func</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Processing Request&quot;</span><span class="p">)</span>
+
+    <span class="c1">// This will cancel all database searches after 2 seconds</span>
+    <span class="c1">// We will not use the cancel function since we already set a timeout</span>
+    <span class="nx">dbCtx</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">WithTimeout</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">dbCtx</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">dbCtx</span><span class="p">)</span>
+
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Cancelled&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">dbCtx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Search Timeout -&quot;</span><span class="p">,</span> <span class="nx">dbCtx</span><span class="p">.</span><span class="nx">Err</span><span class="p">())</span>  <span class="c1">// Search Timeout - context deadline exceeded</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Finished&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<ul>
+<li><code>context.WithDeadline(parent, time)</code> is used to when you want context to be cancelled on a specific time.</li>
+</ul>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
 <p>A group of workers is working in a iron and coal mine deposit, where ores are explored, mined and processed.</p>
 <p>In the application below, we can see how workers can work in parallel with the concurrency tools provided by the go language.</p>
