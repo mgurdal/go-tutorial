@@ -17,11 +17,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install requirements
+    - name: Build
       run: | 
         sudo apt-get install python3-setuptools
         python3 -m pip install mkdocs mkdocs-material
+        python3 -m mkdocs build
 
     # Runs a set of commands using the runners shell
     - name: Deploy
-      run: python3 -m mkdocs gh-deploy
+      uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages  # deploying branch
