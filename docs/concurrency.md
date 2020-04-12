@@ -11,7 +11,7 @@ by executing the instructions in different cores.
 ## Goroutines
 
 Goroutines are functions in a task queue that waits to be executed by a system thread.
-To create a goroutine, we only need to write 'go' when running the function.
+To create a goroutine, we only need to write `go` when running the function.
 
 In the application below, every time the Work function is called it blocks the application until it is finished.
 
@@ -40,8 +40,7 @@ func main() {
 ![goroutine](assets/img/goroutine_unfinished.gif)
 
 When we run the program, it will end without printing anything on the screen. 
-When the function `main` finishes it ends and the program closes without waiting 
-`Work` function to write something on the screen. 
+This is because after the function `main` finishes the program exits without waiting `Work` function to write on the screen. 
  
 We can capture the output of `Work` function by adding a small delay at the end of the main function,
 
@@ -67,17 +66,12 @@ func main() {
 }
 
 ```
- 
-!!! warning
-	Go runtime might be limited to run only single OS thread at a time. In order to enable the multi-threading we should set the `GOMAXPROCS` environment variable. 
-
-	For example; `GOMAXPROCS=2` allows go to use two OS level threads.
 
 ## WaitGroup
-In certain moments of the application, we may have to wait for some goroutines to end.
 
-With WaitGroup, we can specify the number of goroutines we want to run and wait for them to finish their work. 
-All the goroutines need to do here is to run WaitGroup's `Done` method when it finishes.
+In some cases, we may need the to wait for a number of goroutines to finish at a certain moment of the runtime.
+
+With WaitGroup, we can specify the number of goroutines we want wait for and after the individual goroutine finishes its job it can call WaitGroup's `Done()` method to notify the waitgroup.
 
 ![waitgroup](assets/img/waitgroup.gif)
 
@@ -107,13 +101,13 @@ func main() {
 Channels allows us to communicate goroutines with each other.
 
 In the above example, we cannot get the return value from the functions if we run them as goroutines. 
-We can create channels to send the result of a goroutine to the main function or anoter goroutine.
+We can create a channel to send the result of a goroutine to the main function or to anoter goroutine.
 
 Channels can be created as `make(chan data_type, buffer)`.
 
-We can send a data to channel using the `channel <- data` and wait for a data from channel  `data := <- channel` signatures. 
+We can send data to channel using the `channel <- data` and wait data from channel using the  `data := <- channel` signature. 
 
-Both these operations blocks the runtime until its finished.
+Both these operations block the runtime until they finish.
 
 ![channel_simple](assets/img/channel_simple.gif)
 
@@ -137,22 +131,13 @@ func main() {
 
 ## Mutex
 
-Mutexes are the concurrency primitives that allows goroutines to alter a shared variable without causing a race condition.
+Mutexes are the concurrency primitives that allows goroutines to change the value of a shared variable without causing a race condition.
 
 !!! quote "Wikipedia Definition"
 	In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.
 
 In the example below we use a Counter to count the user clicks.
-At first glance, our program does not look suspicous but if we build the
-program with the **--race** flag and run it will show us that we have a race condition here.
 
-![race](assets/img/race.png)
-
-
-What happens is that if we have a machine with multiple cores it can execute the `Click` function calls
-at the same and program gets confused about the new `c.Value`.
-
-![race](assets/img/race.gif)
 ```go
 
 type  Counter struct {
@@ -185,11 +170,20 @@ func main() {
 	fmt.Println(counter.Value)
 
 }
-
-
 ```
 
-Now, lets use mutex to fix this problem by defining a mutex in `main`  and
+At first glance, our program does not look suspicous but if we build the
+program with the **--race** flag and run; it will show us that we have a race condition here.
+
+![race](assets/img/race.png)
+
+
+What happens is that if we have a machine with multiple cores it can execute the `Click` function calls
+at the same time and program gets confused about the new `c.Value`.
+
+![race](assets/img/race.gif)
+
+Now, lets fix this problem by defining a mutex in `main` and
 using the `mx.Lock` and `mx.Unlock` methods within the `Click` function.
 
 ![race](assets/img/mutex.gif)
@@ -225,7 +219,7 @@ func main() {
 
 It is also common to define mutex in structs. As we can see below,
 we have defined the `*sync.Mutex` as a promoted field in `Counter`
-and used `c.Lock` and `c.Unlock` methods to protect the counter value.
+and used the `c.Lock` and `c.Unlock` methods to protect the counter value.
 
 ```go
 type  Counter struct {
@@ -266,13 +260,13 @@ func main() {
 
 ## Select
 
-Sending data to channels or waiting for data from channels blocks the application. 
-Select allows us to await data from multiple channels.
+Sending data to channels or waiting for data from channels blocks the application.
+
+Select allows us to await data from multiple channels at the same time.
 
 In the example below, two goroutines continuously sending data to `chan1` and `chan2`.
-We can read all incoming messages from both channel by selecting both of them within
-a infinite loop. When a message comes from any of the channels select will enter in
-a case and handle the message and the for loop will start the selection process again.
+
+We can read all incoming messages from both channels by selecting both of them inside an infinite loop. When a message comes from any of the channels, select statement will enter into the corresponding case and handle the message. After the case ends for loop will start the selection process again.
 
 ![select](assets/img/select.gif)
 
@@ -318,12 +312,11 @@ func main() {
 
 ### Adding Timeout
 
-A program like above will be locked if no data is sent to both channels. To prevent this, we can add timeouts.
+A program like above will be blocked if both channels does not receive any message. We can add timeouts to prevent this to happen.
 
-We can break the loop by waiting from another finite channel and then end the function when the case is matched.
+We can break the loop by waiting from a signal from another **finite channel** and then break the loop when it is triggered.
 
-Go has predefined channels for this kind of purposes. Time module has the `time.After` method which yields a result
-**after** a certain delay.   
+Go has predefined channels for this kind of purposes. Time module has the `time.After` function which sends a signal **after** a certain delay.   
 
 ```go
 func main() {
@@ -352,21 +345,21 @@ func main() {
 
 "We use Context to inform goroutines about cancellations and timeouts."
 
-Contexes deserve atleast the same amout of learning effort as the other concurrency units. 
+Context deserve atleast the same amout of learning effort as the other concurrency units. 
 
 Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.
 
 When we spawn a goroutine using `go Func()`, it does not give us a reference
 to later cancel it.
 
-We sometimes spawn resource intensive goroutines using another goroutine. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures  gets wasted.
+We sometimes spawn resource intensive goroutines using another goroutines. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures gets wasted.
 
 Uncool..
 
-This is where the contexes comes handy.
+This is where the Context comes handy.
 
-- Contexes allows us to propagete cancellation to the goroutines.
-- Contexes can create hierarchies. When the root context gets cancelled all sub contexes also cancels.
+- Context allows us to propagate cancellation across goroutines.
+- We can create context hierarchies. When the parent context gets cancelled all child contexts also cancels.
 
 Without Context                         |  With Context
 :--------------------------------------:|:-------------------------:
@@ -388,33 +381,34 @@ type Context interface {
 }
 ```
 
-`Deadline()` method returns the deadline for the work to be completed.
+`Deadline()` method returns the deadline for the work to be completed. Using this; we can dich a long running task if it has not enough time to finish anyway.
 
-`Done()` returns a channel that gets closed **after the work is completed** or the **context cancelled**.
+`Done()` returns a channel that gets closed **after the work is completed** or the **context gets cancelled**.
 
-`Err()` returns an error explains the reason why the context ended. It can be either `Canceled` or `DeadlineExceeded`.
+`Err()` returns an error that explains the reason why the context ended. It can be either `Canceled` or `DeadlineExceeded`.
 
-`Value` returns the value of given key. As the parent context data is shared through the hierarchy same key always returns the same value. 
+`Value` returns the value of given key. As the parent context data is shared through the hierarchy, same key will always return the same value. 
 
 !!! warning 
-	Using this mechanic to deliver data accross contexes and hierarchies is a **bad idea** since the key and the value does not have any type checking.
+	Using this mechanic to deliver data accross tasks and hierarchies is a **bad idea** since the key and the value does not have any type checking.
 
-The context package provides functions to create contexes that implements the Context interface for various purpouses. These functions are:
+The context package provides functions to create types that implements the `Context` interface for various purpouses. These functions are:
 
+- `context.Background()` that returns the root context. The background context does not contain any logic in it. All the other contexts are the children of the background context.
 
-- `context.Background()` that returns the root context that does not have any logic in it. All the other contexes are the children of the background context.
+- `context.TODO()` that is basically same as `context.Background()` but we use this as a placeholder when we are not sure about the context type we are going to use.
 
-- `context.TODO()` that is basically same as `context.Background()` but we use this as a placeholder when we are not sure about th context type we are going to use.
+The package also provides some functions that wraps the parent context and add some cancellation logic to it. 
 
-It also provides some functions that wraps the parent context and add some cancellation logic to it. All these functions excepts a **parent context** and they all returns the **wrapped context** and a function to `cancel` the context manually. They send a signal to `Done()` channel when their criteria is meth.
+All these functions excepts a **parent context** and they all returns the **wrapped context** and a function to `cancel` the context manually. They send a signal to `Done()` channel when their criteria is meth.
 
 
 - `context.WithCancel(parent)` is used to cancel the context manually. It does not contain a timeout or deadline logic.
 
 In the example below we create a background task and wrap it with `context.WithCancel`.
 
-Then We spawn 2 `SendRequest` goroutines and share the context with them
-and we spawn another goroutine that triggers the `cancel` function after a second.
+Then we spawn 2 `SendRequest` goroutines and share the context with them
+and we spawn another goroutine that triggers the `cancel` function after 1 second.
 
 Notice how all functions passes the context to other and wait for the context to be done using the  `<- ctx.Done()` statement.
 
