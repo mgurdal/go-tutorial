@@ -427,7 +427,7 @@ in a way that does not affect the final result.</p>
 by executing the instructions in different cores.</p>
 <h2 id="goroutines">Goroutines<a class="headerlink" href="#goroutines" title="Permanent link">&para;</a></h2>
 <p>Goroutines are functions in a task queue that waits to be executed by a system thread.
-To create a goroutine, we only need to write 'go' when running the function.</p>
+To create a goroutine, we only need to write <code>go</code> when running the function.</p>
 <p>In the application below, every time the Work function is called it blocks the application until it is finished.</p>
 <p><img alt="routine" src="../assets/img/routine.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
@@ -452,8 +452,7 @@ To create a goroutine, we only need to write 'go' when running the function.</p>
 
 <p><img alt="goroutine" src="../assets/img/goroutine_unfinished.gif" /></p>
 <p>When we run the program, it will end without printing anything on the screen. 
-When the function <code>main</code> finishes it ends and the program closes without waiting 
-<code>Work</code> function to write something on the screen. </p>
+This is because after the function <code>main</code> finishes the program exits without waiting <code>Work</code> function to write on the screen. </p>
 <p>We can capture the output of <code>Work</code> function by adding a small delay at the end of the main function,</p>
 <p><img alt="goroutine_sleep" src="../assets/img/goroutine_sleep.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
@@ -476,15 +475,9 @@ When the function <code>main</code> finishes it ends and the program closes with
 </code></pre></div>
 
 
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Go runtime might be limited to run only single OS thread at a time. In order to enable the multi-threading we should set the <code>GOMAXPROCS</code> environment variable. </p>
-<p>For example; <code>GOMAXPROCS=2</code> allows go to use two OS level threads.</p>
-</div>
 <h2 id="waitgroup">WaitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h2>
-<p>In certain moments of the application, we may have to wait for some goroutines to end.</p>
-<p>With WaitGroup, we can specify the number of goroutines we want to run and wait for them to finish their work. 
-All the goroutines need to do here is to run WaitGroup's <code>Done</code> method when it finishes.</p>
+<p>In some cases, we may need the to wait for a number of goroutines to finish at a certain moment of the runtime.</p>
+<p>With WaitGroup, we can specify the number of goroutines we want wait for and after the individual goroutine finishes its job it can call WaitGroup's <code>Done()</code> method to notify the waitgroup.</p>
 <p><img alt="waitgroup" src="../assets/img/waitgroup.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
@@ -509,10 +502,10 @@ All the goroutines need to do here is to run WaitGroup's <code>Done</code> metho
 <h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
 <p>Channels allows us to communicate goroutines with each other.</p>
 <p>In the above example, we cannot get the return value from the functions if we run them as goroutines. 
-We can create channels to send the result of a goroutine to the main function or anoter goroutine.</p>
+We can create a channel to send the result of a goroutine to the main function or to anoter goroutine.</p>
 <p>Channels can be created as <code>make(chan data_type, buffer)</code>.</p>
-<p>We can send a data to channel using the <code>channel &lt;- data</code> and wait for a data from channel  <code>data := &lt;- channel</code> signatures. </p>
-<p>Both these operations blocks the runtime until its finished.</p>
+<p>We can send data to channel using the <code>channel &lt;- data</code> and wait data from channel using the  <code>data := &lt;- channel</code> signature. </p>
+<p>Both these operations block the runtime until they finish.</p>
 <p><img alt="channel_simple" src="../assets/img/channel_simple.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
@@ -533,18 +526,12 @@ We can create channels to send the result of a goroutine to the main function or
 
 
 <h2 id="mutex">Mutex<a class="headerlink" href="#mutex" title="Permanent link">&para;</a></h2>
-<p>Mutexes are the concurrency primitives that allows goroutines to alter a shared variable without causing a race condition.</p>
+<p>Mutexes are the concurrency primitives that allows goroutines to change the value of a shared variable without causing a race condition.</p>
 <div class="admonition quote">
 <p class="admonition-title">Wikipedia Definition</p>
 <p>In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.</p>
 </div>
-<p>In the example below we use a Counter to count the user clicks.
-At first glance, our program does not look suspicous but if we build the
-program with the <strong>--race</strong> flag and run it will show us that we have a race condition here.</p>
-<p><img alt="race" src="../assets/img/race.png" /></p>
-<p>What happens is that if we have a machine with multiple cores it can execute the <code>Click</code> function calls
-at the same and program gets confused about the new <code>c.Value</code>.</p>
-<p><img alt="race" src="../assets/img/race.gif" /></p>
+<p>In the example below we use a Counter to count the user clicks.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span>  <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Value</span> <span class="kt">int</span>
 <span class="p">}</span>
@@ -578,7 +565,13 @@ at the same and program gets confused about the new <code>c.Value</code>.</p>
 </code></pre></div>
 
 
-<p>Now, lets use mutex to fix this problem by defining a mutex in <code>main</code>  and
+<p>At first glance, our program does not look suspicous but if we build the
+program with the <strong>--race</strong> flag and run; it will show us that we have a race condition here.</p>
+<p><img alt="race" src="../assets/img/race.png" /></p>
+<p>What happens is that if we have a machine with multiple cores it can execute the <code>Click</code> function calls
+at the same time and program gets confused about the new <code>c.Value</code>.</p>
+<p><img alt="race" src="../assets/img/race.gif" /></p>
+<p>Now, lets fix this problem by defining a mutex in <code>main</code> and
 using the <code>mx.Lock</code> and <code>mx.Unlock</code> methods within the <code>Click</code> function.</p>
 <p><img alt="race" src="../assets/img/mutex.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">mx</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">)</span> <span class="p">{</span>
@@ -610,7 +603,7 @@ using the <code>mx.Lock</code> and <code>mx.Unlock</code> methods within the <co
 
 <p>It is also common to define mutex in structs. As we can see below,
 we have defined the <code>*sync.Mutex</code> as a promoted field in <code>Counter</code>
-and used <code>c.Lock</code> and <code>c.Unlock</code> methods to protect the counter value.</p>
+and used the <code>c.Lock</code> and <code>c.Unlock</code> methods to protect the counter value.</p>
 <div class="codehilite"><pre><span></span><code><span class="kd">type</span>  <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
     <span class="nx">Value</span> <span class="kt">int</span>
     <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
@@ -648,12 +641,10 @@ and used <code>c.Lock</code> and <code>c.Unlock</code> methods to protect the co
 
 
 <h2 id="select">Select<a class="headerlink" href="#select" title="Permanent link">&para;</a></h2>
-<p>Sending data to channels or waiting for data from channels blocks the application. 
-Select allows us to await data from multiple channels.</p>
-<p>In the example below, two goroutines continuously sending data to <code>chan1</code> and <code>chan2</code>.
-We can read all incoming messages from both channel by selecting both of them within
-a infinite loop. When a message comes from any of the channels select will enter in
-a case and handle the message and the for loop will start the selection process again.</p>
+<p>Sending data to channels or waiting for data from channels blocks the application.</p>
+<p>Select allows us to await data from multiple channels at the same time.</p>
+<p>In the example below, two goroutines continuously sending data to <code>chan1</code> and <code>chan2</code>.</p>
+<p>We can read all incoming messages from both channels by selecting both of them inside an infinite loop. When a message comes from any of the channels, select statement will enter into the corresponding case and handle the message. After the case ends for loop will start the selection process again.</p>
 <p><img alt="select" src="../assets/img/select.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch2</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 
@@ -695,10 +686,9 @@ a case and handle the message and the for loop will start the selection process 
 
 
 <h3 id="adding-timeout">Adding Timeout<a class="headerlink" href="#adding-timeout" title="Permanent link">&para;</a></h3>
-<p>A program like above will be locked if no data is sent to both channels. To prevent this, we can add timeouts.</p>
-<p>We can break the loop by waiting from another finite channel and then end the function when the case is matched.</p>
-<p>Go has predefined channels for this kind of purposes. Time module has the <code>time.After</code> method which yields a result
-<strong>after</strong> a certain delay.   </p>
+<p>A program like above will be blocked if both channels does not receive any message. We can add timeouts to prevent this to happen.</p>
+<p>We can break the loop by waiting from a signal from another <strong>finite channel</strong> and then break the loop when it is triggered.</p>
+<p>Go has predefined channels for this kind of purposes. Time module has the <code>time.After</code> function which sends a signal <strong>after</strong> a certain delay.   </p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
     <span class="nx">ch2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
@@ -723,16 +713,16 @@ a case and handle the message and the for loop will start the selection process 
 
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>"We use Context to inform goroutines about cancellations and timeouts."</p>
-<p>Contexes deserve atleast the same amout of learning effort as the other concurrency units. </p>
+<p>Context deserve atleast the same amout of learning effort as the other concurrency units. </p>
 <p>Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.</p>
 <p>When we spawn a goroutine using <code>go Func()</code>, it does not give us a reference
 to later cancel it.</p>
-<p>We sometimes spawn resource intensive goroutines using another goroutine. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures  gets wasted.</p>
+<p>We sometimes spawn resource intensive goroutines using another goroutines. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures gets wasted.</p>
 <p>Uncool..</p>
-<p>This is where the contexes comes handy.</p>
+<p>This is where the Context comes handy.</p>
 <ul>
-<li>Contexes allows us to propagete cancellation to the goroutines.</li>
-<li>Contexes can create hierarchies. When the root context gets cancelled all sub contexes also cancels.</li>
+<li>Context allows us to propagate cancellation across goroutines.</li>
+<li>We can create context hierarchies. When the parent context gets cancelled all child contexts also cancels.</li>
 </ul>
 <table>
 <thead>
@@ -760,30 +750,31 @@ to later cancel it.</p>
 </code></pre></div>
 
 
-<p><code>Deadline()</code> method returns the deadline for the work to be completed.</p>
-<p><code>Done()</code> returns a channel that gets closed <strong>after the work is completed</strong> or the <strong>context cancelled</strong>.</p>
-<p><code>Err()</code> returns an error explains the reason why the context ended. It can be either <code>Canceled</code> or <code>DeadlineExceeded</code>.</p>
-<p><code>Value</code> returns the value of given key. As the parent context data is shared through the hierarchy same key always returns the same value. </p>
+<p><code>Deadline()</code> method returns the deadline for the work to be completed. Using this; we can dich a long running task if it has not enough time to finish anyway.</p>
+<p><code>Done()</code> returns a channel that gets closed <strong>after the work is completed</strong> or the <strong>context gets cancelled</strong>.</p>
+<p><code>Err()</code> returns an error that explains the reason why the context ended. It can be either <code>Canceled</code> or <code>DeadlineExceeded</code>.</p>
+<p><code>Value</code> returns the value of given key. As the parent context data is shared through the hierarchy, same key will always return the same value. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Using this mechanic to deliver data accross contexes and hierarchies is a <strong>bad idea</strong> since the key and the value does not have any type checking.</p>
+<p>Using this mechanic to deliver data accross tasks and hierarchies is a <strong>bad idea</strong> since the key and the value does not have any type checking.</p>
 </div>
-<p>The context package provides functions to create contexes that implements the Context interface for various purpouses. These functions are:</p>
+<p>The context package provides functions to create types that implements the <code>Context</code> interface for various purpouses. These functions are:</p>
 <ul>
 <li>
-<p><code>context.Background()</code> that returns the root context that does not have any logic in it. All the other contexes are the children of the background context.</p>
+<p><code>context.Background()</code> that returns the root context. The background context does not contain any logic in it. All the other contexts are the children of the background context.</p>
 </li>
 <li>
-<p><code>context.TODO()</code> that is basically same as <code>context.Background()</code> but we use this as a placeholder when we are not sure about th context type we are going to use.</p>
+<p><code>context.TODO()</code> that is basically same as <code>context.Background()</code> but we use this as a placeholder when we are not sure about the context type we are going to use.</p>
 </li>
 </ul>
-<p>It also provides some functions that wraps the parent context and add some cancellation logic to it. All these functions excepts a <strong>parent context</strong> and they all returns the <strong>wrapped context</strong> and a function to <code>cancel</code> the context manually. They send a signal to <code>Done()</code> channel when their criteria is meth.</p>
+<p>The package also provides some functions that wraps the parent context and add some cancellation logic to it. </p>
+<p>All these functions excepts a <strong>parent context</strong> and they all returns the <strong>wrapped context</strong> and a function to <code>cancel</code> the context manually. They send a signal to <code>Done()</code> channel when their criteria is meth.</p>
 <ul>
 <li><code>context.WithCancel(parent)</code> is used to cancel the context manually. It does not contain a timeout or deadline logic.</li>
 </ul>
 <p>In the example below we create a background task and wrap it with <code>context.WithCancel</code>.</p>
-<p>Then We spawn 2 <code>SendRequest</code> goroutines and share the context with them
-and we spawn another goroutine that triggers the <code>cancel</code> function after a second.</p>
+<p>Then we spawn 2 <code>SendRequest</code> goroutines and share the context with them
+and we spawn another goroutine that triggers the <code>cancel</code> function after 1 second.</p>
 <p>Notice how all functions passes the context to other and wait for the context to be done using the  <code>&lt;- ctx.Done()</code> statement.</p>
 <p>When the <code>cancel</code> function gets triggered it will notify all of the tasks by sending a signal to the <code>ctx.Done()</code> channel.</p>
 <p><img alt="cancel" src="../assets/img/cancel.gif" /></p>
