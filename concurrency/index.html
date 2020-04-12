@@ -17,7 +17,7 @@
         <meta name="author" content="Mehmet Gürdal">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.2">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.07c9fbf5.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.89dc9fe3.min.css">
       
       
     
@@ -526,7 +526,7 @@ We can create a channel to send the result of a goroutine to the main function o
 
 
 <h2 id="mutex">Mutex<a class="headerlink" href="#mutex" title="Permanent link">&para;</a></h2>
-<p>Mutexes are the concurrency primitives that allows goroutines to change the value of a shared variable without causing a race condition.</p>
+<p>Mutexes are the concurrency primitives that allow goroutines to change the value of a shared variable without causing a race condition.</p>
 <div class="admonition quote">
 <p class="admonition-title">Wikipedia Definition</p>
 <p>In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.</p>
@@ -701,7 +701,7 @@ and used the <code>c.Lock</code> and <code>c.Unlock</code> methods to protect th
             <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
         <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
             <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg2</span><span class="p">)</span>
-        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
             <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Brave Sir Robin ran away 🎵&quot;</span><span class="p">)</span>
             <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Bravely ran away away    🎵&quot;</span><span class="p">)</span>
                 <span class="k">return</span>
@@ -714,9 +714,9 @@ and used the <code>c.Lock</code> and <code>c.Unlock</code> methods to protect th
 <h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
 <p>"We use Context to inform goroutines about cancellations and timeouts."</p>
 <p>Context deserve atleast the same amout of learning effort as the other concurrency units. </p>
-<p>Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.</p>
 <p>When we spawn a goroutine using <code>go Func()</code>, it does not give us a reference
-to later cancel it.</p>
+to later learn about its status.</p>
+<p>Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.</p>
 <p>We sometimes spawn resource intensive goroutines using another goroutines. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures gets wasted.</p>
 <p>Uncool..</p>
 <p>This is where the Context comes handy.</p>

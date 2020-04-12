@@ -17,7 +17,7 @@
         <meta name="author" content="Mehmet Gürdal">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.2">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
     
     
       
@@ -25,7 +25,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.07c9fbf5.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.89dc9fe3.min.css">
       
       
     
@@ -239,8 +239,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#channels" class="md-nav__link">
-    Channels
+  <a href="#kanalllar-channels" class="md-nav__link">
+    Kanalllar (Channels)
   </a>
   
 </li>
@@ -263,6 +263,26 @@
           <li class="md-nav__item">
   <a href="#zaman-asm" class="md-nav__link">
     Zaman Aşımı
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    Context
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uygulans" class="md-nav__link">
+    Uygulanış
   </a>
   
 </li>
@@ -301,8 +321,9 @@
 <p>İş parçalarını birbirinden bağımsız çalıştırabilmemiz, süreçleri farklı çekirdeklerde yürüterek, işlemciyi maksimum verimde kullanmamızı sağlar.</p>
 <p>GO dilinde concurrency goroutineler ile sağlanır.</p>
 <h2 id="goroutines">Goroutines<a class="headerlink" href="#goroutines" title="Permanent link">&para;</a></h2>
-<p>GO routineler boyutları küçük threadler olarak düşünülebilir. Goroutine oluşturmak için sadece fonksiyonu çalıştırırken başına <code>go</code> yazmamız yeterli.</p>
+<p>GO routineleri bir kuyrukta çalıştırılmayı bekleyen boyutları küçük threadler olarak düşünülebilir. Bir fonksiyonu goroutine olarak çalıştırmak için çağırırken başına <code>go</code> yazmamız yeterli.</p>
 <p>Aşağıdaki uygulamada Work fonksiyonu her çağrıldığında, çalışması bitene kadar uygulamayı blokluyor.</p>
+<p><img alt="routine" src="/assets/img/routine.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
@@ -323,7 +344,9 @@
 </code></pre></div>
 
 
-<p>Programı çalıştırdığımızda ekrana hiçbir şey yazdırmadan sonlanacak. <code>main</code>fonksiyonu, <code>Work</code> fonksiyonu henüz ekrana bir şeyler yazacak kadar çalışmadan, bitiyor ve program kapanıyor. Ufak bir hile ile <code>Work</code> fonksiyonunun çıktısını alabiliriz.</p>
+<p><img alt="goroutine" src="/assets/img/goroutine_unfinished.gif" /></p>
+<p>Programı çalıştırdığımızda ekrana hiçbir şey yazdırmadan sonlanacak. <code>main</code> fonksiyonu, <code>Work</code> fonksiyonu henüz ekrana bir şeyler yazacak kadar çalışmadan, bitiyor ve program kapanıyor. Program bitmeden önce biraz bekleterek <code>Work</code> fonksiyonunun çıktısını alabiliriz.</p>
+<p><img alt="goroutine_sleep" src="/assets/img/goroutine_sleep.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -339,14 +362,15 @@
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work work work work work work...&quot;</span><span class="p">)</span>
     <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;zxcasfv&quot;</span><span class="p">)</span>
-    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
 <h3 id="waitgroup">waitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h3>
-<p>Uygulamanın belli anlarında bazı goroutinelerin bitmesini beklememiz gerekebilir.</p>
-<p>WaitGroup ile kaç tane gorouitne çalışacağını öncesinde girip sonrasında işlerini bitirmelerini bekleyebiliriz. Goroutinelerin burada tek yapması gereken, işi bittiğinde WaitGroup'un Done methodunu çalıştırması.</p>
+<p>Uygulamanın bir anında bazı goroutinelerin bitmesini beklememiz gerekebilir.</p>
+<p>WaitGroup ile kaç tane gorouitine bekleyeceğimizi öncesindem belirtip bu goroutinelerin işlerini bitirmelerini bekleyebiliriz. Goroutinelerin burada tek yapması gereken, işi bittiğinde WaitGroup'un <code>Done()</code> methodunu çalıştırması.</p>
+<p><img alt="waitgroup" src="/assets/img/waitgroup.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
@@ -354,42 +378,36 @@
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">nWorkers1</span><span class="p">,</span> <span class="nx">nWorkers2</span> <span class="o">:=</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span>
+    <span class="nx">nWorkers</span> <span class="o">:=</span> <span class="mi">5</span>
     <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers1</span><span class="p">)</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-1&quot;</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work&quot;</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
     <span class="p">}</span>
-
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
-
-    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nWorkers2</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nWorkers2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-2&quot;</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
 
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
-<h2 id="channels">Channels<a class="headerlink" href="#channels" title="Permanent link">&para;</a></h2>
-<p>Channeller goroutinelerin birbirleri ile haberleşmesini sağlar.</p>
-<p>Yukarıdaki örnekte <code>go</code> ile çalıştırdığımız fonksiyonlardan dönüş değeri alamıyoruz. Channellar ile goroutinin sonucu ana fonksiyona veya başka bir goroutine göndermesini sağlayabiliriz.</p>
-<p>channeller <code>make(chan veritipi, buffer)</code> şeklinde oluşturulabilir.</p>
+<h2 id="kanalllar-channels">Kanalllar (Channels)<a class="headerlink" href="#kanalllar-channels" title="Permanent link">&para;</a></h2>
+<p>Kanallar goroutinelerin birbirleri ile haberleşmesini sağlar.</p>
+<p>Yukarıdaki örnekte <code>go</code> ile çalıştırdığımız fonksiyonlardan dönüş değeri alamıyoruz. Kanalları kullanarak bir goroutiniin, ana fonksiyonla veya başka bir goroutine ile haberleşmesini sağlayabiliriz.</p>
+<p>Kanallar <code>make(chan veritipi, buffer)</code> şeklinde oluşturulabilir.</p>
+<p><img alt="channel_simple" src="/assets/img/channel_simple.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">msg</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">msg</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
-    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-1&quot;</span><span class="p">,</span> <span class="nx">ch1</span><span class="p">)</span>
-    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-2&quot;</span><span class="p">,</span> <span class="nx">ch1</span><span class="p">)</span>
+    <span class="nx">channel</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-1&quot;</span><span class="p">,</span> <span class="nx">channel</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="s">&quot;work-2&quot;</span><span class="p">,</span> <span class="nx">channel</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="nx">msg</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch1</span>
+        <span class="nx">msg</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">channel</span>
         <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -397,134 +415,342 @@
 
 
 <h2 id="mutex">Mutex<a class="headerlink" href="#mutex" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p><strong>Wikipedia Tanımı</strong></p>
+<p>Mutex, goroutineler tarafından ortak kullanılan bir değişkenin değerininin, <strong>race-condition</strong> oluşmadan değiştirilebilmesini sağlayan yapıdır.</p>
+<div class="admonition quote">
+<p class="admonition-title">Wikipedia Tanımı</p>
 <p>In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.</p>
-</blockquote>
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
-    <span class="o">*</span><span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+</div>
+<p>Aşağıdaki örnekte, kullanıcı tıklamalarını saymak için <code>Counter</code> yapısını kullanıyoruz.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">type</span>  <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Value</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">)</span> <span class="nx">Inc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Value</span><span class="o">++</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Inc</span><span class="p">()</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-    <span class="nx">counter</span> <span class="o">:=</span> <span class="mi">0</span>
-
     <span class="nx">nUsers</span> <span class="o">:=</span> <span class="mi">500</span>
     <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nUsers</span><span class="p">)</span>
 
+    <span class="nx">counter</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Counter</span><span class="p">{}</span>
+
     <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nUsers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
+        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
 
 <span class="p">}</span>
 </code></pre></div>
 
 
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">mx</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">)</span> <span class="p">{</span>
+<p>İlk bakışta programda yanlış bir şey gözükmüyor. Fakat programı <strong>--race</strong> parametresi ile derleyip çalıştırdığımızda; bize programda <strong>race-condition</strong> olduğunu söylüyor.</p>
+<p><img alt="race" src="/assets/img/race.png" /></p>
+<p>Bu program çok çekirdekli bir bilgisayarda çalıştırıldığında, <code>Click</code> fonksiyonu farklı çekirdeklerde aynı anda çalıştırılabiliyor. Bu nedenle program yeni <code>c.Value</code> değerini yanlış güncelliyor.</p>
+<p><img alt="race" src="/assets/img/race.gif" /></p>
+<p>Bu hatayı <code>main</code> fonksiyonu içinde bir Mutex oluşturup; <code>mx.Lock</code> ve <code>mx.Unlock</code> metodlarını <code>Value</code> değerini değiştirdiğimiz yerde kullanarak giderebiliriz.</p>
+<p><img alt="race" src="/assets/img/mutex.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">mx</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">mx</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
-    <span class="o">*</span><span class="nx">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Inc</span><span class="p">()</span>
     <span class="nx">mx</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
-
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
 <span class="p">}</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
-    <span class="nx">counter</span> <span class="o">:=</span> <span class="mi">0</span>
+    <span class="nx">nUsers</span> <span class="o">:=</span> <span class="mi">500</span>
+    <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nUsers</span><span class="p">)</span>
 
     <span class="nx">mx</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">{}</span>
+    <span class="nx">counter</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Counter</span><span class="p">{}</span>
+
+    <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nUsers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">,</span> <span class="nx">mx</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>Mutexlerin struct içerisinde tanımlanması da yaygın bir kullanımdır. </p>
+<p>Bu örnekte, Mutexi, Counter içinde tanımlayıp <code>c.Lock</code> ve <code>c.Unlock</code> metodları ile
+yine problemi çözebilirdik.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">type</span>  <span class="nx">Counter</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">Value</span> <span class="kt">int</span>
+    <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">)</span> <span class="nx">Inc</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Value</span><span class="o">++</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Inc</span><span class="p">()</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">Unlock</span><span class="p">()</span>
+    <span class="nx">wg</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="nx">nUsers</span> <span class="o">:=</span> <span class="mi">500</span>
     <span class="nx">wg</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">{}</span>
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">nUsers</span><span class="p">)</span>
 
+    <span class="nx">counter</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">Counter</span><span class="p">{</span><span class="nx">Mutex</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">{}}</span>
+
     <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">nUsers</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">,</span> <span class="nx">mx</span><span class="p">)</span>
+        <span class="k">go</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">wg</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="nx">wg</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">.</span><span class="nx">Value</span><span class="p">)</span>
 
-    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">counter</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
 <h2 id="select">Select<a class="headerlink" href="#select" title="Permanent link">&para;</a></h2>
-<p>Kanallara veri göndermek veya kanallardan veri beklemek uygulamayı bloklar. 
-Select aynı anda birkaç tane kanalı beklememize olanak sağlar.</p>
-<p>Aşağıdaki örnekte 2 goroutine <code>chan1</code> ve <code>chan2</code> kanallarına sürekli veri gönderiyor.
-İki kanaldan da gelen tüm verileri sonsuz bir döngü içindeki select yapısı ile alabiliriz.
+<p>Kanallara veri göndermek veya kanallardan veri beklemek uygulamayı bloklar. </p>
+<p>Select aynı anda birkaç tane kanalı beklememize olanak sağlar. </p>
+<p>Aşağıdaki örnekte 2 goroutine <code>chan1</code> ve <code>chan2</code> kanallarına sürekli veri gönderiyor.</p>
+<p>İki kanaldan da gelen tüm verileri sonsuz bir döngü içindeki select yapısı ile alabiliriz.
 Herhangi bir kanaldan mesaj geldiğinde select o kanalı bekleyen <code>case</code>e girecek ve
-içinde tanımlanan işlemler bittikten sonra döngü kanal bekleme işlemini tekrarlayacaktır.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
-<span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+içinde tanımlanan işlemler bittikten sonra döngü, kanal bekleme işlemini tekrarlayacaktır.</p>
+<p><img alt="select" src="/assets/img/select.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch2</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="s">&quot;one&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan2</span> <span class="o">&lt;-</span> <span class="s">&quot;two&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
+    <span class="c1">// Send data to ch1 every second</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+            <span class="nx">ch1</span> <span class="o">&lt;-</span> <span class="s">&quot;work-1&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
 
-<span class="k">for</span> <span class="p">{</span>
-    <span class="k">select</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
-    <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span> <span class="nx">msg2</span><span class="p">)</span>
+    <span class="c1">// Send data to ch2 every 1.5 seconds</span>
+    <span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">{</span>
+            <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
+            <span class="nx">ch2</span> <span class="o">&lt;-</span> <span class="s">&quot;work-2&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}()</span>
+
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nx">ch2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span><span class="p">,</span> <span class="nx">ch2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="p">{</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
+        <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg2</span><span class="p">)</span>
+        <span class="p">}</span>
     <span class="p">}</span>
+
 <span class="p">}</span>
 </code></pre></div>
 
 
 <h3 id="zaman-asm">Zaman Aşımı<a class="headerlink" href="#zaman-asm" title="Permanent link">&para;</a></h3>
-<p>Yukarıdaki gibi bir program 2 channela da veri gönderilmezse kilitlenecektir. 
-Bu sonsuz döngüyü başka bir channelı bekleyerek kırabiliriz. </p>
-<p>Go, bu tür bir amaç için önceden tanımlanmış yapılara sahiptir. 
-Time modülündeki <code>time.After</code> metodunu bellirlediğimiz bir süreden sonra bir channelı tetiklemek için kullanabiliriz.</p>
-<div class="codehilite"><pre><span></span><code><span class="nx">chan1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
-<span class="nx">chan2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+<p>Yukarıdaki gibi bir program 2 kanaldan da hiç veri gelmezse kilitlenecektir. 
+Sonsuz döngü içerisinde, biteceğine emin olduğumuz başka bir kanalı daha dinleyerek kırabiliriz. </p>
+<p>Go, bu tür durumlar için önceden tanımlanmış yapılara sahiptir. 
+Time modülündeki <code>time.After</code> fonksiyonu bellirlediğimiz bir süreden sonra kanala sinyal gönderir.</p>
+<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ch1</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
+    <span class="nx">ch2</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span>
 
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">go</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span><span class="p">,</span> <span class="nx">ch2</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan1</span> <span class="o">&lt;-</span> <span class="s">&quot;one&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
-<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-        <span class="nx">chan2</span> <span class="o">&lt;-</span> <span class="s">&quot;two&quot;</span>
-    <span class="p">}</span>
-<span class="p">}()</span>
+        <span class="k">select</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
+        <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg2</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">):</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Brave Sir Robin ran away 🎵&quot;</span><span class="p">)</span>
+            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Bravely ran away away    🎵&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+        <span class="p">}</span>
 
-<span class="k">for</span> <span class="p">{</span>
-    <span class="k">select</span> <span class="p">{</span>
-    <span class="k">case</span> <span class="nx">msg1</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan1</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg1</span><span class="p">)</span>
-    <span class="k">case</span> <span class="nx">msg2</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">chan2</span><span class="p">:</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg2</span><span class="p">)</span>
-    <span class="k">case</span> <span class="o">&lt;-</span><span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Brave Sir Robin ran away 🎵&quot;</span><span class="p">)</span>
-        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;🎵 Bravely ran away away    🎵&quot;</span><span class="p">)</span>
-            <span class="k">return</span>
     <span class="p">}</span>
+</code></pre></div>
 
+
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>"Context, bir iş iptal edildiğinde veya zaman aşımına uğradığında ilgili birimleri bilgilendirmek için kullanılır."</p>
+<p>Context, en az diğer eşzamanlılık yapıları kadar önem arz eder.</p>
+<p><code>go Func()</code> şeklinde bir arkaplan işi baştattığımızda, bize goroutine durumunu kontrol edebileceğimiz bir değer dönülmez. </p>
+<p>Sonraki durumlarını önemsemeden bir sürü goroutine oluşturmak; belirgin
+hata vermeden uygulamanın performansını önemli ölçüde etkileyebilir.</p>
+<p>Bazen bir arkaplan görevi içerisinde, çok fazla kaynağa ihtiyaç duyan başka arkaplan görevleri oluşturmamız gerekir. Bu görevleri oluşturan goroutine bitse bile devam etmesi gerekmeyen diğer yavaş goroutineler çalışmaya devam eder ve kaynaklarımız boşa harcanır. </p>
+<p>Context bize bu gibi durumlarda yardımcı olur.</p>
+<ul>
+<li>Context bir sinyali tüm arkaplan görevlerine yaymamızı sağlar.</li>
+<li>Context hiyerarşileri oluşturabiliriz. Ana context iptal edildiğinde; bağlı tüm contextler de iptal edilir. </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">Context Kullanılmadan</th>
+<th align="center">Context Kullanılarak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="nocontext" src="/assets/img/nocontext.gif" /></td>
+<td align="center"><img alt="context" src="/assets/img/context.gif" /></td>
+</tr>
+</tbody>
+</table>
+<h3 id="uygulans">Uygulanış<a class="headerlink" href="#uygulans" title="Permanent link">&para;</a></h3>
+<p>GO tüm bu işlemleri <code>context</code> paketi içerisinde sunar.</p>
+<p>Paket içerisinde, tüm contextleri tanımlayan, 4 adet metoda sahip <code>context.Context</code> arayüzü bulunur. </p>
+<div class="codehilite"><pre><span></span><code><span class="kd">type</span> <span class="nx">Context</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Deadline</span><span class="p">()</span> <span class="p">(</span><span class="nx">deadline</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="p">,</span> <span class="nx">ok</span> <span class="kt">bool</span><span class="p">)</span>
+    <span class="nx">Done</span><span class="p">()</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{}</span>
+    <span class="nx">Err</span><span class="p">()</span> <span class="kt">error</span>
+    <span class="nx">Value</span><span class="p">(</span><span class="nx">key</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kd">interface</span><span class="p">{}</span>
 <span class="p">}</span>
 </code></pre></div>
 
 
+<p><code>Deadline()</code> contexte bağlı tüm işlerin bitmesi gereken süreyi döndürür. Bu metodu kullanarak; kalan sürede bitiremeyeceğimiz bir işi hiç başlatmayabiliriz.</p>
+<p><code>Done()</code> tüm işler tamamlandığında veya context iptal edildiğinde sinyal gönderen bir kanal döndürür.</p>
+<p><code>Err()</code> contextin neden bittiğini açıklayan bir hata döndürür. Bu hata <code>Canceled</code> veya <code>DeadlineExceeded</code> olabilir.</p>
+<p><code>Value</code> bir anahtar ile context içerisinde paylaştırılan bir değeri almamızı sağlar. Ana contextin verisi tüm hiyerarşi içerisinde payşaştırıldığı için; girilen anahtar tüm contextlerde aynı değeri dönecektir. </p>
+<div class="admonition warning">
+<p class="admonition-title">Uyarı</p>
+<p>Anahtar ve değerlerin tip kontrolü olmadığı için, bu mekanizmayı kullanarak görevler ve hiyerarşiler üzerinde veri paylaşımı yapmak <strong>kötü bir fikirdir</strong>.</p>
+</div>
+<p>Context paketi bu arayüzü farklı amaçlar için oluşturan fonksiyonlar sunar.</p>
+<ul>
+<li>
+<p><code>context.Background()</code> En temel contexti döndürür. Dönen context hiç bir iptal mekanizmas içermez. Tüm diğer contextler Background contexi kullanılarak oluşturulur.</p>
+</li>
+<li>
+<p><code>context.TODO()</code> temelde <code>context.Background()</code> ile aynıdır. Henüz hangi tür contexti kullanacağımızdan emin olmadığımız yerlerde, yer tutması için bu contexti kullanırız.</p>
+</li>
+</ul>
+<p>Paket aynı zamanda bu contextleri sarmalayıp; iptal mekanizması ekleyen fonksiyonlar barındırır.</p>
+<p>Bu fonksiyonların tamamı ilk parametre olarak ana contexti alır. Dönüş değeri olarak yeni bir context ve bir fonksiyon döndürür. </p>
+<p>Oluşan contextin kriteri sağlandığında veya bize verdiği fonksiyonu çağırdığımızda, contextin <code>Done()</code> kanalına bir sinyal gönderilir. </p>
+<ul>
+<li><code>context.WithCancel(parent)</code> contexti uygulamanın bir anında kendimiz durdurmak istediğimizde kullanılabilir. Bu fonksiyondan dönen contextin ayrıca çalışan bir iptal olma veya zaman aşımı durumu yoktur.</li>
+</ul>
+<p>Aşağıdaki örnekte oluşturduğumuz Background contextini <code>context.WithCancel</code> ile sarmaladık.</p>
+<p>Ardından bu contexti parametre alan 2 adet <code>SendRequest</code> görevi ve 1 saniye sonra <code>cancel</code>
+fonksiyonunu çağıran bir görev oluşturduk.</p>
+<p>Dikkat edeceğiniz üzere, tüm görevler ilk parametre olarak aldığı ve birbiriyle paylaştığı contextin <code>&lt;- ctx.Done()</code> kanalını bekliyor.</p>
+<p><code>cancel</code> fonksiyonu tetiklendiğinde <code>ctx.Done()</code> kanalına sinyal göndererek tüm görevlere contextin bittiğini bildirecek.</p>
+<p><img alt="cancel" src="/assets/img/cancel.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SearchDB 2 saniye sonra normal bir şekilde sonlanır</span>
+<span class="kd">func</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Searching Database&quot;</span><span class="p">)</span>
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Search Cancelled&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Search Finished&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="c1">// SendRequest 2 saniye sonra normal bir şekilde sonlanır</span>
+<span class="kd">func</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Processing Request&quot;</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Cancelled&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Finished&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">()</span>
+    <span class="nx">cancellingCtx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">WithCancel</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">cancellingCtx</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">cancellingCtx</span><span class="p">)</span>
+
+    <span class="c1">// Tüm requestleri ve database aramalarını 1 saniye sonra iptal edeceğiz.</span>
+    <span class="k">go</span> <span class="nx">time</span><span class="p">.</span><span class="nx">AfterFunc</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">,</span> <span class="nx">cancel</span><span class="p">)</span>
+
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">cancellingCtx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Cancelled by Context&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Finished normally&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Context iptal edildikten sonra goroutinelerin ekrana </span>
+    <span class="c1">// bir şeyler yazabilmesi için biraz bekliyoruz.</span>
+    <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<ul>
+<li><code>context.WithTimeout(parent, duration)</code> contextin belirli bir süre içinde tamamlanmasını istediğimiz durumlarda kullanılabilir. </li>
+</ul>
+<p>Hazırda elimizde olan contextlere yeni zaman sınırları ekleyebiliriz. Bu örnek için;
+<code>SendRequest</code> fonksiyonuna timeout ekleyerek veritabanından 2 saniye içerisinde veri gelmezse görevi iptal edebiliriz.</p>
+<p><img alt="timeout" src="/assets/img/timeout.gif" /></p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// SendRequest 5 saniye sonra normal bir şekilde biter</span>
+<span class="c1">// Veritabanı işini 2 saniye içerisinde tamamlanmazsa iptal eder</span>
+<span class="kd">func</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Processing Request&quot;</span><span class="p">)</span>
+
+    <span class="c1">// Bu context tüm veritabanı işlemleri 2 saniye içerisinde </span>
+    <span class="c1">// tamamlanmazsa iptal edecek</span>
+    <span class="nx">dbCtx</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">WithTimeout</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">dbCtx</span><span class="p">)</span>
+    <span class="k">go</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">dbCtx</span><span class="p">)</span>
+
+    <span class="k">select</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Cancelled&quot;</span><span class="p">)</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">dbCtx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Search Timeout -&quot;</span><span class="p">,</span> <span class="nx">dbCtx</span><span class="p">.</span><span class="nx">Err</span><span class="p">())</span>  <span class="c1">// Search Timeout - context deadline exceeded</span>
+    <span class="k">case</span> <span class="o">&lt;-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">After</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Request Finished&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<ul>
+<li><code>context.WithDeadline(parent, time)</code> contextin belli bir saatte tamamlanmasını istediğimiz durumlarda kullanılabilir.</li>
+</ul>
 <h2 id="ornek-uygulama">Örnek Uygulama<a class="headerlink" href="#ornek-uygulama" title="Permanent link">&para;</a></h2>
 <p>Bir gurup işçi demir ve kömür barındıran maden yataklarında
 maden arayıp, kazıp bu madenleri işlemektedir. </p>
