@@ -13,7 +13,7 @@ GO routineleri bir kuyrukta çalıştırılmayı bekleyen boyutları küçük th
 
 Aşağıdaki uygulamada Work fonksiyonu her çağrıldığında, çalışması bitene kadar uygulamayı blokluyor.
 
-![routine](/assets/img/routine.gif)
+![routine](../assets/img/routine.gif)
 
 ```go
 func Work(msg string) {
@@ -35,11 +35,11 @@ func main() {
 	go Work("zxcasfv")
 }
 ```
-![goroutine](/assets/img/goroutine_unfinished.gif)
+![goroutine](../assets/img/goroutine_unfinished.gif)
 
 Programı çalıştırdığımızda ekrana hiçbir şey yazdırmadan sonlanacak. `main` fonksiyonu, `Work` fonksiyonu henüz ekrana bir şeyler yazacak kadar çalışmadan, bitiyor ve program kapanıyor. Program bitmeden önce biraz bekleterek `Work` fonksiyonunun çıktısını alabiliriz.
 
-![goroutine_sleep](/assets/img/goroutine_sleep.gif)
+![goroutine_sleep](../assets/img/goroutine_sleep.gif)
 
 
 ```go
@@ -69,7 +69,7 @@ Uygulamanın bir anında bazı goroutinelerin bitmesini beklememiz gerekebilir.
 
 WaitGroup ile kaç tane gorouitine bekleyeceğimizi öncesindem belirtip bu goroutinelerin işlerini bitirmelerini bekleyebiliriz. Goroutinelerin burada tek yapması gereken, işi bittiğinde WaitGroup'un `Done()` methodunu çalıştırması.
 
-![waitgroup](/assets/img/waitgroup.gif)
+![waitgroup](../assets/img/waitgroup.gif)
 
 ```go
 func Work(msg string, wg *sync.WaitGroup) {
@@ -100,7 +100,7 @@ Yukarıdaki örnekte `go` ile çalıştırdığımız fonksiyonlardan dönüş d
 
 Kanallar `make(chan veritipi, buffer)` şeklinde oluşturulabilir.
 
-![channel_simple](/assets/img/channel_simple.gif)
+![channel_simple](../assets/img/channel_simple.gif)
 
 ```go
 func Work(msg string, ch chan string) {
@@ -167,15 +167,15 @@ func main() {
 
 İlk bakışta programda yanlış bir şey gözükmüyor. Fakat programı **--race** parametresi ile derleyip çalıştırdığımızda; bize programda **race-condition** olduğunu söylüyor.
 
-![race](/assets/img/race.png)
+![race](../assets/img/race.png)
 
 Bu program çok çekirdekli bir bilgisayarda çalıştırıldığında, `Click` fonksiyonu farklı çekirdeklerde aynı anda çalıştırılabiliyor. Bu nedenle program yeni `c.Value` değerini yanlış güncelliyor.
 
-![race](/assets/img/race.gif)
+![race](../assets/img/race.gif)
 
 Bu hatayı `main` fonksiyonu içinde bir Mutex oluşturup; `mx.Lock` ve `mx.Unlock` metodlarını `Value` değerini değiştirdiğimiz yerde kullanarak giderebiliriz.
 
-![race](/assets/img/mutex.gif)
+![race](../assets/img/mutex.gif)
 
 ```go
 func Click(c *Counter, wg *sync.WaitGroup, mx *sync.Mutex) {
@@ -257,7 +257,7 @@ Aşağıdaki örnekte 2 goroutine `chan1` ve `chan2` kanallarına sürekli veri 
 Herhangi bir kanaldan mesaj geldiğinde select o kanalı bekleyen `case`e girecek ve
 içinde tanımlanan işlemler bittikten sonra döngü, kanal bekleme işlemini tekrarlayacaktır.
 
-![select](/assets/img/select.gif)
+![select](../assets/img/select.gif)
 
 ```go
 func Work(ch1 chan string, ch2 chan string) {
@@ -349,7 +349,7 @@ Context bize bu gibi durumlarda yardımcı olur.
 
 Context Kullanılmadan                   |  Context Kullanılarak
 :--------------------------------------:|:-------------------------:
-![nocontext](/assets/img/nocontext.gif)  | ![context](/assets/img/context.gif)
+![nocontext](../assets/img/nocontext.gif)  | ![context](../assets/img/context.gif)
 
 
 ### Uygulanış
@@ -401,7 +401,7 @@ Dikkat edeceğiniz üzere, tüm görevler ilk parametre olarak aldığı ve birb
 
 `cancel` fonksiyonu tetiklendiğinde `ctx.Done()` kanalına sinyal göndererek tüm görevlere contextin bittiğini bildirecek.
 
-![cancel](/assets/img/cancel.gif)
+![cancel](../assets/img/cancel.gif)
 
 ```go
 // SearchDB 2 saniye sonra normal bir şekilde sonlanır
@@ -459,7 +459,7 @@ func main() {
 Hazırda elimizde olan contextlere yeni zaman sınırları ekleyebiliriz. Bu örnek için;
 `SendRequest` fonksiyonuna timeout ekleyerek veritabanından 2 saniye içerisinde veri gelmezse görevi iptal edebiliriz.
 
-![timeout](/assets/img/timeout.gif)
+![timeout](../assets/img/timeout.gif)
 
 
 ```go
@@ -497,7 +497,7 @@ maden arayıp, kazıp bu madenleri işlemektedir.
 
 Aşağıdaki uygulamada go dilinin sağladığı concurrency araçları ile işçilerin eş zamanlı olarak nasıl çalıştırılabileceğini görebiliriz. 
 
-![Miners](..//assets/img/miners.png)
+![Miners](../assets/img/miners.png)
 
 ```go
 package main
