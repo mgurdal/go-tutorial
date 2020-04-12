@@ -131,7 +131,7 @@ func main() {
 
 ## Mutex
 
-Mutexes are the concurrency primitives that allows goroutines to change the value of a shared variable without causing a race condition.
+Mutexes are the concurrency primitives that allow goroutines to change the value of a shared variable without causing a race condition.
 
 !!! quote "Wikipedia Definition"
 	In computer science, mutual exclusion is a property of concurrency control, which is instituted for the purpose of preventing race conditions. It is the requirement that one thread of execution never enters its critical section at the same time that another concurrent thread of execution enters its own critical section, which refers to an interval of time during which a thread of execution accesses a shared resource, such as shared memory.
@@ -189,8 +189,6 @@ using the `mx.Lock` and `mx.Unlock` methods within the `Click` function.
 ![race](assets/img/mutex.gif)
 
 ```go
-
-
 func Click(c *Counter, wg *sync.WaitGroup, mx *sync.Mutex) {
 	mx.Lock()
 	c.Inc()
@@ -331,7 +329,7 @@ func main() {
 			fmt.Println(msg1)
 		case msg2 := <-ch2:
 			fmt.Println(msg2)
-		case <-time.After(time.Second * 1):
+		case <-time.After(time.Second):
 			fmt.Println("🎵 Brave Sir Robin ran away 🎵")
 			fmt.Println("🎵 Bravely ran away away    🎵")
 				return
@@ -347,10 +345,11 @@ func main() {
 
 Context deserve atleast the same amout of learning effort as the other concurrency units. 
 
-Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.
 
 When we spawn a goroutine using `go Func()`, it does not give us a reference
-to later cancel it.
+to later learn about its status.
+
+Spawning goroutines all around without caring much about their status can significanly effect the performance without any obvious errors.
 
 We sometimes spawn resource intensive goroutines using another goroutines. When the spawner goroutine finishes other goroutine keeps running in background even it is not necessary. Our resoures gets wasted.
 
