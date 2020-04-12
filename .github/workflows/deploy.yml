@@ -22,4 +22,4 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: Deploy
-      run: mkdocs gh-deploy
+      run: python -m mkdocs gh-deploy
