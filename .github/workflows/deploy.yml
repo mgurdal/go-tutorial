@@ -19,7 +19,7 @@ jobs:
 
     - name: Install requirements
       run: | 
-        sudo apt-get install python3-setuptools
+        apt-get install python3-setuptools
         python3 -m pip install mkdocs mkdocs-material
 
     # Runs a set of commands using the runners shell
