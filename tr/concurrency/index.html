@@ -323,7 +323,7 @@
 <h2 id="goroutines">Goroutines<a class="headerlink" href="#goroutines" title="Permanent link">&para;</a></h2>
 <p>GO routineleri bir kuyrukta çalıştırılmayı bekleyen boyutları küçük threadler olarak düşünülebilir. Bir fonksiyonu goroutine olarak çalıştırmak için çağırırken başına <code>go</code> yazmamız yeterli.</p>
 <p>Aşağıdaki uygulamada Work fonksiyonu her çağrıldığında, çalışması bitene kadar uygulamayı blokluyor.</p>
-<p><img alt="routine" src="/assets/img/routine.gif" /></p>
+<p><img alt="routine" src="../../assets/img/routine.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
@@ -344,9 +344,9 @@
 </code></pre></div>
 
 
-<p><img alt="goroutine" src="/assets/img/goroutine_unfinished.gif" /></p>
+<p><img alt="goroutine" src="../../assets/img/goroutine_unfinished.gif" /></p>
 <p>Programı çalıştırdığımızda ekrana hiçbir şey yazdırmadan sonlanacak. <code>main</code> fonksiyonu, <code>Work</code> fonksiyonu henüz ekrana bir şeyler yazacak kadar çalışmadan, bitiyor ve program kapanıyor. Program bitmeden önce biraz bekleterek <code>Work</code> fonksiyonunun çıktısını alabiliriz.</p>
-<p><img alt="goroutine_sleep" src="/assets/img/goroutine_sleep.gif" /></p>
+<p><img alt="goroutine_sleep" src="../../assets/img/goroutine_sleep.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -370,7 +370,7 @@
 <h3 id="waitgroup">waitGroup<a class="headerlink" href="#waitgroup" title="Permanent link">&para;</a></h3>
 <p>Uygulamanın bir anında bazı goroutinelerin bitmesini beklememiz gerekebilir.</p>
 <p>WaitGroup ile kaç tane gorouitine bekleyeceğimizi öncesindem belirtip bu goroutinelerin işlerini bitirmelerini bekleyebiliriz. Goroutinelerin burada tek yapması gereken, işi bittiğinde WaitGroup'un <code>Done()</code> methodunu çalıştırması.</p>
-<p><img alt="waitgroup" src="/assets/img/waitgroup.gif" /></p>
+<p><img alt="waitgroup" src="../../assets/img/waitgroup.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span>
@@ -395,7 +395,7 @@
 <p>Kanallar goroutinelerin birbirleri ile haberleşmesini sağlar.</p>
 <p>Yukarıdaki örnekte <code>go</code> ile çalıştırdığımız fonksiyonlardan dönüş değeri alamıyoruz. Kanalları kullanarak bir goroutiniin, ana fonksiyonla veya başka bir goroutine ile haberleşmesini sağlayabiliriz.</p>
 <p>Kanallar <code>make(chan veritipi, buffer)</code> şeklinde oluşturulabilir.</p>
-<p><img alt="channel_simple" src="/assets/img/channel_simple.gif" /></p>
+<p><img alt="channel_simple" src="../../assets/img/channel_simple.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">msg</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
     <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">msg</span>
@@ -455,11 +455,11 @@
 
 
 <p>İlk bakışta programda yanlış bir şey gözükmüyor. Fakat programı <strong>--race</strong> parametresi ile derleyip çalıştırdığımızda; bize programda <strong>race-condition</strong> olduğunu söylüyor.</p>
-<p><img alt="race" src="/assets/img/race.png" /></p>
+<p><img alt="race" src="../../assets/img/race.png" /></p>
 <p>Bu program çok çekirdekli bir bilgisayarda çalıştırıldığında, <code>Click</code> fonksiyonu farklı çekirdeklerde aynı anda çalıştırılabiliyor. Bu nedenle program yeni <code>c.Value</code> değerini yanlış güncelliyor.</p>
-<p><img alt="race" src="/assets/img/race.gif" /></p>
+<p><img alt="race" src="../../assets/img/race.gif" /></p>
 <p>Bu hatayı <code>main</code> fonksiyonu içinde bir Mutex oluşturup; <code>mx.Lock</code> ve <code>mx.Unlock</code> metodlarını <code>Value</code> değerini değiştirdiğimiz yerde kullanarak giderebiliriz.</p>
-<p><img alt="race" src="/assets/img/mutex.gif" /></p>
+<p><img alt="race" src="../../assets/img/mutex.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Click</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Counter</span><span class="p">,</span> <span class="nx">wg</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span><span class="p">,</span> <span class="nx">mx</span> <span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">mx</span><span class="p">.</span><span class="nx">Lock</span><span class="p">()</span>
     <span class="nx">c</span><span class="p">.</span><span class="nx">Inc</span><span class="p">()</span>
@@ -533,7 +533,7 @@ yine problemi çözebilirdik.</p>
 <p>İki kanaldan da gelen tüm verileri sonsuz bir döngü içindeki select yapısı ile alabiliriz.
 Herhangi bir kanaldan mesaj geldiğinde select o kanalı bekleyen <code>case</code>e girecek ve
 içinde tanımlanan işlemler bittikten sonra döngü, kanal bekleme işlemini tekrarlayacaktır.</p>
-<p><img alt="select" src="/assets/img/select.gif" /></p>
+<p><img alt="select" src="../../assets/img/select.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nx">Work</span><span class="p">(</span><span class="nx">ch1</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ch2</span> <span class="kd">chan</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="c1">// Send data to ch1 every second</span>
@@ -621,8 +621,8 @@ hata vermeden uygulamanın performansını önemli ölçüde etkileyebilir.</p>
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="nocontext" src="/assets/img/nocontext.gif" /></td>
-<td align="center"><img alt="context" src="/assets/img/context.gif" /></td>
+<td align="center"><img alt="nocontext" src="../../assets/img/nocontext.gif" /></td>
+<td align="center"><img alt="context" src="../../assets/img/context.gif" /></td>
 </tr>
 </tbody>
 </table>
@@ -666,7 +666,7 @@ hata vermeden uygulamanın performansını önemli ölçüde etkileyebilir.</p>
 fonksiyonunu çağıran bir görev oluşturduk.</p>
 <p>Dikkat edeceğiniz üzere, tüm görevler ilk parametre olarak aldığı ve birbiriyle paylaştığı contextin <code>&lt;- ctx.Done()</code> kanalını bekliyor.</p>
 <p><code>cancel</code> fonksiyonu tetiklendiğinde <code>ctx.Done()</code> kanalına sinyal göndererek tüm görevlere contextin bittiğini bildirecek.</p>
-<p><img alt="cancel" src="/assets/img/cancel.gif" /></p>
+<p><img alt="cancel" src="../../assets/img/cancel.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// SearchDB 2 saniye sonra normal bir şekilde sonlanır</span>
 <span class="kd">func</span> <span class="nx">SearchDB</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Searching Database&quot;</span><span class="p">)</span>
@@ -723,7 +723,7 @@ fonksiyonunu çağıran bir görev oluşturduk.</p>
 </ul>
 <p>Hazırda elimizde olan contextlere yeni zaman sınırları ekleyebiliriz. Bu örnek için;
 <code>SendRequest</code> fonksiyonuna timeout ekleyerek veritabanından 2 saniye içerisinde veri gelmezse görevi iptal edebiliriz.</p>
-<p><img alt="timeout" src="/assets/img/timeout.gif" /></p>
+<p><img alt="timeout" src="../../assets/img/timeout.gif" /></p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// SendRequest 5 saniye sonra normal bir şekilde biter</span>
 <span class="c1">// Veritabanı işini 2 saniye içerisinde tamamlanmazsa iptal eder</span>
 <span class="kd">func</span> <span class="nx">SendRequest</span><span class="p">(</span><span class="nx">ctx</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">){</span>
